@@ -26,10 +26,21 @@ public class US6_JUnitTests {
     }
 
     @Test
-    public void checkIfNetIDIsEmpty() {
+    /**
+     * checks if job title field is empty
+     */
+    public void checkIfEmptyJobTitle() {
         assertTrue(postJobActivity.isEmptyJobTitle(""));
         assertFalse(postJobActivity.isEmptyJobTitle("water plants"));
     }
 
+    @Test
+    /**
+     * checks if payment field is empty
+     */
+    public void checkIfEmptyPayment() {
+        assertTrue(postJobActivity.isEmptyPayment(""));
+        assertFalse(postJobActivity.isEmptyPayment("$20/hr"));
+    }
 
 }
