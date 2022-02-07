@@ -22,8 +22,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.junit.Assert.assertEquals;
 
-
-
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -52,6 +50,13 @@ public class US6_EspressoTests {
     public void checkIfMovedToPostJobPage(){
         onView(withId(R.id.postJobButton)).perform(click());
         intended(hasComponent(PostJobActivity.class.getName()));
+    }
+
+    @Test
+    public void checkIfMovedBackToEmployerPage(){
+        onView(withId(R.id.postJobButton)).perform(click());
+        onView(withId(R.id.submitJobButton)).perform(click());
+        intended(hasComponent(EmployerPageActivity.class.getName()));
     }
 
 
