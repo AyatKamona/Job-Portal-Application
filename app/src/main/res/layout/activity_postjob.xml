@@ -46,6 +46,35 @@
         app:layout_constraintVertical_bias="0.111" />
 
     <TextView
+        android:id="@+id/skills"
+        android:layout_width="154dp"
+        android:layout_height="26dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="skills :"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.374" />
+
+    <EditText
+        android:id="@+id/insert_skills"
+        android:layout_width="330dp"
+        android:layout_height="47dp"
+        android:inputType="textMultiLine"
+        android:lines="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.943"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.366" />
+
+    <TextView
         android:id="@+id/job_description"
         android:layout_width="154dp"
         android:layout_height="26dp"
@@ -59,7 +88,7 @@
         app:layout_constraintHorizontal_bias="0.023"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.374" />
+        app:layout_constraintVertical_bias="0.458" />
 
     <EditText
         android:id="@+id/insert_job_description"
@@ -72,7 +101,7 @@
         app:layout_constraintHorizontal_bias="0.937"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367" />
+        app:layout_constraintVertical_bias="0.458" />
 
     <TextView
         android:id="@+id/job_payment"
