@@ -44,7 +44,7 @@ public class US6_EspressoTests {
     }
 
     /**
-     * tests if employer is moved from the Employer page to the PostJob page when the postJob button is clicked.
+     * Tests if employer is moved from the Employer page to the PostJob page when the postJob button is clicked.
      */
     @Test
     public void checkIfMovedToPostJobPage(){
@@ -52,6 +52,9 @@ public class US6_EspressoTests {
         intended(hasComponent(PostJobActivity.class.getName()));
     }
 
+    /**
+     * Tests if employer is moved back to the Employer page after they have successfully posted a job.
+     */
     @Test
     public void checkIfMovedBackToEmployerPage(){
         onView(withId(R.id.postJobButton)).perform(click());
