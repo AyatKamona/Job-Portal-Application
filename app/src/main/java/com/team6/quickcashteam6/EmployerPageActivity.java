@@ -14,8 +14,8 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employer_page);
 
-        Button registerButton = findViewById(R.id.postJobButton);
-        registerButton.setOnClickListener(this);
+        Button submitButton = findViewById(R.id.postJobButton);
+        submitButton.setOnClickListener(this);
     }
 
     @Override

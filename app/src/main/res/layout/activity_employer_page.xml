@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/welcomeLabel"
-        android:layout_width="67dp"
-        android:layout_height="22dp"
+        android:layout_width="94dp"
+        android:layout_height="49dp"
         android:text="Welcome Employer!"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
