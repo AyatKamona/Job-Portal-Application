@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Employee extends User{
     public Employee (String name){
         super(name);
+        employeeSkills= new ArrayList<>();
     }
 
     private ArrayList<String> employeeSkills;
@@ -13,6 +14,9 @@ public class Employee extends User{
         employeeSkills = skills;
     }
 
+    public void addSingleSkill (String skill){
+        employeeSkills.add(skill);
+    }
     public ArrayList<String> getSkills(){
         return employeeSkills;
     }
