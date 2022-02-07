@@ -28,7 +28,7 @@ public class EmployerRecommendationActivityTest  {
         Employee user = new Employee("Guy");
         ArrayList<String> skills = new ArrayList<String>();
         skills.add("Dog Walking");
-        user.setSkills(skills);
+        user.addSkills(skills);
         assertEquals("Skills do not match", user.getSkills(), skills);
     }
 }
