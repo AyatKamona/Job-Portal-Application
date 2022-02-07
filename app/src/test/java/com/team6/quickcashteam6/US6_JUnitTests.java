@@ -43,4 +43,13 @@ public class US6_JUnitTests {
         assertFalse(postJobActivity.isEmptyPayment("$20/hr"));
     }
 
+    @Test
+    /**
+     * checks if start time field is empty
+     */
+    public void checkIfEmptyStartTime() {
+        assertTrue(postJobActivity.isEmptyStartTime(""));
+        assertFalse(postJobActivity.isEmptyStartTime("2022-02-14 at 8:00am"));
+    }
+
 }
