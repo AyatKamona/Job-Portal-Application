@@ -1,6 +1,5 @@
 package com.team6.quickcashteam6;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +10,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PostJobActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private EditText insert_job_title = findViewById(R.id.insert_job_title);
-    private EditText insert_skills = findViewById(R.id.insert_skills);
-    private EditText insert_job_description = findViewById(R.id.insert_job_description);
-    private EditText insert_job_payment = findViewById(R.id.insert_job_payment);
-    private EditText insert_start_time = findViewById(R.id.insert_start_time);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +29,11 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view){
 
-        String job_title = insert_job_title.getText().toString().trim();
-        String skills = insert_skills.getText().toString().trim();
-        String job_description = insert_job_description.getText().toString().trim();
-        String job_payment = insert_job_payment.getText().toString().trim();
-        String start_time = insert_start_time.getText().toString().trim();
-
-
+        String job_title;
+        String skills;
+        String job_description;
+        String job_payment;
+        String start_time;
 
         openEmployerPage();
     }
@@ -50,6 +41,51 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     public void openEmployerPage() {
         Intent submitJob = new Intent(PostJobActivity.this, EmployerPageActivity.class);
         startActivity(submitJob);
+    }
+
+    protected String getJobTitle(){
+        EditText insert_job_title = findViewById(R.id.insert_job_title);
+        return insert_job_title.getText().toString().trim();
+    }
+
+    protected String getSkills(){
+        EditText insert_skills = findViewById(R.id.insert_skills);
+        return insert_skills.getText().toString().trim();
+    }
+
+    protected String getDescription(){
+        EditText insert_job_description = findViewById(R.id.insert_job_description);
+        return insert_job_description.getText().toString().trim();
+    }
+
+    protected String getPayment(){
+        EditText insert_job_payment = findViewById(R.id.insert_job_payment);
+        return insert_job_payment.getText().toString().trim();
+    }
+
+    protected String getStartTime(){
+        EditText insert_start_time = findViewById(R.id.insert_start_time);
+        return insert_start_time.getText().toString().trim();
+    }
+
+    protected static boolean isEmptyJobTitle(String jobTitle){
+        return jobTitle.isEmpty();
+    }
+
+    protected static boolean isEmptyPayment(String payment){
+        return payment.isEmpty();
+    }
+
+    protected static boolean isEmptyStartTime(String startTime){
+        return startTime.isEmpty();
+    }
+
+    protected static boolean isEmptySkills(String skills){
+        return skills.isEmpty();
+    }
+
+    protected static boolean isEmptyDescription(String description){
+        return description.isEmpty();
     }
 
 }
