@@ -29,11 +29,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         submitJobButton.setOnClickListener(this);
 
     }
-
-   // protected void initializeDatabase(){
-     //   firebaseDB = FirebaseDatabase.getInstance(FIREBASE_DATABASE_URL);
-      //  jobToPost = firebaseDB.getReference("Job Post");
-   // }
+    
 
     protected void setErrorMessage(String message){
         TextView errorMessage = findViewById(R.id.errorMessage);
@@ -72,7 +68,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         else {
             JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription);
-            jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Post");
+            jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Posting");
             jobToPost.push().setValue(post);
             openEmployerPage();
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
