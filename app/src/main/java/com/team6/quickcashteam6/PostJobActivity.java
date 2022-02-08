@@ -15,8 +15,8 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postjob);
 
-        Button registerButton = findViewById(R.id.submitJobButton);
-        registerButton.setOnClickListener(this);
+        Button submitJobButton = findViewById(R.id.submitJobButton);
+        submitJobButton.setOnClickListener(this);
     }
 
     @Override

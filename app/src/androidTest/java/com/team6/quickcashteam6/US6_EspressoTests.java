@@ -62,5 +62,20 @@ public class US6_EspressoTests {
         intended(hasComponent(EmployerPageActivity.class.getName()));
     }
 
+    /**
+     * Tests if correct error message is shown when job title field is empty.
+     */
+    @Test
+    public void checkIfJobTitleEmpty() {
+        onView(withId(R.id.job_title)).perform(typeText(""));
+        onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
+        onView(withId(R.id.skills)).perform(typeText("Responsible"));
+        onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
+        onView(withId(R.id.job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.submitJobButton)).perform(click());
+        onView(withId(R.id.errorMessage)).check(matches(withText(R.string.EMPTY_JOB_TITLE)));
+    }
+
+
 
 }

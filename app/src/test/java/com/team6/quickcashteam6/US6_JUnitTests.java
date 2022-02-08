@@ -25,46 +25,46 @@ public class US6_JUnitTests {
         System.gc();
     }
 
-    @Test
     /**
      * checks if job title field is empty
      */
+    @Test
     public void checkIfEmptyJobTitle() {
         assertTrue(postJobActivity.isEmptyJobTitle(""));
         assertFalse(postJobActivity.isEmptyJobTitle("water plants"));
     }
 
-    @Test
     /**
      * checks if payment field is empty
      */
+    @Test
     public void checkIfEmptyPayment() {
         assertTrue(postJobActivity.isEmptyPayment(""));
         assertFalse(postJobActivity.isEmptyPayment("$20/hr"));
     }
 
-    @Test
     /**
      * checks if start time field is empty
      */
+    @Test
     public void checkIfEmptyStartTime() {
         assertTrue(postJobActivity.isEmptyStartTime(""));
         assertFalse(postJobActivity.isEmptyStartTime("2022-02-14 at 8:00am"));
     }
 
-    @Test
     /**
      * checks if skill field is empty
      */
+    @Test
     public void checkIfEmptySkills() {
         assertTrue(postJobActivity.isEmptySkills(""));
         assertFalse(postJobActivity.isEmptySkills("strong"));
     }
 
-    @Test
     /**
      * checks if description field is empty
      */
+    @Test
     public void checkIfEmptyDescription() {
         assertTrue(postJobActivity.isEmptyDescription(""));
         assertFalse(postJobActivity.isEmptyDescription("you have to shovel the driveway"));
