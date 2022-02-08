@@ -6,10 +6,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class PostJobActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String FIREBASE_DATABASE_URL = "https://quickcash-team6-default-rtdb.firebaseio.com/";
+    private FirebaseDatabase firebaseDB;
+    private DatabaseReference jobToPost;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +29,11 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         submitJobButton.setOnClickListener(this);
 
     }
+
+   // protected void initializeDatabase(){
+     //   firebaseDB = FirebaseDatabase.getInstance(FIREBASE_DATABASE_URL);
+      //  jobToPost = firebaseDB.getReference("Job Post");
+   // }
 
     protected void setErrorMessage(String message){
         TextView errorMessage = findViewById(R.id.errorMessage);
@@ -57,8 +71,12 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         else {
+            JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription);
+            jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Post");
+            jobToPost.push().setValue(post);
             openEmployerPage();
         }
+
 
         setErrorMessage(errorMessage);
         System.out.println(errorMessage);
