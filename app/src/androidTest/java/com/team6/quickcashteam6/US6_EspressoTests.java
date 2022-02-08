@@ -66,7 +66,7 @@ public class US6_EspressoTests {
      * Tests if correct error message is shown when job title field is empty.
      */
     @Test
-    public void checkIfJobTitleEmpty() {
+    public void checkIfJobTitleIsEmpty() {
         onView(withId(R.id.job_title)).perform(typeText(""));
         onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
         onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
@@ -80,7 +80,7 @@ public class US6_EspressoTests {
      * Tests if correct error message is shown when payment field is empty.
      */
     @Test
-    public void checkIfPaymentEmpty() {
+    public void checkIfPaymentIsEmpty() {
         onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
         onView(withId(R.id.job_payment)).perform(typeText(""));
         onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
@@ -94,7 +94,7 @@ public class US6_EspressoTests {
      * Tests if correct error message is shown when start time field is empty.
      */
     @Test
-    public void checkIfStartTimeEmpty() {
+    public void checkIfStartTimeIsEmpty() {
         onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
         onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
         onView(withId(R.id.start_time)).perform(typeText(""));
@@ -108,7 +108,7 @@ public class US6_EspressoTests {
      * Tests if correct error message is shown when skills field is empty.
      */
     @Test
-    public void checkIfSkillsEmpty() {
+    public void checkIfSkillsIsEmpty() {
         onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
         onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
         onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
@@ -118,4 +118,17 @@ public class US6_EspressoTests {
         onView(withId(R.id.errorMessage)).check(matches(withText(R.string.EMPTY_SKILLS)));
     }
 
+    /**
+     * Tests if correct error message is shown when Description field is empty.
+     */
+    @Test
+    public void checkIfDescriptionIsEmpty() {
+        onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
+        onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
+        onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
+        onView(withId(R.id.skills)).perform(typeText("Responsible"));
+        onView(withId(R.id.job_description)).perform(typeText(""));
+        onView(withId(R.id.submitJobButton)).perform(click());
+        onView(withId(R.id.errorMessage)).check(matches(withText(R.string.EMPTY_JOB_DESCRIPTION)));
+    }
 }
