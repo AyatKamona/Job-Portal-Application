@@ -54,11 +54,20 @@ public class US6_JUnitTests {
 
     @Test
     /**
-     * checks if start skill field is empty
+     * checks if skill field is empty
      */
     public void checkIfEmptySkills() {
         assertTrue(postJobActivity.isEmptySkills(""));
         assertFalse(postJobActivity.isEmptySkills("strong"));
+    }
+
+    @Test
+    /**
+     * checks if description field is empty
+     */
+    public void checkIfEmptyDescription() {
+        assertTrue(postJobActivity.isEmptyDescription(""));
+        assertFalse(postJobActivity.isEmptyDescription("you have to shovel the driveway"));
     }
 
 }
