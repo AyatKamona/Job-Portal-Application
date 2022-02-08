@@ -52,4 +52,13 @@ public class US6_JUnitTests {
         assertFalse(postJobActivity.isEmptyStartTime("2022-02-14 at 8:00am"));
     }
 
+    @Test
+    /**
+     * checks if start skill field is empty
+     */
+    public void checkIfEmptySkills() {
+        assertTrue(postJobActivity.isEmptySkills(""));
+        assertFalse(postJobActivity.isEmptySkills("strong"));
+    }
+
 }
