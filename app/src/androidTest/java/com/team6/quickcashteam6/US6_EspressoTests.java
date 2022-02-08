@@ -67,6 +67,7 @@ public class US6_EspressoTests {
      */
     @Test
     public void checkIfJobTitleIsEmpty() {
+        onView(withId(R.id.postJobButton)).perform(click());
         onView(withId(R.id.job_title)).perform(typeText(""));
         onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
         onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
@@ -81,6 +82,7 @@ public class US6_EspressoTests {
      */
     @Test
     public void checkIfPaymentIsEmpty() {
+        onView(withId(R.id.postJobButton)).perform(click());
         onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
         onView(withId(R.id.job_payment)).perform(typeText(""));
         onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
@@ -95,6 +97,7 @@ public class US6_EspressoTests {
      */
     @Test
     public void checkIfStartTimeIsEmpty() {
+        onView(withId(R.id.postJobButton)).perform(click());
         onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
         onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
         onView(withId(R.id.start_time)).perform(typeText(""));
@@ -109,6 +112,7 @@ public class US6_EspressoTests {
      */
     @Test
     public void checkIfSkillsIsEmpty() {
+        onView(withId(R.id.postJobButton)).perform(click());
         onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
         onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
         onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
@@ -123,6 +127,7 @@ public class US6_EspressoTests {
      */
     @Test
     public void checkIfDescriptionIsEmpty() {
+        onView(withId(R.id.postJobButton)).perform(click());
         onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
         onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
         onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));

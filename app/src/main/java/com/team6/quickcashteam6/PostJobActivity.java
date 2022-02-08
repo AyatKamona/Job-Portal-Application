@@ -29,13 +29,39 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View view){
 
-        String job_title;
-        String skills;
-        String job_description;
-        String job_payment;
-        String start_time;
+        String jobTitle = getJobTitle();
+        String skills = getSkills();
+        String jobDescription = getDescription();
+        String jobPayment = getPayment();
+        String startTime = getStartTime();
+        String errorMessage = new String();
 
-        openEmployerPage();
+        if (isEmptyJobTitle(jobTitle)){
+            errorMessage = getResources().getString(R.string.EMPTY_JOB_TITLE).trim();
+        }
+
+        else if (isEmptyPayment(jobPayment)){
+            errorMessage = getResources().getString(R.string.EMPTY_PAYMENT).trim();
+        }
+
+        else if (isEmptyStartTime(startTime)){
+            errorMessage = getResources().getString(R.string.EMPTY_START_TIME).trim();
+        }
+
+        else if (isEmptySkills(skills)){
+            errorMessage = getResources().getString(R.string.EMPTY_SKILLS).trim();
+        }
+
+        else if (isEmptyDescription(jobDescription)){
+            errorMessage = getResources().getString(R.string.EMPTY_JOB_DESCRIPTION).trim();
+        }
+
+        else {
+            openEmployerPage();
+        }
+
+        setErrorMessage(errorMessage);
+        System.out.println(errorMessage);
     }
 
     public void openEmployerPage() {
