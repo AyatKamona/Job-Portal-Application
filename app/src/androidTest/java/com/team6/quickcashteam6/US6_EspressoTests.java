@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
@@ -45,6 +46,7 @@ public class US6_EspressoTests {
 
     /**
      * Tests if employer is moved from the Employer page to the PostJob page when the postJob button is clicked.
+     * MUST TEST INDIVIDUALLY
      */
     @Test
     public void checkIfMovedToPostJobPage(){
@@ -58,6 +60,12 @@ public class US6_EspressoTests {
     @Test
     public void checkIfMovedBackToEmployerPage(){
         onView(withId(R.id.postJobButton)).perform(click());
+        onView(withId(R.id.insert_job_title)).perform(typeText("Babysitting"));
+        onView(withId(R.id.insert_job_payment)).perform(typeText("$20/hr"));
+        onView(withId(R.id.insert_start_time)).perform(typeText("2022-02-14 at 8pm"));
+        onView(withId(R.id.insert_skills)).perform(typeText("Responsible"));
+        onView(withId(R.id.insert_job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
         onView(withId(R.id.submitJobButton)).perform(click());
         intended(hasComponent(EmployerPageActivity.class.getName()));
     }
@@ -67,11 +75,13 @@ public class US6_EspressoTests {
      */
     @Test
     public void checkIfJobTitleIsEmpty() {
-        onView(withId(R.id.job_title)).perform(typeText(""));
-        onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
-        onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
-        onView(withId(R.id.skills)).perform(typeText("Responsible"));
-        onView(withId(R.id.job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.postJobButton)).perform(click());
+        onView(withId(R.id.insert_job_title)).perform(typeText(""));
+        onView(withId(R.id.insert_job_payment)).perform(typeText("$20/hr"));
+        onView(withId(R.id.insert_start_time)).perform(typeText("2022-02-14 at 8pm"));
+        onView(withId(R.id.insert_skills)).perform(typeText("Responsible"));
+        onView(withId(R.id.insert_job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
         onView(withId(R.id.submitJobButton)).perform(click());
         onView(withId(R.id.errorMessage)).check(matches(withText(R.string.EMPTY_JOB_TITLE)));
     }
@@ -81,11 +91,13 @@ public class US6_EspressoTests {
      */
     @Test
     public void checkIfPaymentIsEmpty() {
-        onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
-        onView(withId(R.id.job_payment)).perform(typeText(""));
-        onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
-        onView(withId(R.id.skills)).perform(typeText("ResponsibleResponsible"));
-        onView(withId(R.id.job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.postJobButton)).perform(click());
+        onView(withId(R.id.insert_job_title)).perform(typeText("Babysitting"));
+        onView(withId(R.id.insert_job_payment)).perform(typeText(""));
+        onView(withId(R.id.insert_start_time)).perform(typeText("2022-02-14 at 8pm"));
+        onView(withId(R.id.insert_skills)).perform(typeText("ResponsibleResponsible"));
+        onView(withId(R.id.insert_job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
         onView(withId(R.id.submitJobButton)).perform(click());
         onView(withId(R.id.errorMessage)).check(matches(withText(R.string.EMPTY_PAYMENT)));
     }
@@ -95,11 +107,13 @@ public class US6_EspressoTests {
      */
     @Test
     public void checkIfStartTimeIsEmpty() {
-        onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
-        onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
-        onView(withId(R.id.start_time)).perform(typeText(""));
-        onView(withId(R.id.skills)).perform(typeText("Responsible"));
-        onView(withId(R.id.job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.postJobButton)).perform(click());
+        onView(withId(R.id.insert_job_title)).perform(typeText("Babysitting"));
+        onView(withId(R.id.insert_job_payment)).perform(typeText("$20/hr"));
+        onView(withId(R.id.insert_start_time)).perform(typeText(""));
+        onView(withId(R.id.insert_skills)).perform(typeText("Responsible"));
+        onView(withId(R.id.insert_job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
         onView(withId(R.id.submitJobButton)).perform(click());
         onView(withId(R.id.errorMessage)).check(matches(withText(R.string.EMPTY_START_TIME)));
     }
@@ -109,11 +123,13 @@ public class US6_EspressoTests {
      */
     @Test
     public void checkIfSkillsIsEmpty() {
-        onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
-        onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
-        onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
-        onView(withId(R.id.skills)).perform(typeText(""));
-        onView(withId(R.id.job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.postJobButton)).perform(click());
+        onView(withId(R.id.insert_job_title)).perform(typeText("Babysitting"));
+        onView(withId(R.id.insert_job_payment)).perform(typeText("$20/hr"));
+        onView(withId(R.id.insert_start_time)).perform(typeText("2022-02-14 at 8pm"));
+        onView(withId(R.id.insert_skills)).perform(typeText(""));
+        onView(withId(R.id.insert_job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
         onView(withId(R.id.submitJobButton)).perform(click());
         onView(withId(R.id.errorMessage)).check(matches(withText(R.string.EMPTY_SKILLS)));
     }
@@ -123,11 +139,13 @@ public class US6_EspressoTests {
      */
     @Test
     public void checkIfDescriptionIsEmpty() {
-        onView(withId(R.id.job_title)).perform(typeText("Babysitting"));
-        onView(withId(R.id.job_payment)).perform(typeText("$20/hr"));
-        onView(withId(R.id.start_time)).perform(typeText("2022-02-14 at 8pm"));
-        onView(withId(R.id.skills)).perform(typeText("Responsible"));
-        onView(withId(R.id.job_description)).perform(typeText(""));
+        onView(withId(R.id.postJobButton)).perform(click());
+        onView(withId(R.id.insert_job_title)).perform(typeText("Babysitting"));
+        onView(withId(R.id.insert_job_payment)).perform(typeText("$20/hr"));
+        onView(withId(R.id.insert_start_time)).perform(typeText("2022-02-14 at 8pm"));
+        onView(withId(R.id.insert_skills)).perform(typeText("Responsible"));
+        onView(withId(R.id.insert_job_description)).perform(typeText(""));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
         onView(withId(R.id.submitJobButton)).perform(click());
         onView(withId(R.id.errorMessage)).check(matches(withText(R.string.EMPTY_JOB_DESCRIPTION)));
     }

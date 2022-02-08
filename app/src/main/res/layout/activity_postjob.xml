@@ -20,8 +20,8 @@
 
     <TextView
         android:id="@+id/job_title"
-        android:layout_width="98dp"
-        android:layout_height="29dp"
+        android:layout_width="86dp"
+        android:layout_height="32dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Job Title :"
@@ -47,8 +47,8 @@
 
     <TextView
         android:id="@+id/skills"
-        android:layout_width="154dp"
-        android:layout_height="26dp"
+        android:layout_width="63dp"
+        android:layout_height="29dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Skills :"
@@ -76,8 +76,8 @@
 
     <TextView
         android:id="@+id/job_description"
-        android:layout_width="154dp"
-        android:layout_height="26dp"
+        android:layout_width="151dp"
+        android:layout_height="23dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Job Description :"
@@ -105,8 +105,8 @@
 
     <TextView
         android:id="@+id/job_payment"
-        android:layout_width="102dp"
-        android:layout_height="30dp"
+        android:layout_width="91dp"
+        android:layout_height="29dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Payment :"
@@ -132,8 +132,8 @@
 
     <TextView
         android:id="@+id/start_time"
-        android:layout_width="113dp"
-        android:layout_height="32dp"
+        android:layout_width="100dp"
+        android:layout_height="31dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Start Time :"

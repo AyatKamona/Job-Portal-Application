@@ -1,5 +1,6 @@
 package com.team6.quickcashteam6;
 
+import junit.framework.TestCase;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,26 +13,14 @@ import static org.junit.Assert.*;
  */
 
 public class US6_JUnitTests {
-    static PostJobActivity postJobActivity;
-
-    @BeforeClass
-    public static void setup() {
-
-        postJobActivity = new PostJobActivity();
-    }
-
-    @AfterClass
-    public static void tearDown() {
-        System.gc();
-    }
 
     /**
      * checks if job title field is empty
      */
     @Test
     public void checkIfEmptyJobTitle() {
-        assertTrue(postJobActivity.isEmptyJobTitle(""));
-        assertFalse(postJobActivity.isEmptyJobTitle("water plants"));
+        assertTrue(PostJobActivity.isEmptyJobTitle(""));
+        assertFalse(PostJobActivity.isEmptyJobTitle("water plants"));
     }
 
     /**
@@ -39,8 +28,8 @@ public class US6_JUnitTests {
      */
     @Test
     public void checkIfEmptyPayment() {
-        assertTrue(postJobActivity.isEmptyPayment(""));
-        assertFalse(postJobActivity.isEmptyPayment("$20/hr"));
+        assertTrue(PostJobActivity.isEmptyPayment(""));
+        assertFalse(PostJobActivity.isEmptyPayment("$20/hr"));
     }
 
     /**
@@ -48,8 +37,8 @@ public class US6_JUnitTests {
      */
     @Test
     public void checkIfEmptyStartTime() {
-        assertTrue(postJobActivity.isEmptyStartTime(""));
-        assertFalse(postJobActivity.isEmptyStartTime("2022-02-14 at 8:00am"));
+        assertTrue(PostJobActivity.isEmptyStartTime(""));
+        assertFalse(PostJobActivity.isEmptyStartTime("2022-02-14 at 8:00am"));
     }
 
     /**
@@ -57,8 +46,8 @@ public class US6_JUnitTests {
      */
     @Test
     public void checkIfEmptySkills() {
-        assertTrue(postJobActivity.isEmptySkills(""));
-        assertFalse(postJobActivity.isEmptySkills("strong"));
+        assertTrue(PostJobActivity.isEmptySkills(""));
+        assertFalse(PostJobActivity.isEmptySkills("strong"));
     }
 
     /**
@@ -66,8 +55,8 @@ public class US6_JUnitTests {
      */
     @Test
     public void checkIfEmptyDescription() {
-        assertTrue(postJobActivity.isEmptyDescription(""));
-        assertFalse(postJobActivity.isEmptyDescription("you have to shovel the driveway"));
+        assertTrue(PostJobActivity.isEmptyDescription(""));
+        assertFalse(PostJobActivity.isEmptyDescription("you have to shovel the driveway"));
     }
 
 }
