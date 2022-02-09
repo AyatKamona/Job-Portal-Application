@@ -22,6 +22,9 @@
         <activity
             android:name=".EmployerRecommendationActivity"
             android:exported="true" />
+        <activity
+            android:name=".EmployeeRecommendationActivity"
+            android:exported="true" />
 
     </application>
 

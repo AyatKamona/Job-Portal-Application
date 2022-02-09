@@ -56,7 +56,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
         jobSkills.add("Electrician");
 
 
-        ArrayList<Employee> testRecommend= RecommendationService.recommendation(jobSkills,testEmployees);
+        ArrayList<Employee> testRecommend= RecommendationService.employerRecommendation(jobSkills,testEmployees);
         for (Employee employee: testRecommend){
             System.out.println(employee.getName());
         }
