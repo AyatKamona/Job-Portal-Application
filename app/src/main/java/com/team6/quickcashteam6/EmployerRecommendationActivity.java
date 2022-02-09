@@ -11,7 +11,8 @@ import java.util.Random;
 
 public class EmployerRecommendationActivity extends AppCompatActivity implements View.OnClickListener  {
 
-    private ArrayList<Employee> recommendedEmployees;
+    //private ArrayList<Employee> recommendedEmployees = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,26 +23,9 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
     }
 
 
-    public ArrayList<Employee> recommendation(ArrayList<String> skills, ArrayList<Employee> employees) {
-        recommendedEmployees= new ArrayList<>();
-        for (Employee employee: employees){
-            int count=0;
-            for (String skill : skills){
-
-               if (employee.getSkills().contains(skill)){
-                   count++;
-               }
-            }
-            if (count>=2){
-                recommendedEmployees.add(employee);
-            }
-
-        }
-        return recommendedEmployees;
-    }
-
     @Override
     public void onClick(View view) {
+
         ArrayList<Employee> testEmployees= new ArrayList<>();
         ArrayList<String> skills= new ArrayList<>();
         for (int i=0; i<10; i++){
@@ -72,7 +56,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
         jobSkills.add("Electrician");
 
 
-        ArrayList<Employee> testRecommend= recommendation(jobSkills,testEmployees);
+        ArrayList<Employee> testRecommend= RecommendationService.recommendation(jobSkills,testEmployees);
         for (Employee employee: testRecommend){
             System.out.println(employee.getName());
         }
