@@ -7,18 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class PostJobActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private static final String FIREBASE_DATABASE_URL = "https://quickcash-team6-default-rtdb.firebaseio.com/";
-    private FirebaseDatabase firebaseDB;
-    private DatabaseReference jobToPost;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +20,11 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
-
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> b313a808d9e9fd29151230f862b8bce7256e5da5
 
     protected void setErrorMessage(String message){
         TextView errorMessage = findViewById(R.id.errorMessage);
@@ -38,13 +33,12 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view){
-
         String jobTitle = getJobTitle();
         String skills = getSkills();
         String jobDescription = getDescription();
         String jobPayment = getPayment();
         String startTime = getStartTime();
-        String errorMessage = new String();
+        String errorMessage = "";
 
         if (isEmptyJobTitle(jobTitle)){
             errorMessage = getResources().getString(R.string.EMPTY_JOB_TITLE).trim();
@@ -68,7 +62,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         else {
             JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription);
-            jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Posting");
+            DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Posting");
             jobToPost.push().setValue(post);
             openEmployerPage();
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
