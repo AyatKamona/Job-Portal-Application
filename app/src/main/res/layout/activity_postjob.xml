@@ -13,15 +13,14 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721" />
+        app:layout_constraintVertical_bias="0.923" />
 
     <TextView
         android:id="@+id/job_title"
-        android:layout_width="86dp"
-        android:layout_height="32dp"
+        android:layout_width="99dp"
+        android:layout_height="33dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Job Title :"
@@ -29,10 +28,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.122" />
+        app:layout_constraintVertical_bias="0.133" />
 
     <EditText
         android:id="@+id/insert_job_title"
@@ -40,10 +39,10 @@
         android:layout_height="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.901"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.112" />
 
     <TextView
         android:id="@+id/skills"
@@ -56,23 +55,43 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintHorizontal_bias="0.017"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.374" />
+        app:layout_constraintVertical_bias="0.381" />
 
     <EditText
-        android:id="@+id/insert_skills"
-        android:layout_width="330dp"
-        android:layout_height="47dp"
-        android:inputType="textMultiLine"
-        android:lines="10"
+        android:id="@+id/skill1"
+        android:layout_width="189dp"
+        android:layout_height="54dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.943"
+        app:layout_constraintHorizontal_bias="0.639"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.366" />
+        app:layout_constraintVertical_bias="0.358" />
+
+    <EditText
+        android:id="@+id/skill2"
+        android:layout_width="189dp"
+        android:layout_height="54dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.639"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.438" />
+
+    <EditText
+        android:id="@+id/skill3"
+        android:layout_width="189dp"
+        android:layout_height="54dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.639"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.518" />
 
     <TextView
         android:id="@+id/job_description"
@@ -88,20 +107,20 @@
         app:layout_constraintHorizontal_bias="0.023"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintVertical_bias="0.663" />
 
     <EditText
         android:id="@+id/insert_job_description"
-        android:layout_width="235dp"
-        android:layout_height="46dp"
+        android:layout_width="242dp"
+        android:layout_height="88dp"
         android:inputType="textMultiLine"
         android:lines="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintVertical_bias="0.646" />
 
     <TextView
         android:id="@+id/job_payment"
@@ -121,19 +140,19 @@
 
     <EditText
         android:id="@+id/insert_job_payment"
-        android:layout_width="297dp"
-        android:layout_height="43dp"
+        android:layout_width="296dp"
+        android:layout_height="46dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.199" />
+        app:layout_constraintVertical_bias="0.195" />
 
     <TextView
         android:id="@+id/start_time"
-        android:layout_width="100dp"
-        android:layout_height="31dp"
+        android:layout_width="106dp"
+        android:layout_height="33dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Start Time :"
@@ -152,10 +171,10 @@
         android:layout_height="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.917"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
+        app:layout_constraintVertical_bias="0.275" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar2"
@@ -180,6 +199,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61" />
+        app:layout_constraintVertical_bias="0.808" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

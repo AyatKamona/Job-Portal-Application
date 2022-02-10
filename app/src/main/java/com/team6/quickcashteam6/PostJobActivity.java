@@ -29,7 +29,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         submitJobButton.setOnClickListener(this);
 
     }
-    
+
 
     protected void setErrorMessage(String message){
         TextView errorMessage = findViewById(R.id.errorMessage);
@@ -91,8 +91,26 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     protected String getSkills(){
-        EditText insert_skills = findViewById(R.id.insert_skills);
-        return insert_skills.getText().toString().trim();
+        String skills = "";
+        EditText skill1 = findViewById(R.id.skill1);
+        EditText skill2 = findViewById(R.id.skill2);
+        EditText skill3 = findViewById(R.id.skill3);
+
+        if(findViewById(R.id.skill1) != null){
+            skills += skill1.getText().toString() + ",";
+        }
+
+        if(findViewById(R.id.skill2) != null){
+            skills += skill2.getText().toString() + ",";
+        }
+
+        if(findViewById(R.id.skill3) != null){
+            skills += skill3.getText().toString();
+        }
+
+        //EditText insert_skills = findViewById(R.id.insert_skills);
+        //return insert_skills.getText().toString().trim();
+        return skills;
     }
 
     protected String getDescription(){
