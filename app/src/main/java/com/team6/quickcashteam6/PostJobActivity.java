@@ -86,15 +86,15 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         EditText skill2 = findViewById(R.id.skill2);
         EditText skill3 = findViewById(R.id.skill3);
 
-        if(!skill1.getText().toString().isEmpty()){
+        if(!(skill1.getText().toString()).isEmpty()){
             skills += skill1.getText().toString() + ",";
         }
 
-        if(!skill2.getText().toString().isEmpty()){
+        if(!(skill2.getText().toString()).isEmpty()){
             skills += skill2.getText().toString() + ",";
         }
 
-        if(!skill3.getText().toString().isEmpty()){
+        if(!(skill3.getText().toString()).isEmpty()){
             skills += skill3.getText().toString();
         }
 
