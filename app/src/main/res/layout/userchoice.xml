@@ -2,22 +2,44 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".UserChoices">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/employeeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="118dp" />
+        android:text="Be an employee"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="171dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/employerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="52dp" />
+        android:text="BE an Employer"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="111dp" />
+
+    <EditText
+        android:id="@+id/nameTxtBox"
+        android:layout_width="162dp"
+        android:layout_height="41dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="66dp"
+        tools:ignore="MissingConstraints" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CheckBox"
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="254dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
