@@ -1,11 +1,13 @@
 package com.team6.quickcashteam6;
 
+import android.app.Notification;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,12 +24,25 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
     ArrayList<JobData> jobsToBeSorted = new ArrayList<>();
     ArrayList<JobData> sortedJobs = new ArrayList<>();
     Employee employee;
+    Button notifyBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recommendation_activity);
         Button recmndButton = findViewById(R.id.RecommendButton);
         recmndButton.setOnClickListener(this);
+
+        notifyBtn = findViewById(R.id.jobNotify);
+        notifyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(EmployeeRecommendationActivity.this, "My notify");
+                builder.setContentTitle("New Job Matches your skills");
+              //  builder.setContentText()
+            }
+        });
 
         employee = new Employee("Eli");
         employee.addSingleSkill("Responsible");
@@ -59,9 +74,6 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
 
             }
         });
-
-
-
 
 
     }

@@ -1,8 +1,5 @@
 package com.team6.quickcashteam6;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    public static String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                     //Toast upon sign in success
                     Log.d("LoginActivity", "signInWithEmail:success");
                     FirebaseUser user = mAuth.getCurrentUser();
+                    userID = mAuth.getCurrentUser().getUid();
 
                     Toast.makeText(LoginActivity.this, "You are now logged in!" + user.getEmail(), Toast.LENGTH_SHORT).show();
                     //startActivity(new Intent(LoginActivity.this, ProfileActivity.class));

@@ -1,14 +1,14 @@
 package com.team6.quickcashteam6;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -51,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
                             //Message upon registration success
                             Log.d("RegistrationActivity", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+
 
                             Toast.makeText(RegisterActivity.this, "Authentication Success." + user.getEmail(),
                                     Toast.LENGTH_SHORT).show();

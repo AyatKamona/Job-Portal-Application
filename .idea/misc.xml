@@ -5,7 +5,10 @@
       <map>
         <entry key="..\:/Users/alkin/Desktop/3130-project/team6-dolphin-csci3130/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/alkin/Desktop/3130-project/team6-dolphin-csci3130/app/src/main/res/layout/recommendation_activity.xml" value="0.358695652173913" />
+        <entry key="app/src/main/res/layout/activity_employee_recommendation.xml" value="0.3390625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.38958333333333334" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/recommendation_activity.xml" value="0.3390625" />
       </map>
     </option>
   </component>

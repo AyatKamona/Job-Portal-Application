@@ -1,30 +1,27 @@
 package com.team6.quickcashteam6;
 
-import junit.framework.TestCase;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
-import java.util.Random;
 
 public class EmployerRecommendationActivityTest  {
 
     static RecommendationService recommendationService;
+    String ID = LoginActivity.userID;
 
     @Test
     public void getNameTest()  {
-        User user= new User("blah");
+        User user= new User(ID, "Name");
         assertNotNull("wrong name retrieved", user.getName());
     }
     @Test
     public void getUserEmailTest(){
-        User user= new User("Eli");
+        User user= new User(ID, "Eli");
         user.setEmail("Eli@gmail.com");
         assertEquals("Wrong email returned",user.getEmail(),"Eli@gmail.com");
     }
@@ -69,7 +66,7 @@ public class EmployerRecommendationActivityTest  {
         jobSkills.add("Furniture assembly");
 
         ArrayList<Employee> potentialEmployee = new ArrayList<>();
-        potentialEmployee = recommendationService.recommendation(jobSkills, employees);
+        potentialEmployee = recommendationService.employerRecommendation(jobSkills, employees);
 
         assertEquals("Employee not found", "John Smith", potentialEmployee.get(0).getName());
 
