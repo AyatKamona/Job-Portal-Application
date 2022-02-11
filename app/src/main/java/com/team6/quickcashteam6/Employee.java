@@ -3,8 +3,8 @@ package com.team6.quickcashteam6;
 import java.util.ArrayList;
 
 public class Employee extends User{
-    public Employee (String name){
-        super(name);
+    public Employee (String ID, String name){
+        super(ID, name);
         employeeSkills= new ArrayList<>();
     }
 

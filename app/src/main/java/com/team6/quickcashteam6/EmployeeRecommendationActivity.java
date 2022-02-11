@@ -44,7 +44,7 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
             }
         });
 
-        employee = new Employee("Eli");
+        employee = new Employee(LoginActivity.userID, "Eli");
         employee.addSingleSkill("Responsible");
 
 

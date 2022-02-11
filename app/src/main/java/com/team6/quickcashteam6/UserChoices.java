@@ -19,7 +19,8 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
-                Employee employee = new Employee(name);
+                String ID = LoginActivity.userID;
+                Employee employee = new Employee(ID, name);
 
             }
         });
@@ -28,7 +29,8 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
-                Employer employer = new Employer(name);
+                String ID = LoginActivity.userID;
+                Employer employer = new Employer(ID, name);
 
             }
         });
