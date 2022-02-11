@@ -2,14 +2,26 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".EmployerRecommendationActivity">
 
     <Button
         android:id="@+id/RecommendButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/view_recommendation"
-        tools:layout_editor_absoluteX="63dp"
-        tools:layout_editor_absoluteY="130dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="165dp"
+        tools:layout_editor_absoluteY="645dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/EmployeeList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:itemCount="10"
+        tools:listitem="@layout/employeeitem"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
