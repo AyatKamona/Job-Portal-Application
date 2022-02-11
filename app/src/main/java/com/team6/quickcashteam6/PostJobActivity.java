@@ -21,10 +21,6 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> b313a808d9e9fd29151230f862b8bce7256e5da5
 
     protected void setErrorMessage(String message){
         TextView errorMessage = findViewById(R.id.errorMessage);
@@ -62,7 +58,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         else {
             JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription);
-            DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Posting");
+            DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
             jobToPost.push().setValue(post);
             openEmployerPage();
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
@@ -90,20 +86,18 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         EditText skill2 = findViewById(R.id.skill2);
         EditText skill3 = findViewById(R.id.skill3);
 
-        if(findViewById(R.id.skill1) != null){
+        if(!skill1.getText().toString().isEmpty()){
             skills += skill1.getText().toString() + ",";
         }
 
-        if(findViewById(R.id.skill2) != null){
+        if(!skill2.getText().toString().isEmpty()){
             skills += skill2.getText().toString() + ",";
         }
 
-        if(findViewById(R.id.skill3) != null){
+        if(!skill3.getText().toString().isEmpty()){
             skills += skill3.getText().toString();
         }
 
-        //EditText insert_skills = findViewById(R.id.insert_skills);
-        //return insert_skills.getText().toString().trim();
         return skills;
     }
 

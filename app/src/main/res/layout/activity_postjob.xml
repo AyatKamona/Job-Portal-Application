@@ -15,12 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-<<<<<<< HEAD
         app:layout_constraintVertical_bias="0.923" />
-=======
-        android:backgroundTint="#49199E"
-        app:layout_constraintVertical_bias="0.721" />
->>>>>>> b313a808d9e9fd29151230f862b8bce7256e5da5
 
     <TextView
         android:id="@+id/job_title"
@@ -116,16 +111,16 @@
 
     <EditText
         android:id="@+id/insert_job_description"
-        android:layout_width="242dp"
-        android:layout_height="88dp"
+        android:layout_width="222dp"
+        android:layout_height="45dp"
         android:inputType="textMultiLine"
         android:lines="10"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.915"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.646" />
+        app:layout_constraintVertical_bias="0.663" />
 
     <TextView
         android:id="@+id/job_payment"
