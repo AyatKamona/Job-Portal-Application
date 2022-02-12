@@ -2,6 +2,7 @@ package com.team6.quickcashteam6;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,6 +28,14 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
+
+            NotificationChannel channel = new NotificationChannel("New Job", "New Job", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
     }
 
     protected void setErrorMessage(String message){
@@ -72,6 +83,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         setErrorMessage(errorMessage);
         System.out.println(errorMessage);
+        postJobNotify();
     }
 
     public void openEmployerPage() {
@@ -139,6 +151,27 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
     protected static boolean isEmptyDescription(String description){
         return description.isEmpty();
+    }
+
+    public void postJobNotify() {
+
+        /*
+        This method is referenced how to create a a notification in Android
+        URL: https://www.youtube.com/watch?v=4BuRMScaaI4&ab_channel=EasyTuto
+        Author: Easy Tuto
+        Accessed: 11/02/12
+         */
+
+       NotificationCompat.Builder builder = new NotificationCompat.Builder(PostJobActivity.this, "New Job");
+       builder.setContentTitle("New Job");
+       builder.setContentText(getDescription());
+       builder.setSmallIcon(R.drawable.ic_launcher_background);
+       builder.setAutoCancel(true);
+
+        NotificationManagerCompat manager = NotificationManagerCompat.from(PostJobActivity.this);
+        manager.notify(1, builder.build());
+
+
     }
 
 }

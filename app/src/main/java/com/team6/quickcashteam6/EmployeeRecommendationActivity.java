@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +25,7 @@ import java.util.Random;
 public class EmployeeRecommendationActivity extends AppCompatActivity implements View.OnClickListener {
 
 
+    private static final String Fb_URL = "https://quickcash-team6-default-rtdb.firebaseio.com/";
     ArrayList<JobData> jobsToBeSorted = new ArrayList<>();
     ArrayList<JobData> sortedJobs = new ArrayList<>();
     ArrayList<Employee> users = new ArrayList<>();
@@ -67,7 +69,7 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
     }
 
     public void retrieveJobsFromDB() {
-        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+        FirebaseDatabase firebase = FirebaseDatabase.getInstance(Fb_URL);
         DatabaseReference ref = firebase.getReference("Job Postings");
 
 
@@ -97,7 +99,7 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         Retrieve all employees and employers put them in an array and determine what instance of then use if statement to switch
          */
 
-        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+        FirebaseDatabase firebase = FirebaseDatabase.getInstance(Fb_URL);
         DatabaseReference ref = firebase.getReference("Employee");
         ArrayList<String> skills = new ArrayList<>();
         int i = 0;
@@ -118,6 +120,12 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
 
     }
 
+    /*
+    This methods is referenced "Retrieving Java object data from Firebase in Android Studio"
+    URL: https://www.youtube.com/watch?v=aPLh31MWewc&ab_channel=BrandanJones
+    Author: Brendan Jones
+    Accessed: 12/02/2022
+     */
 
     private ArrayList<Employee> collectEmployees(Map<String, Object> value) {
         ArrayList<Employee> employee = new ArrayList<>();
@@ -145,6 +153,11 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         }
 
         return jobs;
+    }
+
+    public void postJobNotify() {
+
+
     }
 }
 
