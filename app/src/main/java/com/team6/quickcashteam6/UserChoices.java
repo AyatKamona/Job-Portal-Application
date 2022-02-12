@@ -34,6 +34,7 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
+<<<<<<< HEAD
                 Employee employee = new Employee(name);
                 LinearLayout layout= findViewById(R.id.linear);
                 layout.setVisibility(View.VISIBLE);
@@ -111,6 +112,10 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                         else {
                             employee.addSkills(skills);
                             addEmployeeTofireBase(employee);
+=======
+                String ID = LoginActivity.userID;
+                Employee employee = new Employee(ID, name);
+>>>>>>> f118af1c3c45630721857a113f84865e5e8072ff
 
                         }
                     }
@@ -122,6 +127,7 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
+<<<<<<< HEAD
                 if (name.equals("")){
                     Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
                 }
@@ -130,6 +136,10 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                     firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
                     firebaseDBEmployer= firebaseDB.getReference().child("Employer");
                 }
+=======
+                String ID = LoginActivity.userID;
+                Employer employer = new Employer(ID, name);
+>>>>>>> f118af1c3c45630721857a113f84865e5e8072ff
 
             }
         });

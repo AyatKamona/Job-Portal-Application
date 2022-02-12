@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">QuickCashTeam6</string>
-    <string name="view_recommendation">view recommendation</string>
+    <string name="EMPTY_JOB_TITLE">Job Title is a required field</string>
+    <string name="EMPTY_PAYMENT">Payment is a required field</string>
+    <string name="EMPTY_SKILLS">Skills is a required field</string>
+    <string name="EMPTY_START_TIME">Start time is a required field</string>
+    <string name="EMPTY_JOB_DESCRIPTION">Description is a required field</string>
 </resources>
