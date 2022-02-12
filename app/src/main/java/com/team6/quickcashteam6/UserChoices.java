@@ -34,8 +34,8 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
-<<<<<<< HEAD
-                Employee employee = new Employee(name);
+
+                Employee employee = new Employee(LoginActivity.userID,name);
                 LinearLayout layout= findViewById(R.id.linear);
                 layout.setVisibility(View.VISIBLE);
 
@@ -108,18 +108,20 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                         }
                         else if (name.equals("")){
                             Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
+                            layout.setVisibility(View.GONE);
+                            skillsButton.setVisibility(View.GONE);
                         }
                         else {
                             employee.addSkills(skills);
                             addEmployeeTofireBase(employee);
-=======
-                String ID = LoginActivity.userID;
-                Employee employee = new Employee(ID, name);
->>>>>>> f118af1c3c45630721857a113f84865e5e8072ff
+                            layout.setVisibility(View.GONE);
+                            skillsButton.setVisibility(View.GONE);
 
                         }
                     }
+
                 });
+
             }
         });
         Button employerButton = findViewById(R.id.employerButton);
@@ -127,19 +129,17 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
-<<<<<<< HEAD
+
                 if (name.equals("")){
                     Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Employer employer = new Employer(name);
+                    Employer employer = new Employer(LoginActivity.userID,name);
                     firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
                     firebaseDBEmployer= firebaseDB.getReference().child("Employer");
+                    firebaseDBEmployer.push().setValue(employer);
                 }
-=======
-                String ID = LoginActivity.userID;
-                Employer employer = new Employer(ID, name);
->>>>>>> f118af1c3c45630721857a113f84865e5e8072ff
+
 
             }
         });

@@ -5,16 +5,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".EmployerRecommendationActivity">
-<<<<<<< HEAD
 
-=======
->>>>>>> ca1be576c76db9b3f2c0309b0daf011af7e35f21
+
 
     <Button
         android:id="@+id/RecommendButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:padding="5dp"
         android:text="View Recommendation"
         android:textAllCaps="false"
@@ -23,11 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="46dp" />
-=======
-        android:text="@string/view_recommendation"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="165dp"
-        tools:layout_editor_absoluteY="645dp" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/EmployeeList"
@@ -38,5 +31,4 @@
         tools:itemCount="10"
         tools:listitem="@layout/employeeitem"/>
 
->>>>>>> ca1be576c76db9b3f2c0309b0daf011af7e35f21
 </androidx.constraintlayout.widget.ConstraintLayout>
