@@ -3,18 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/alkin/Desktop/3130-project/team6-dolphin-csci3130/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/alkin/Desktop/3130-project/team6-dolphin-csci3130/app/src/main/res/layout/activity_register.xml" value="0.3605072463768116" />
-        <entry key="..\:/Users/alkin/Desktop/3130-project/team6-dolphin-csci3130/app/src/main/res/layout/employeeitem.xml" value="0.35280797101449274" />
-        <entry key="..\:/Users/alkin/Desktop/3130-project/team6-dolphin-csci3130/app/src/main/res/layout/recommendation_activity.xml" value="0.358695652173913" />
-<<<<<<< HEAD
-        <entry key="app/src/main/res/layout/activity_employee_recommendation.xml" value="0.3390625" />
-=======
-        <entry key="..\:/Users/alkin/Desktop/3130-project/team6-dolphin-csci3130/app/src/main/res/layout/userchoice.xml" value="0.3605072463768116" />
->>>>>>> ca1be576c76db9b3f2c0309b0daf011af7e35f21
+        <entry key="..\:/Users/Quist/git/csci3130/Project/team6-dolphin-csci3130/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2435" />
+        <entry key="..\:/Users/Quist/git/csci3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_employer_page.xml" value="0.25" />
+        <entry key="..\:/Users/Quist/git/csci3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Quist/git/csci3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_postjob.xml" value="0.25" />
+        <entry key="..\:/Users/ayata/CSCI3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_employer_page.xml" value="0.33" />
+        <entry key="..\:/Users/ayata/CSCI3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_postjob.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_employee_recommendation.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_employer_page.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.38958333333333334" />
-        <entry key="app/src/main/res/layout/activity_register.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/recommendation_activity.xml" value="0.3390625" />
+        <entry key="app/src/main/res/layout/activity_postjob.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/employeeitem.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/recommendation_activity.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/userchoice.xml" value="0.4036458333333333" />
       </map>
     </option>
   </component>

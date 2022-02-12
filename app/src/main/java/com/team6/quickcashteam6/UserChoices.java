@@ -1,6 +1,8 @@
 package com.team6.quickcashteam6;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -26,6 +28,8 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.userchoice);
+
+        Intent intent = getIntent();
         Button employeeButton = findViewById(R.id.employeeButton);
         EditText nameText = findViewById(R.id.nameTxtBox);
 
@@ -118,6 +122,7 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                             skillsButton.setVisibility(View.GONE);
 
                         }
+                        startActivity(new Intent(UserChoices.this, LoginActivity.class));
                     }
 
                 });

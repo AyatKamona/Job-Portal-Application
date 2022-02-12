@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import com.google.firebase.auth.FirebaseUser;
-
 import java.util.ArrayList;
 
 public class EmployerRecommendationActivityTest  {
@@ -27,7 +25,7 @@ public class EmployerRecommendationActivityTest  {
     }
     @Test
     public void getSkillsTest(){
-        Employee user = new Employee("Guy");
+        Employee user = new Employee(LoginActivity.userID, "Guy");
         ArrayList<String> skills = new ArrayList<String>();
         skills.add("Dog Walking");
         user.addSkills(skills);
@@ -37,7 +35,7 @@ public class EmployerRecommendationActivityTest  {
     @Test
     public void addSingleSkill()  {
 
-        Employee user = new Employee("John");
+        Employee user = new Employee(LoginActivity.userID, "John");
         user.addSingleSkill("Dog Walking");
         assertTrue(user.getSkills().contains("Dog Walking"));
     }
@@ -47,9 +45,9 @@ public class EmployerRecommendationActivityTest  {
 
         ArrayList<String> jobSkills = new ArrayList<>();
         ArrayList<Employee> employees = new ArrayList<>();
-        Employee employee1 = new Employee("John Smith");
-        Employee employee2 = new Employee("John Doe");
-        Employee employee3 = new Employee("David Lee");
+        Employee employee1 = new Employee(LoginActivity.userID,"John Smith");
+        Employee employee2 = new Employee(LoginActivity.userID, "John Doe");
+        Employee employee3 = new Employee(LoginActivity.userID, "David Lee");
 
         employee1.addSingleSkill("Cleaning");
         employee1.addSingleSkill("Furniture assembly");

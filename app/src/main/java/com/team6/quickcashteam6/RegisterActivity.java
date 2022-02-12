@@ -1,5 +1,6 @@
 package com.team6.quickcashteam6;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    static String email;
+    static String pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +34,25 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText rEmail = findViewById(R.id.rEmail);
         final EditText rPassword = findViewById(R.id.rPassword);
         //Loads register button
+        email = rEmail.getText().toString();
+        pass = rPassword.getText().toString();
+
         Button registerButton = findViewById(R.id.buttonRegister);
         //Listener to check for user submission
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 signUp(rEmail.getText().toString(), rPassword.getText().toString());
+                switch2UserChoices();
             }
         });
+
+
     }
 
-    private void signUp(String email, String password) {
+     private void signUp(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -66,5 +74,11 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void switch2UserChoices()  {
+
+        Intent switch2UserChoices = new Intent(this, UserChoices.class);
+        startActivity(switch2UserChoices);
     }
 }

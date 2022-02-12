@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 login(lEmail.getText().toString(),lPassword.getText().toString());
+
             }
         });
         //Loads register button
