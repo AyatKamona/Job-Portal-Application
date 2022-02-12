@@ -25,7 +25,9 @@
         <activity
             android:name=".EmployeeRecommendationActivity"
             android:exported="true" />
-
+        <activity android:name=".UserChoices"
+            android:exported="true"
+            />
     </application>
 
 </manifest>
