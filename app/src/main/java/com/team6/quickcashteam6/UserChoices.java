@@ -105,6 +105,9 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                         else if (count==0){
                             Toast.makeText(getApplicationContext(),"Please choose at least one skill",Toast.LENGTH_LONG).show();
                         }
+                        else if (name.equals("")){
+                            Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
+                        }
                         else {
                             employee.addSkills(skills);
                             addEmployeeTofireBase(employee);
@@ -119,9 +122,15 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
-                Employer employer = new Employer(name);
-                firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
-                firebaseDBEmployer= firebaseDB.getReference().child("Employer");
+                if (name.equals("")){
+                    Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Employer employer = new Employer(name);
+                    firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
+                    firebaseDBEmployer= firebaseDB.getReference().child("Employer");
+                }
+
             }
         });
     }
