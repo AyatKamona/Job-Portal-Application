@@ -38,7 +38,7 @@ public class RecommendationService {
         return recommendedJobs;
     }
 
-    static void JobRecommendation ()  {
+    static void JobNotification ()  {
 
     }
 

@@ -19,8 +19,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    static String email;
-    static String pass;
+    public static String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,6 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText rEmail = findViewById(R.id.rEmail);
         final EditText rPassword = findViewById(R.id.rPassword);
         //Loads register button
-        email = rEmail.getText().toString();
-        pass = rPassword.getText().toString();
 
         Button registerButton = findViewById(R.id.buttonRegister);
         //Listener to check for user submission
@@ -59,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
                             //Message upon registration success
                             Log.d("RegistrationActivity", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            userID = mAuth.getCurrentUser().getUid();
 
 
                             Toast.makeText(RegisterActivity.this, "Authentication Success." + user.getEmail(),

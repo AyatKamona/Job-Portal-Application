@@ -1,6 +1,7 @@
 package com.team6.quickcashteam6;
 
 import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 
+import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,18 +23,21 @@ import java.util.Random;
 
 public class EmployeeRecommendationActivity extends AppCompatActivity implements View.OnClickListener {
 
+
     ArrayList<JobData> jobsToBeSorted = new ArrayList<>();
     ArrayList<JobData> sortedJobs = new ArrayList<>();
+    ArrayList<Employee> users = new ArrayList<>();
+    Map <String, Object> map;
     Employee employee;
-    Button notifyBtn;
+    //Button notifyBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recommendation_activity);
-        Button recmndButton = findViewById(R.id.RecommendButton);
+        setContentView(R.layout.activity_employee_recommendation);
+        Button recmndButton = findViewById(R.id.jobNotify);
         recmndButton.setOnClickListener(this);
-
+        /*
         notifyBtn = findViewById(R.id.jobNotify);
         notifyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,11 +45,13 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
 
                 NotificationCompat.Builder builder = new NotificationCompat.Builder(EmployeeRecommendationActivity.this, "My notify");
                 builder.setContentTitle("New Job Matches your skills");
-              //  builder.setContentText()
+                builder.setContentText("New Job posted");
             }
         });
+*/
+        this.retrieveJobsFromDB();
 
-        employee = new Employee(LoginActivity.userID, "Eli");
+        employee = new Employee(RegisterActivity.userID, "Eli");
         employee.addSingleSkill("Responsible");
 
 
@@ -53,20 +60,26 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
     @Override
     public void onClick(View view) {
 
+    //  retrieveJobsFromDB();
+        checkUserType();
 
+
+    }
+
+    public void retrieveJobsFromDB() {
         FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        DatabaseReference ref = firebase.getReference("Job Posting");
+        DatabaseReference ref = firebase.getReference("Job Postings");
 
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    jobsToBeSorted = collectJobData(((Map<String, Object>) dataSnapshot.getValue()));
-                    sortedJobs = RecommendationService.employeeRecommendation(jobsToBeSorted, employee.getSkills());
+                jobsToBeSorted = collectJobData(((Map<String, Object>) dataSnapshot.getValue()));
+                sortedJobs = RecommendationService.employeeRecommendation(jobsToBeSorted, employee.getSkills());
 
-                    for (JobData job : sortedJobs){
-                        System.out.println(job.getJobTitle());
-                    }
+                for (JobData job : sortedJobs) {
+                    System.out.println(job.getJobTitle());
+                }
             }
 
             @Override
@@ -75,13 +88,57 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
             }
         });
 
+    }
+
+
+    public void checkUserType() {
+
+        /*
+        Retrieve all employees and employers put them in an array and determine what instance of then use if statement to switch
+         */
+
+        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+        DatabaseReference ref = firebase.getReference("Employee");
+        ArrayList<String> skills = new ArrayList<>();
+        int i = 0;
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                users = collectEmployees(((Map<String, Object>) dataSnapshot.getValue()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+
+
+        });
+
 
     }
 
-    private ArrayList<JobData> collectJobData(Map<String, Object> value){
+
+    private ArrayList<Employee> collectEmployees(Map<String, Object> value) {
+        ArrayList<Employee> employee = new ArrayList<>();
+
+        for (Map.Entry<String, Object> entry : value.entrySet()) {
+            Map singleUser = (Map) entry.getValue();
+
+            Employee employee1 = new Employee((String) singleUser.get("id"), (String) singleUser.get("name"));
+            employee1.addSkills((ArrayList<String>) singleUser.get("skills"));
+
+            employee.add(employee1);
+        }
+
+        return employee;
+    }
+
+
+    private ArrayList<JobData> collectJobData(Map<String, Object> map) {
         ArrayList<JobData> jobs = new ArrayList<>();
 
-        for(Map.Entry<String, Object> entry : value.entrySet()){
+        for (Map.Entry<String, Object> entry : map.entrySet()) {
             Map singleUser = (Map) entry.getValue();
 
             jobs.add(new JobData(((String) singleUser.get("jobTitle")), ((String) singleUser.get("payment")), ((String) singleUser.get("startTime")), ((String) singleUser.get("skills")), ((String) singleUser.get("jobDescription"))));
@@ -90,3 +147,4 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         return jobs;
     }
 }
+

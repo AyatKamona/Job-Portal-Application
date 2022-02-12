@@ -39,7 +39,7 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
 
-                Employee employee = new Employee(LoginActivity.userID,name);
+                Employee employee = new Employee(RegisterActivity.userID,name);
                 LinearLayout layout= findViewById(R.id.linear);
                 layout.setVisibility(View.VISIBLE);
 
@@ -139,7 +139,7 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                     Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Employer employer = new Employer(LoginActivity.userID,name);
+                    Employer employer = new Employer(RegisterActivity.userID,name);
                     firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
                     firebaseDBEmployer= firebaseDB.getReference().child("Employer");
                     firebaseDBEmployer.push().setValue(employer);

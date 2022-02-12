@@ -17,10 +17,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
+    private FirebaseDatabase firebaseDB;
+    private DatabaseReference firebaseDBEmployee;
+    private DatabaseReference firebaseDBEmployer;
+    private  final String DB_URL= "https://quickcash-team6-default-rtdb.firebaseio.com/";
     private FirebaseAuth mAuth;
-    public static String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
                     //Toast upon sign in success
                     Log.d("LoginActivity", "signInWithEmail:success");
                     FirebaseUser user = mAuth.getCurrentUser();
-                    userID = mAuth.getCurrentUser().getUid();
 
                     Toast.makeText(LoginActivity.this, "You are now logged in!" + user.getEmail(), Toast.LENGTH_SHORT).show();
                     //startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
@@ -75,6 +80,10 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void initializeDB()  {
 
     }
 }

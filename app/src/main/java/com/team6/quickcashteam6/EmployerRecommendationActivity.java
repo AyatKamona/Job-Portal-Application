@@ -29,7 +29,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
         ArrayList<Employee> testEmployees= new ArrayList<>();
         ArrayList<String> skills= new ArrayList<>();
         for (int i=0; i<10; i++){
-            testEmployees.add(new Employee(LoginActivity.userID, String.valueOf(i)));
+            testEmployees.add(new Employee(RegisterActivity.userID, String.valueOf(i)));
         }
 
         skills.add("Cleaning");
