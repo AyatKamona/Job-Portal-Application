@@ -7,17 +7,20 @@ public class RecommendationService {
     private static ArrayList<Employee> recommendedEmployees;
     private static ArrayList<JobData> recommendedJobs;
 
-    static ArrayList<Employee> employerRecommendation(ArrayList<String> skills, ArrayList<Employee> employees) {
+    static ArrayList<Employee> employerRecommendation(String skills, ArrayList<Employee> employees) {
+
         recommendedEmployees = new ArrayList<>();
+        String [] split= skills.split(",");
+
         for (Employee employee: employees){
             int count=0;
-            for (String skill : skills){
+            for (String skill : split){
 
                 if (employee.getSkills().contains(skill)){
                     count++;
                 }
             }
-            if (count>=2){
+            if (count>=1){
                 recommendedEmployees.add(employee);
             }
 
@@ -38,7 +41,7 @@ public class RecommendationService {
         return recommendedJobs;
     }
 
-    static void JobNotification ()  {
+    static void JobRecommendation ()  {
 
     }
 
