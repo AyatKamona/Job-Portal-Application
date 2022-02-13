@@ -61,6 +61,7 @@ public class UserChoicesEspressoTest {
     @Test
     public void checkIfMoved2EmployerPageForEmployee() {
         onView(withId(R.id.nameTxtBox)).perform(typeText("samlol"));
+        onView(withId(R.id.nameTxtBox)).perform(closeSoftKeyboard());
         onView(withId(R.id.employeeButton)).perform(click());
         onView(withId(R.id.skill1)).perform(click());
         onView(withId(R.id.skill2)).perform(click());
@@ -90,6 +91,16 @@ public class UserChoicesEspressoTest {
         onView(withId(R.id.skill5)).check(matches(isDisplayed()));
         onView(withId(R.id.skillsregister)).check(matches(isDisplayed()));
 
+    }
+    @Test
+    public void checkIfSkillsRegisterBtnChangesIntentToLogin(){
+        onView(withId(R.id.nameTxtBox)).perform(typeText("testEmployee2"));
+
+        onView(withId(R.id.employeeButton)).perform(click());
+        onView(withId(R.id.skill1)).check(matches(isDisplayed()));
+        onView(withId(R.id.skill2)).check(matches(isDisplayed()));
+        onView(withId(R.id.skillsregister)).perform(click());
+        intended(hasComponent(LoginActivity.class.getName()));
     }
 
   
