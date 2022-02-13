@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Random;
 
@@ -38,13 +40,12 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_recommendation);
         Intent intent = getIntent();
+        employee = new Employee(RegisterActivity.userID, "Eli");
+        employee.addSingleSkill("Responsible,");
         Button recmndButton = findViewById(R.id.jobNotify);
         recmndButton.setOnClickListener(this);
 
-        this.retrieveJobsFromDB();
 
-        employee = new Employee(RegisterActivity.userID, "Eli");
-        employee.addSingleSkill("Responsible");
 
 
     }
@@ -52,8 +53,8 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
     @Override
     public void onClick(View view) {
 
-    //  retrieveJobsFromDB();
-        checkUserType();
+        retrieveJobsFromDB();
+        //checkUserType();
 
 
     }
@@ -68,7 +69,7 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 jobsToBeSorted = collectJobData(((Map<String, Object>) dataSnapshot.getValue()));
                 sortedJobs = RecommendationService.employeeRecommendation(jobsToBeSorted, employee.getSkills());
-
+                showJobs(sortedJobs);
                 for (JobData job : sortedJobs) {
                     System.out.println(job.getJobTitle());
                 }
@@ -143,6 +144,21 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         }
 
         return jobs;
+    }
+
+    private void showJobs(ArrayList<JobData> jobs){
+        TextView job1 = findViewById(R.id.textView1);
+        TextView job2 = findViewById(R.id.textView2);
+        TextView job3 = findViewById(R.id.textView3);
+        if(jobs != null){
+            job1.setText(jobs.get(0).getJobTitle());
+            if(jobs.size() > 1){
+                job2.setText(jobs.get(1).getJobTitle());
+            }
+            if(jobs.size() > 2){
+                job3.setText(jobs.get(2).getJobTitle());
+            }
+        }
     }
 
 }

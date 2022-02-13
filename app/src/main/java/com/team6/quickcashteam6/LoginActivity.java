@@ -56,10 +56,10 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println(lEmail.getText().toString() + " " + lPassword.getText().toString());
                 login(lEmail.getText().toString(),lPassword.getText().toString());
                // System.out.println(lEmail.getText().toString() + " " + lPassword.getText().toString());
-                checkUserType();
+
                 //startActivity(new Intent(LoginActivity.this, EmployeeRecommendationActivity.class));
 
-                switch2UserPage();
+
 
             }
         });
@@ -83,7 +83,8 @@ public class LoginActivity extends AppCompatActivity {
                     //Toast upon sign in success
                     Log.d("LoginActivity", "signInWithEmail:success");
                     FirebaseUser user = mAuth.getCurrentUser();
-
+                    checkUserType();
+                    switch2UserPage();
                     Toast.makeText(LoginActivity.this, "You are now logged in!" + user.getEmail(), Toast.LENGTH_SHORT).show();
                     //startActivity(new Intent(LoginActivity.this, ProfileActivity.class));
                     finish();
@@ -109,14 +110,14 @@ public class LoginActivity extends AppCompatActivity {
         DatabaseReference employeeRef = firebase.getReference("Employee");
         DatabaseReference employerRef = firebase.getReference("Employer");
 
-        employeeRef.addValueEventListener(new ValueEventListener() {
+        employeeRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 employees = collectEmployees(((Map<String, Object>) dataSnapshot.getValue()));
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
 
             }
 

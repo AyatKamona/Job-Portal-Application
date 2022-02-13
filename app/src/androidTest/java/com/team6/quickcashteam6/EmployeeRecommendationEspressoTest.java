@@ -25,12 +25,14 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withAlpha;
+import static androidx.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 @RunWith(AndroidJUnit4.class)
-public class EmployerRecommendationActivityTest {
+public class EmployeeRecommendationEspressoTest {
     @Rule
-   public ActivityScenarioRule<EmployerRecommendationActivity> myRule = new ActivityScenarioRule<EmployerRecommendationActivity>(EmployerRecommendationActivity.class);
+    public ActivityScenarioRule<EmployeeRecommendationActivity> myRule = new ActivityScenarioRule<EmployeeRecommendationActivity>(EmployeeRecommendationActivity.class);
     @BeforeClass
     public static void setup() {
         Intents.init();
@@ -43,9 +45,11 @@ public class EmployerRecommendationActivityTest {
 
     @Test
     public void testRecommendButton(){
-        onView(withId(R.id.RecommendButton1)).perform(click());
-        onView(withId(R.id.linearLayout1)).check(matches(isDisplayed()));
-        onView(withId(R.id.linearLayout2)).check(matches(isDisplayed()));
+        onView(withId(R.id.jobNotify)).perform(click());
+        onView(withId(R.id.textView3)).check(matches((withText(""))));
+        onView(withId(R.id.textView2)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+        onView(withId(R.id.textView1)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
+
     }
 
 }

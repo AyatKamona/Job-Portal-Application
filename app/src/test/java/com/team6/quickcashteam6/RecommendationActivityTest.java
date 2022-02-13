@@ -7,7 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 
-public class EmployerRecommendationActivityTest  {
+public class RecommendationActivityTest {
 
     static RecommendationService recommendationService;
     String ID = RegisterActivity.userID;
@@ -69,4 +69,19 @@ public class EmployerRecommendationActivityTest  {
         assertEquals("Employee not found", "John Smith", potentialEmployee.get(0).getName());
 
     }
+
+    @Test
+    public void testEmployeeRecommendation(){
+        ArrayList<JobData> jobs = new ArrayList<JobData>();
+        Employee employee = new Employee("5", "Eli");
+        employee.addSingleSkill("Responsible");
+
+        jobs.add(new JobData("Job1", "$20", "Now", "Responsible", "A Job"));
+
+        ArrayList<JobData> potentialJobs = recommendationService.employeeRecommendation(jobs, employee.getSkills());
+
+
+        assertEquals("Job not recommended", "Job1", potentialJobs.get(0).getJobTitle());
+    }
+    
 }
