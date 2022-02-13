@@ -41,7 +41,14 @@ public class RegisterActivityEspressoTest {
     public static void tearDown() {
         System.gc();
     }
-    
+
+    @Test
+    public void checkRegister()  {
+        onView(withId(R.id.rEmail)).perform(typeText("abc@dal.ca"));
+        onView(withId(R.id.rPassword)).perform(typeText("Abc@12345"));
+        onView(withId(R.id.buttonRegister)).perform(click());
+    }
+
     @Test
     public void checkIfMoved2EmployerPage() {
         onView(withId(R.id.rEmail)).perform(typeText("sam@dal.ca"));

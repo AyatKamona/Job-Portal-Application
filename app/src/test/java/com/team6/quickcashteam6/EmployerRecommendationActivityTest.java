@@ -64,7 +64,7 @@ public class EmployerRecommendationActivityTest  {
         jobSkills.add("Furniture assembly");
 
         ArrayList<Employee> potentialEmployee = new ArrayList<>();
-        potentialEmployee = recommendationService.employerRecommendation(jobSkills, employees);
+        potentialEmployee = recommendationService.employerRecommendation("Cleaning,Furniture assembly,Yard Work", employees);
 
         assertEquals("Employee not found", "John Smith", potentialEmployee.get(0).getName());
 
