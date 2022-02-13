@@ -41,8 +41,7 @@ public class RegisterActivityEspressoTest {
     public static void tearDown() {
         System.gc();
     }
-
-
+    
     @Test
     public void checkIfMoved2EmployerPage() {
         onView(withId(R.id.rEmail)).perform(typeText("sam@dal.ca"));

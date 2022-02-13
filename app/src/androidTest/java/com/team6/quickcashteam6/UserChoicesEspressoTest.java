@@ -57,19 +57,19 @@ public class UserChoicesEspressoTest {
         onView(withId(R.id.employerButton)).perform(click());
         intended(hasComponent(LoginActivity.class.getName()));
     }
-/*
+
     @Test
-    public void checkIfMoved2EmployerPage() {
+    public void checkIfMoved2EmployerPageForEmployee() {
         onView(withId(R.id.nameTxtBox)).perform(typeText("samlol"));
         onView(withId(R.id.employeeButton)).perform(click());
         onView(withId(R.id.skill1)).perform(click());
         onView(withId(R.id.skill2)).perform(click());
         onView(withId(R.id.skill3)).perform(click());
+        onView(withId(R.id.skillsregister)).perform(closeSoftKeyboard());
         onView(withId(R.id.skillsregister)).perform(click());
-      //  intended(hasComponent(LoginActivity.class.getName()));
+        intended(hasComponent(LoginActivity.class.getName()));
     }
-    
- */
+
 
     /*
      * Citation:
