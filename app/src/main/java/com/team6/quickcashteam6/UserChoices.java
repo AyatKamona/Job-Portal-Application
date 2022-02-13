@@ -120,9 +120,9 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                             addEmployeeTofireBase(employee);
                             layout.setVisibility(View.GONE);
                             skillsButton.setVisibility(View.GONE);
-
+                            startActivity(new Intent(UserChoices.this, LoginActivity.class));
                         }
-                        startActivity(new Intent(UserChoices.this, LoginActivity.class));
+
                     }
 
                 });
@@ -143,9 +143,10 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                     firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
                     firebaseDBEmployer= firebaseDB.getReference().child("Employer");
                     firebaseDBEmployer.push().setValue(employer);
+                    startActivity(new Intent(UserChoices.this, LoginActivity.class));
                 }
 
-                startActivity(new Intent(UserChoices.this, LoginActivity.class));
+
 
 
             }
