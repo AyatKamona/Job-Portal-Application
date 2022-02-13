@@ -1,6 +1,7 @@
 package com.team6.quickcashteam6;
 
 import android.content.Intent;
+import android.media.MediaParser;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,16 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
 
         Button postJobButton = findViewById(R.id.postJobButton);
         postJobButton.setOnClickListener(this);
+
+        Button moveToRecommend = findViewById(R.id.moveToRecommend);
+
+        moveToRecommend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(EmployerPageActivity.this, EmployerRecommendationActivity.class));
+            }
+        });
+
     }
 
     @Override

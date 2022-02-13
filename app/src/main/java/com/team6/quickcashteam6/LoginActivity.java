@@ -17,8 +17,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDB;
@@ -26,24 +32,34 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference firebaseDBEmployer;
     private  final String DB_URL= "https://quickcash-team6-default-rtdb.firebaseio.com/";
     private FirebaseAuth mAuth;
+    ArrayList<Employee> employees = new ArrayList<>();
+    ArrayList<Employer> employers = new ArrayList<>();
+    String typeOfUser = "";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //Instance variables
-        final EditText lEmail = findViewById(R.id.lEmail);
-        final EditText lPassword =  findViewById(R.id.lPassword);
         //Load state
         super.onCreate(savedInstanceState);
         //Load view
         setContentView(R.layout.activity_main);
         //Adds login button
-        mAuth = FirebaseAuth.getInstance();Button login = findViewById(R.id.buttonLogin);
+        mAuth = FirebaseAuth.getInstance();
+        Button login = findViewById(R.id.buttonLogin);
+        //Instance variables
+        final EditText lEmail = findViewById(R.id.lEmail);
+        final EditText lPassword =  findViewById(R.id.lPassword);
         //listener to check for user submission
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println(lEmail.getText().toString() + " " + lPassword.getText().toString());
                 login(lEmail.getText().toString(),lPassword.getText().toString());
+               // System.out.println(lEmail.getText().toString() + " " + lPassword.getText().toString());
+                checkUserType();
+                //startActivity(new Intent(LoginActivity.this, EmployeeRecommendationActivity.class));
+
+                switch2UserPage();
 
             }
         });
@@ -83,7 +99,98 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void initializeDB()  {
+    public void checkUserType() {
+
+        /*
+        Retrieve all employees and employers put them in an array and determine what instance of then use if statement to switch
+         */
+
+        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+        DatabaseReference employeeRef = firebase.getReference("Employee");
+        DatabaseReference employerRef = firebase.getReference("Employer");
+
+        employeeRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                employees = collectEmployees(((Map<String, Object>) dataSnapshot.getValue()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+
+        });
+
+        employerRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                employers = collectEmployers(((Map<String, Object>) snapshot.getValue()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
     }
+
+    private ArrayList<Employee> collectEmployees(Map<String, Object> value) {
+        String usertype = "";
+        ArrayList<Employee> employeesList = new ArrayList<>();
+        for (Map.Entry<String, Object> entry : value.entrySet()) {
+            Map singleUser = (Map) entry.getValue();
+
+            Employee employee = new Employee((String) singleUser.get("id"), (String) singleUser.get("name"));
+            employeesList.add(employee);
+        }
+
+
+        return employeesList;
+
+    }
+
+    private ArrayList<Employer> collectEmployers(Map<String, Object> value) {
+        String usertype = "";
+        ArrayList<Employer> employersList = new ArrayList<>();
+        for (Map.Entry<String, Object> entry : value.entrySet()) {
+            Map singleUser = (Map) entry.getValue();
+
+            Employer employer = new Employer((String) singleUser.get("id"), (String) singleUser.get("name"));
+            employersList.add(employer);
+        }
+
+
+        return employersList;
+
+    }
+
+    public void switch2UserPage()  {
+        System.out.println((mAuth.getCurrentUser().getUid()));
+        String user = "";
+        for (Employee emply: employees) {
+            System.out.println(emply.getID() + " ------------ " + mAuth.getCurrentUser().getUid());
+            if (emply.getID().equals(mAuth.getCurrentUser().getUid()))  {
+                user = "Employee";
+            }
+        }
+
+        for (Employer emplyer: employers) {
+
+            if (emplyer.getID().equals(mAuth.getCurrentUser().getUid()))  {
+
+                user = "Employer";
+            }
+
+        }
+        if (user.equals("Employee"))  {
+            startActivity(new Intent(LoginActivity.this, EmployeeRecommendationActivity.class));
+        } else  {
+            startActivity(new Intent(LoginActivity.this, EmployerPageActivity.class));
+        }
+    }
+
 }

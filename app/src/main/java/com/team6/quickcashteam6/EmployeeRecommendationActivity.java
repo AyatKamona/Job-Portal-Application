@@ -37,20 +37,10 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_recommendation);
+        Intent intent = getIntent();
         Button recmndButton = findViewById(R.id.jobNotify);
         recmndButton.setOnClickListener(this);
-        /*
-        notifyBtn = findViewById(R.id.jobNotify);
-        notifyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(EmployeeRecommendationActivity.this, "My notify");
-                builder.setContentTitle("New Job Matches your skills");
-                builder.setContentText("New Job posted");
-            }
-        });
-*/
         this.retrieveJobsFromDB();
 
         employee = new Employee(RegisterActivity.userID, "Eli");
@@ -155,9 +145,5 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         return jobs;
     }
 
-    public void postJobNotify() {
-
-
-    }
 }
 

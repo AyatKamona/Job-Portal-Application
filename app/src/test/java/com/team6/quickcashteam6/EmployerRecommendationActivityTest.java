@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class EmployerRecommendationActivityTest  {
 
     static RecommendationService recommendationService;
-    String ID = LoginActivity.userID;
+    String ID = RegisterActivity.userID;
 
     @Test
     public void getNameTest()  {
@@ -25,7 +25,7 @@ public class EmployerRecommendationActivityTest  {
     }
     @Test
     public void getSkillsTest(){
-        Employee user = new Employee(LoginActivity.userID, "Guy");
+        Employee user = new Employee(RegisterActivity.userID, "Guy");
         ArrayList<String> skills = new ArrayList<String>();
         skills.add("Dog Walking");
         user.addSkills(skills);
@@ -35,7 +35,7 @@ public class EmployerRecommendationActivityTest  {
     @Test
     public void addSingleSkill()  {
 
-        Employee user = new Employee(LoginActivity.userID, "John");
+        Employee user = new Employee(RegisterActivity.userID, "John");
         user.addSingleSkill("Dog Walking");
         assertTrue(user.getSkills().contains("Dog Walking"));
     }
@@ -45,9 +45,9 @@ public class EmployerRecommendationActivityTest  {
 
         ArrayList<String> jobSkills = new ArrayList<>();
         ArrayList<Employee> employees = new ArrayList<>();
-        Employee employee1 = new Employee(LoginActivity.userID,"John Smith");
-        Employee employee2 = new Employee(LoginActivity.userID, "John Doe");
-        Employee employee3 = new Employee(LoginActivity.userID, "David Lee");
+        Employee employee1 = new Employee(RegisterActivity.userID,"John Smith");
+        Employee employee2 = new Employee(RegisterActivity.userID, "John Doe");
+        Employee employee3 = new Employee(RegisterActivity.userID, "David Lee");
 
         employee1.addSingleSkill("Cleaning");
         employee1.addSingleSkill("Furniture assembly");

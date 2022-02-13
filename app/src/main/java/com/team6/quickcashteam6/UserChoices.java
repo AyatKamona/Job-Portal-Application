@@ -145,6 +145,8 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                     firebaseDBEmployer.push().setValue(employer);
                 }
 
+                startActivity(new Intent(UserChoices.this, LoginActivity.class));
+
 
             }
         });

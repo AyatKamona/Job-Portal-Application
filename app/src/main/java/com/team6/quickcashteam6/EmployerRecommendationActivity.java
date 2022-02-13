@@ -1,5 +1,6 @@
 package com.team6.quickcashteam6;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,8 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recommendation_activity);
+
+        Intent intent = getIntent();
         Button recmndButton = findViewById(R.id.RecommendButton);
         recmndButton.setOnClickListener(this);
 
