@@ -84,7 +84,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
 
                                     if (((String) map.getKey()).equals("-Mvj4JmACXsCddWw91gJ")){
                                         String skills = (String) job.get("skills");
-                                        recommendedEmployees= RecommendationService.employerRecommendation(skills,employees);
+                                     //   recommendedEmployees= RecommendationService.employerRecommendation(skills,employees);
                                         break;
                                     }
                                 }
@@ -137,7 +137,8 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
         linear1.setVisibility(View.VISIBLE);
         linear2.setVisibility(View.VISIBLE);
         //  recommendationAdapter.startListening();
-*/
+
+    /*
         LinearLayout linear1= findViewById(R.id.linearLayout1);
         LinearLayout linear2= findViewById(R.id.linearLayout2);
         linear1.setVisibility(View.VISIBLE);
@@ -146,4 +147,6 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
         button.setVisibility(View.GONE);
 
     }
+
+     */
 }

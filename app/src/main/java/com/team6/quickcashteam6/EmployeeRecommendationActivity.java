@@ -28,19 +28,18 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
 
 
     private static final String Fb_URL = "https://quickcash-team6-default-rtdb.firebaseio.com/";
-    ArrayList<JobData> jobsToBeSorted = new ArrayList<>();
-    ArrayList<JobData> sortedJobs = new ArrayList<>();
+    //ArrayList<JobData> jobsToBeSorted = new ArrayList<>();
+    //ArrayList<JobData> sortedJobs = new ArrayList<>();
     ArrayList<Employee> users = new ArrayList<>();
     Map <String, Object> map;
     Employee employee;
-    //Button notifyBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_recommendation);
         Intent intent = getIntent();
-        employee = new Employee(RegisterActivity.userID, "Eli");
+       // employee = new Employee(RegisterActivity.userID, "Eli");
         employee.addSingleSkill("Responsible,");
         Button recmndButton = findViewById(R.id.jobNotify);
         recmndButton.setOnClickListener(this);
@@ -53,12 +52,14 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
     @Override
     public void onClick(View view) {
 
-        retrieveJobsFromDB();
+      //  retrieveJobsFromDB();
         //checkUserType();
 
 
     }
 
+
+/*
     public void retrieveJobsFromDB() {
         FirebaseDatabase firebase = FirebaseDatabase.getInstance(Fb_URL);
         DatabaseReference ref = firebase.getReference("Job Postings");
@@ -83,6 +84,8 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
 
     }
 
+ */
+
 
     public void checkUserType() {
 
@@ -97,7 +100,7 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                users = collectEmployees(((Map<String, Object>) dataSnapshot.getValue()));
+              //  users = collectEmployees(((Map<String, Object>) dataSnapshot.getValue()));
             }
 
             @Override
@@ -117,7 +120,7 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
     Author: Brendan Jones
     Accessed: 12/02/2022
      */
-
+/*
     private ArrayList<Employee> collectEmployees(Map<String, Object> value) {
         ArrayList<Employee> employee = new ArrayList<>();
 
@@ -133,7 +136,9 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         return employee;
     }
 
+ */
 
+/*
     private ArrayList<JobData> collectJobData(Map<String, Object> map) {
         ArrayList<JobData> jobs = new ArrayList<>();
 
@@ -146,7 +151,9 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         return jobs;
     }
 
-    private void showJobs(ArrayList<JobData> jobs){
+ */
+
+  /*  private void showJobs(ArrayList<JobData> jobs){
         TextView job1 = findViewById(R.id.textView1);
         TextView job2 = findViewById(R.id.textView2);
         TextView job3 = findViewById(R.id.textView3);
@@ -160,6 +167,8 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
             }
         }
     }
+
+   */
 
 }
 

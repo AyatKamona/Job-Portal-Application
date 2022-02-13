@@ -3,7 +3,7 @@ package com.team6.quickcashteam6;
 import java.util.ArrayList;
 
 public class RecommendationService {
-
+/*
     private static ArrayList<Employee> recommendedEmployees;
     private static ArrayList<JobData> recommendedJobs;
 
@@ -41,8 +41,5 @@ public class RecommendationService {
         return recommendedJobs;
     }
 
-    static void JobRecommendation ()  {
-
-    }
-
+*/
 }

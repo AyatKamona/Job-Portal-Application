@@ -39,7 +39,7 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
 
-                Employee employee = new Employee(RegisterActivity.userID,name);
+               // Employee employee = new Employee(RegisterActivity.userID,name);
                 LinearLayout layout= findViewById(R.id.linear);
                 layout.setVisibility(View.VISIBLE);
 
@@ -116,11 +116,11 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                             skillsButton.setVisibility(View.GONE);
                         }
                         else {
-                            employee.addSkills(skills);
-                            addEmployeeTofireBase(employee);
+                         //   employee.addSkills(skills);
+                         //   addEmployeeTofireBase(employee);
                             layout.setVisibility(View.GONE);
                             skillsButton.setVisibility(View.GONE);
-                            startActivity(new Intent(UserChoices.this, LoginActivity.class));
+                           // startActivity(new Intent(UserChoices.this, LoginActivity.class));
                         }
 
                     }
@@ -139,11 +139,11 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                     Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Employer employer = new Employer(RegisterActivity.userID,name);
+                  //  Employer employer = new Employer(RegisterActivity.userID,name);
                     firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
                     firebaseDBEmployer= firebaseDB.getReference().child("Employer");
-                    firebaseDBEmployer.push().setValue(employer);
-                    startActivity(new Intent(UserChoices.this, LoginActivity.class));
+                //    firebaseDBEmployer.push().setValue(employer);
+                 //   startActivity(new Intent(UserChoices.this, LoginActivity.class));
                 }
 
 
