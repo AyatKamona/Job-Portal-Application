@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
 
     <TextView android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Registration"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,50 +18,37 @@
         android:layout_margin="30dp"
         />
 
-    <EditText android:id="@+id/lEmail"
+    <EditText android:id="@+id/rEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        android:hint="Enter Username"
+        android:hint="Enter Email"
         android:layout_margin="20dp"
         />
 
-    <EditText android:id="@+id/lPassword"
+    <EditText android:id="@+id/rPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lEmail"
+        app:layout_constraintTop_toBottomOf="@+id/rEmail"
         android:hint="Enter Password"
         android:inputType="textPassword"
         android:layout_margin="20dp"
         />
 
-    <Button android:id="@+id/buttonLogin"
+    <Button android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lPassword"
-        android:text="Login"
+        app:layout_constraintTop_toBottomOf="@+id/rPassword"
+        android:text="Register"
         android:textStyle="bold"
         android:padding="5dp"
         android:textAllCaps="false"
-        />
-
-
-    <TextView android:id="@+id/registrationLink"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonLogin"
-        android:layout_margin="10dp"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:text="Do not have account? Register here!"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
