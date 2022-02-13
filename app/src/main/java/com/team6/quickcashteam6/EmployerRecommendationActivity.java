@@ -19,12 +19,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class EmployerRecommendationActivity extends AppCompatActivity implements View.OnClickListener  {
+public class EmployerRecommendationActivity extends AppCompatActivity implements View.OnClickListener {
 
     //private ArrayList<Employee> recommendedEmployees = new ArrayList<>();
     private RecyclerView recyclerView;
     //private EmployerRecommendationAdapter recommendationAdapter;
-    private ArrayList<Employee> recommendedEmployees ;
+    private ArrayList<Employee> recommendedEmployees;
     ArrayList<Employee> employees;
 
 
@@ -32,68 +32,65 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.employeeitem);
-      //  init();
-        recommendedEmployees= new ArrayList<>();
+        //  init();
+        recommendedEmployees = new ArrayList<>();
 
 
         Button recmndButton = findViewById(R.id.RecommendButton1);
         recmndButton.setOnClickListener(this);
 
     }
-    private void init(){
+
+    private void init() {
         recyclerView = findViewById(R.id.EmployeeList);
         //recyclerView.setLayoutManager(new WrapLinearLayoutManger(this, LinearLayoutManager.VERTICAL,false));
-        LinearLayoutManager linearLayoutManager= new LinearLayoutManager(getApplicationContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
     }
-    private void connectToFirebaseDB(){
+
+    private void connectToFirebaseDB() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-     //   DatabaseReference jobRef= database.getReference("job Postings");
-    //    DatabaseReference employeeRef= database.getReference("Employee");
-       // getRecommenedEmployees();
-      //  recommendationAdapter= new EmployerRecommendationAdapter(EmployerRecommendationActivity.this,recommendedEmployees);
-      //  recyclerView.setAdapter(recommendationAdapter);
+        //   DatabaseReference jobRef= database.getReference("job Postings");
+        //    DatabaseReference employeeRef= database.getReference("Employee");
+        // getRecommenedEmployees();
+        //  recommendationAdapter= new EmployerRecommendationAdapter(EmployerRecommendationActivity.this,recommendedEmployees);
+        //  recyclerView.setAdapter(recommendationAdapter);
 
     }
 
-    private ArrayList<Employee> collectEmployees(Map<String,Object> data){
-        ArrayList<Employee> allEmployees= new ArrayList<>();
-        for (Map.Entry<String,Object> map: data.entrySet()){
+    private ArrayList<Employee> collectEmployees(Map<String, Object> data) {
+        ArrayList<Employee> allEmployees = new ArrayList<>();
+        for (Map.Entry<String, Object> map : data.entrySet()) {
             Map employeeMap = (Map) map.getValue();
-            Employee employee= new Employee((String) employeeMap.get("id"), ((String)employeeMap.get("name")));
+            Employee employee = new Employee((String) employeeMap.get("id"), ((String) employeeMap.get("name")));
             employee.addSkills((ArrayList<String>) employeeMap.get("skills"));
             allEmployees.add(employee);
 
         }
         return allEmployees;
     }
-    private void getRecommendEmployees(){
+
+    private void getRecommendEmployees() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference employeeRef= database.getReference("Employee");
-        DatabaseReference jobRef= database.getReference("Job Postings");
-               employeeRef.addValueEventListener(new ValueEventListener() {
+        DatabaseReference employeeRef = database.getReference("Employee");
+        DatabaseReference jobRef = database.getReference("Job Postings");
+        employeeRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                employees = collectEmployees((Map<String, Object>) snapshot.getValue());
+                jobRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        employees= collectEmployees((Map<String,Object>) snapshot.getValue());
-                        jobRef.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                Map<String,Object> jobsMap= ((Map<String,Object>) snapshot.getValue());
-                                for (Map.Entry<String,Object> map: jobsMap.entrySet()){
-                                    Map job = (Map) map.getValue();
+                        Map<String, Object> jobsMap = ((Map<String, Object>) snapshot.getValue());
+                        for (Map.Entry<String, Object> map : jobsMap.entrySet()) {
+                            Map job = (Map) map.getValue();
 
-                                    if (((String) map.getKey()).equals("-Mvj4JmACXsCddWw91gJ")){
-                                        String skills = (String) job.get("skills");
-                                     //   recommendedEmployees= RecommendationService.employerRecommendation(skills,employees);
-                                        break;
-                                    }
-                                }
+                            if (((String) map.getKey()).equals("-Mvj4JmACXsCddWw91gJ")) {
+                                String skills = (String) job.get("skills");
+                                //   recommendedEmployees= RecommendationService.employerRecommendation(skills,employees);
+                                break;
                             }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
+                        }
                     }
 
                     @Override
@@ -101,10 +98,17 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
 
                     }
                 });
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
     }
+
     @Override
     public void onClick(View view) {
         /*
@@ -149,4 +153,5 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
     }
 
      */
+    }
 }
