@@ -18,6 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+//Code inspiration from: https://github.com/ravizworldz/FirebasseAuth_Java
+
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
