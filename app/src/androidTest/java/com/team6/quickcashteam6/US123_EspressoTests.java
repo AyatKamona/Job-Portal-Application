@@ -54,7 +54,7 @@ public class US123_EspressoTests {
     }
 
     /**
-     * Tests if employer is moved back to the Employer page after they have successfully posted a job.
+     * Tests if user is moved back to the Login page after they registering.
      */
     @Test
     public void checkIfMovedBackToLogin(){
