@@ -27,7 +27,15 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         //Instance variables
         final EditText lEmail = findViewById(R.id.lEmail);
+        String Email = getEmail();
         final EditText lPassword =  findViewById(R.id.lPassword);
+        String Password = getPassword();
+        if (isEmptyEmail(Email)){
+            errorMessage = "Email is empty";
+        }
+        if (isEmptyPassword(Password)){
+            errorMessage = "Password is empty";
+        }
         //Load state
         super.onCreate(savedInstanceState);
         //Load view
@@ -50,6 +58,20 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+    }
+    protected String getEmail(){
+        EditText lEmail = findViewById(R.id.lEmail);
+        return lEmail.getText().toString().trim();
+    }
+    protected static boolean isEmptyEmail(String Email){
+        return Email.isEmpty();
+    }
+    protected String getPassword(){
+        EditText lPassword = findViewById(R.id.lPassword);
+        return lPassword.getText().toString().trim();
+    }
+    protected static boolean isEmptyPassword(String Password){
+        return Password.isEmpty();
     }
 
     private void login(String email, String password) {

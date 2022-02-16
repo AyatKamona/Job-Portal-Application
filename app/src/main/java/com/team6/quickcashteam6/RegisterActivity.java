@@ -30,7 +30,15 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         //Instance variables
         final EditText rEmail = findViewById(R.id.rEmail);
+        String Email = getrEmail();
         final EditText rPassword = findViewById(R.id.rPassword);
+        String Password = getrPassword();
+        if (isEmptyrEmail(Email)){
+            errorMessage = "Email is empty";
+        }
+        if (isEmptyrPassword(Password)){
+            errorMessage = "Password is empty";
+        }
         //Loads register button
         Button registerButton = findViewById(R.id.buttonRegister);
         //Listener to check for user submission
@@ -41,6 +49,21 @@ public class RegisterActivity extends AppCompatActivity {
                 signUp(rEmail.getText().toString(), rPassword.getText().toString());
             }
         });
+    }
+
+    protected String getrEmail(){
+        EditText rEmail = findViewById(R.id.rEmail);
+        return rEmail.getText().toString().trim();
+    }
+    protected static boolean isEmptyrEmail(String Email){
+        return Email.isEmpty();
+    }
+    protected String getrPassword(){
+        EditText rPassword = findViewById(R.id.rPassword);
+        return rPassword.getText().toString().trim();
+    }
+    protected static boolean isEmptyrPassword(String Password){
+        return Password.isEmpty();
     }
 
     private void signUp(String email, String password) {
