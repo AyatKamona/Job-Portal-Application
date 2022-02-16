@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
         String Email = getEmail();
         final EditText lPassword =  findViewById(R.id.lPassword);
         String Password = getPassword();
+        String errorMessage = "";
         if (isEmptyEmail(Email)){
             errorMessage = "Email is empty";
         }

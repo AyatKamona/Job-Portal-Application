@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         String Email = getrEmail();
         final EditText rPassword = findViewById(R.id.rPassword);
         String Password = getrPassword();
+        String errorMessage = "";
         if (isEmptyrEmail(Email)){
             errorMessage = "Email is empty";
         }
