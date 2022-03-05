@@ -61,6 +61,10 @@
         <activity android:name=".UserChoices"
             android:exported="true"
             />
+
+        <activity
+            android:name=".JobEditActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -83,5 +83,5 @@ public class RecommendationActivityTest {
 
         assertEquals("Job not recommended", "Job1", potentialJobs.get(0).getJobTitle());
     }
-    
+
 }
