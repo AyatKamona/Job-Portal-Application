@@ -1,14 +1,14 @@
 package com.team6.quickcashteam6;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 import java.util.ArrayList;
 
 public class RecommendationActivityTest {
-    /*
 
     static RecommendationService recommendationService;
     String ID = RegisterActivity.userID;
@@ -85,6 +85,4 @@ public class RecommendationActivityTest {
         assertEquals("Job not recommended", "Job1", potentialJobs.get(0).getJobTitle());
     }
 
-     */
-    
 }

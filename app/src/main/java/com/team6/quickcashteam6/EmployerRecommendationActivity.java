@@ -3,6 +3,7 @@ package com.team6.quickcashteam6;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -21,10 +22,10 @@ import java.util.Map;
 
 public class EmployerRecommendationActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //private ArrayList<Employee> recommendedEmployees = new ArrayList<>();
+    private ArrayList<Employee> recommendedEmployees = new ArrayList<>();
     private RecyclerView recyclerView;
-    //private EmployerRecommendationAdapter recommendationAdapter;
-    private ArrayList<Employee> recommendedEmployees;
+  //  private EmployerRecommendationAdapter recommendationAdapter;
+ //   private ArrayList<Employee> recommendedEmployees;
     ArrayList<Employee> employees;
 
 
@@ -32,7 +33,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.employeeitem);
-        //  init();
+         init();
         recommendedEmployees = new ArrayList<>();
 
 
@@ -111,7 +112,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View view) {
-        /*
+       /*
         EditText name1,  name2;
         EditText skills1,skill2 ;
         EditText email1,email2 ;
@@ -140,18 +141,16 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
         LinearLayout linear2= findViewById(R.id.linearLayout2);
         linear1.setVisibility(View.VISIBLE);
         linear2.setVisibility(View.VISIBLE);
-        //  recommendationAdapter.startListening();
+         recommendationAdapter.startListening();
 
-    /*
         LinearLayout linear1= findViewById(R.id.linearLayout1);
         LinearLayout linear2= findViewById(R.id.linearLayout2);
         linear1.setVisibility(View.VISIBLE);
         linear2.setVisibility(View.VISIBLE);
         Button button= findViewById(R.id.RecommendButton1);
         button.setVisibility(View.GONE);
-
+*/
     }
 
-     */
-    }
+
 }
