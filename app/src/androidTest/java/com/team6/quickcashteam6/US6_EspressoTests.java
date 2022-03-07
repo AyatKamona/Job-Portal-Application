@@ -1,7 +1,5 @@
 package com.team6.quickcashteam6;
 
-import android.content.Context;
-
 import androidx.test.espresso.intent.Intents;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -150,4 +148,11 @@ public class US6_EspressoTests {
         onView(withId(R.id.submitJobButton)).perform(click());
         onView(withId(R.id.errorMessage)).check(matches(withText(R.string.EMPTY_JOB_DESCRIPTION)));
     }
+
+    @Test
+    public void checkIfSumnitButtonTakesUserToRecommendationActivity(){
+        onView(withId(R.id.moveToRecommend)).perform(click());
+        intended(hasComponent(EmployerRecommendationActivity.class.getName()));
+    }
+
 }

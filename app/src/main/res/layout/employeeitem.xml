@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Button
+        android:id="@+id/RecommendButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="View Recommendation"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+
+        />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+    android:orientation="vertical"
+    android:background="@android:color/holo_purple" android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+      >
+
+    <TextView
+        android:id="@+id/employeeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Name: samlol"
+        />
+
+    <TextView
+      android:id="@+id/employeeEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Email:sam@dal.ca"
+      />
+
+    <TextView
+        android:id="@+id/employeeSkills"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Skills: Cleaning, Furniture assembly, Pet sitting, Yard Work"
+    />
+
+    <Button
+        android:id="@+id/viewProfileBtn"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="View Profile"
+        tools:ignore="HardcodedText" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
+        android:background="@android:color/holo_purple"
+        android:visibility="gone"
+       >
+    <TextView
+        android:id="@+id/employeeName1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Name: Yes"
+        />
+
+    <TextView
+        android:id="@+id/employeeEmail1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Email: yes@dal.ca"
+        />
+
+    <TextView
+        android:id="@+id/employeeSkills1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:text="Cleaning,Furniture assembly, Heavy Lifting, Electrician"
+        />
+
+    <Button
+        android:id="@+id/viewProfileBtn1"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:text="View Profile"
+        tools:ignore="HardcodedText" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

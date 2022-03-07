@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserChoices">
+
+    <EditText
+        android:id="@+id/nameTxtBox"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+    <Button
+        android:id="@+id/employeeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="Be an employee"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <Button
+        android:id="@+id/employerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BE an Employer"
+        app:layout_constraintTop_toBottomOf="@id/employeeButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="120dp"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/employerButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone">
+       <CheckBox
+           android:id="@+id/skill1"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:checked="false"
+           android:padding="10dp"
+           android:text="Cleaning"
+   />
+        <CheckBox
+            android:id="@+id/skill2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="Furniture assembly"
+            />
+        <CheckBox
+            android:id="@+id/skill3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="Pet sitting"
+            />
+        <CheckBox
+            android:id="@+id/skill4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="Yard Work"
+            />
+        <CheckBox
+            android:id="@+id/skill5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="Heavy lifting"
+            />
+        <CheckBox
+            android:id="@+id/skill6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="Electrician"
+            />
+        <CheckBox
+            android:id="@+id/skill7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="Delivery"
+            />
+        <CheckBox
+            android:id="@+id/skill8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="IT Help"
+            />
+        <CheckBox
+            android:id="@+id/skill9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="Baby sitting"
+            />
+        <CheckBox
+            android:id="@+id/skill10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:padding="10dp"
+            android:text="Tutor"
+            tools:ignore="DuplicateIds" />
+
+</LinearLayout>
+
+    <Button
+        android:id="@+id/skillsregister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register skills"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
