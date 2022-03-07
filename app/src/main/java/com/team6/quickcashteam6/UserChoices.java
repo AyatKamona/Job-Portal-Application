@@ -120,7 +120,7 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                             addEmployeeTofireBase(employee);
                             layout.setVisibility(View.GONE);
                             skillsButton.setVisibility(View.GONE);
-                            startActivity(new Intent(UserChoices.this, LoginActivity.class));
+                            startActivity(new Intent(UserChoices.this, EmployeeRegisterProfileActivity.class));
                         }
 
                     }
