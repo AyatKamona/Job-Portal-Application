@@ -1,6 +1,5 @@
 package com.team6.quickcashteam6;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -11,11 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,14 +25,12 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
-
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
 
             NotificationChannel channel = new NotificationChannel("New Job", "New Job", NotificationManager.IMPORTANCE_DEFAULT);
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
-
     }
 
     protected void setErrorMessage(String message){
@@ -173,5 +168,4 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
 
     }
-
 }

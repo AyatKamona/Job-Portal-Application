@@ -61,6 +61,7 @@
         <activity android:name=".UserChoices"
             android:exported="true"
             />
+
     </application>
 
 </manifest>

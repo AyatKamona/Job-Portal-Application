@@ -1,5 +1,4 @@
 package com.team6.quickcashteam6;
-import android.app.Activity;
 
 // This class acts as a container for all a job's information to be stored into FireBase.
 
@@ -59,4 +58,3 @@ public class JobData {
         this.jobDescription = jobDescription;
     }
 }
-
