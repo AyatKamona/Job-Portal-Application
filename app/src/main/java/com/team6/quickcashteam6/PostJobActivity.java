@@ -25,6 +25,10 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
+
+        Button addLocationButton = findViewById(R.id.mapButton);
+        addLocationButton.setOnClickListener(this::onClick2);
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
 
             NotificationChannel channel = new NotificationChannel("New Job", "New Job", NotificationManager.IMPORTANCE_DEFAULT);
@@ -38,6 +42,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         errorMessage.setText(message.trim());
     }
 
+    // Submit job button press
     @Override
     public void onClick(View view){
         String jobTitle = getJobTitle();
@@ -79,6 +84,12 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         setErrorMessage(errorMessage);
         System.out.println(errorMessage);
         postJobNotify();
+    }
+
+    // Add location button press
+    public void onClick2(View view){
+        Intent map = new Intent(PostJobActivity.this, MapsActivity.class);
+        startActivity(map);
     }
 
     public void openEmployerPage() {
