@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:andriod="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MapsActivity" />
+    andriod:layout_height="match_parent"
+    andriod:layout_width="match_parent"
+    andriod:orientation="vertical">
+
+    <fragment
+        andriod:id="@+id/map"
+        andriod:name="com.google.android.gms.maps.SupportMapFragment"
+        andriod:layout_width="match_parent"
+        andriod:layout_height="644dp"
+        tools:context=".MapsActivity" />
+
+    <Button
+        andriod:id="@+id/setLocation"
+        andriod:layout_width="match_parent"
+        andriod:layout_height="49dp"
+        andriod:text="Set Location"></Button>
+
+    <LinearLayout
+     andriod:layout_width="match_parent"
+     andriod:layout_height="match_parent"
+     andriod:orientation="horizontal">
+
+    </LinearLayout>
+
+</LinearLayout>
