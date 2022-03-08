@@ -86,6 +86,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 MainActivity.jobLongtitute = marker.getPosition().longitude;
                 MainActivity.jobLatitude = marker.getPosition().latitude;
                 Toast.makeText(MapsActivity.this, "Location set", Toast.LENGTH_LONG).show();
+                finish();
             }
 
 

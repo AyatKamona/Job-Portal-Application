@@ -155,4 +155,34 @@ public class US6_EspressoTests {
         intended(hasComponent(EmployerRecommendationActivity.class.getName()));
     }
 
+    @Test
+    public void checkIfMovedBackAfterAddingLocation(){
+        onView(withId(R.id.postJobButton)).perform(click());
+        onView(withId(R.id.insert_job_title)).perform(typeText("Walking my dog"));
+        onView(withId(R.id.insert_job_payment)).perform(typeText("$25/hr"));
+        onView(withId(R.id.insert_start_time)).perform(typeText("2022-02-14 at 6pm"));
+        onView(withId(R.id.skill1)).perform(typeText("Responsible"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
+        onView(withId(R.id.insert_job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
+        onView(withId(R.id.mapButton)).perform(click());
+        onView(withId(R.id.setLocation)).perform(click());
+        intended(hasComponent(PostJobActivity.class.getName()));
+    }
+
+    @Test
+    public void checkIfAddedMarkerShowsUp(){
+        onView(withId(R.id.postJobButton)).perform(click());
+        onView(withId(R.id.insert_job_title)).perform(typeText("Walking my dog"));
+        onView(withId(R.id.insert_job_payment)).perform(typeText("$25/hr"));
+        onView(withId(R.id.insert_start_time)).perform(typeText("2022-02-14 at 6pm"));
+        onView(withId(R.id.skill1)).perform(typeText("Responsible"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
+        onView(withId(R.id.insert_job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
+        onView(withId(R.id.mapButton)).perform(click());
+        onView(withId(R.id.setLocation)).perform(click());
+        onView(withId(R.id.added)).check(matches(withText("Added")));
+    }
+
 }
