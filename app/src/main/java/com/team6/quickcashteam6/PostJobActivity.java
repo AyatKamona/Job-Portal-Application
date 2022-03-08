@@ -31,7 +31,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         submitJobButton.setOnClickListener(this);
 
         Button addLocationButton = findViewById(R.id.mapButton);
-        addLocationButton.setOnClickListener(this::onClick2);
+        addLocationButton.setOnClickListener(this::onLocationBtnClick);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
 
@@ -93,7 +93,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     // Add location button press
-    public void onClick2(View view){
+    public void onLocationBtnClick(View view){
         Intent map = new Intent(PostJobActivity.this, MapsActivity.class);
         startActivity(map);
         setAddedTag();
@@ -177,16 +177,6 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
     protected static boolean isEmptyDescription(String description){
         return description.isEmpty();
-    }
-
-    protected static boolean isEmptyLocation(){
-        if (MainActivity.jobLatitude == 0.0 && MainActivity.jobLongtitute == 0.0){
-            return true;
-        }
-
-        else {
-            return false;
-        }
     }
 
     public void postJobNotify() {
