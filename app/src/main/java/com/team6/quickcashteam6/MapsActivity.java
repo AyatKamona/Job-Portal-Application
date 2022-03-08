@@ -9,6 +9,8 @@ import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -77,7 +79,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onMarkerDragEnd(Marker marker) {
                 LatLng latLng = marker.getPosition();
-
             }
         });
 
@@ -89,7 +90,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 finish();
             }
 
-
         });
     }
+
 }

@@ -8,4 +8,5 @@
     <string name="EMPTY_JOB_DESCRIPTION">Description is a required field</string>
     <string name="NO_NAME_TOAST">Please choose only 5 skills</string>
     <string name="title_activity_maps">MapsActivity</string>
+
 </resources>

@@ -170,6 +170,9 @@ public class US6_EspressoTests {
         intended(hasComponent(PostJobActivity.class.getName()));
     }
 
+    /**
+     * MUST TEST INDIVIDUALLY!
+     */
     @Test
     public void checkIfAddedMarkerShowsUp(){
         onView(withId(R.id.postJobButton)).perform(click());

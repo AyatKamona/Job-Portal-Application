@@ -18,6 +18,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.BreakIterator;
+
 public class PostJobActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
@@ -94,6 +96,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick2(View view){
         Intent map = new Intent(PostJobActivity.this, MapsActivity.class);
         startActivity(map);
+        setAddedTag();
     }
 
     public void openEmployerPage() {
@@ -151,6 +154,11 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         return MainActivity.jobLongtitute;
     }
 
+    public void setAddedTag(){
+        TextView addedTag = findViewById(R.id.added);
+        addedTag.setText("Added");
+    }
+
     protected static boolean isEmptyJobTitle(String jobTitle){
         return jobTitle.isEmpty();
     }
@@ -169,6 +177,16 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
     protected static boolean isEmptyDescription(String description){
         return description.isEmpty();
+    }
+
+    protected static boolean isEmptyLocation(){
+        if (MainActivity.jobLatitude == 0.0 && MainActivity.jobLongtitute == 0.0){
+            return true;
+        }
+
+        else {
+            return false;
+        }
     }
 
     public void postJobNotify() {
