@@ -13,8 +13,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.BreakIterator;
 
 public class PostJobActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,6 +29,10 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
+
+        Button addLocationButton = findViewById(R.id.mapButton);
+        addLocationButton.setOnClickListener(this::onLocationBtnClick);
+
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
 
             NotificationChannel channel = new NotificationChannel("New Job", "New Job", NotificationManager.IMPORTANCE_DEFAULT);
@@ -38,6 +46,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         errorMessage.setText(message.trim());
     }
 
+    // Submit job button press
     @Override
     public void onClick(View view){
         String jobTitle = getJobTitle();
@@ -45,6 +54,8 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         String jobDescription = getDescription();
         String jobPayment = getPayment();
         String startTime = getStartTime();
+        double jobLat = getLat();
+        double jobLng = getLng();
         String errorMessage = "";
 
         if (isEmptyJobTitle(jobTitle)){
@@ -68,7 +79,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         else {
-            JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription);
+            JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat);
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
             jobToPost.push().setValue(post);
             openEmployerPage();
@@ -79,6 +90,13 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         setErrorMessage(errorMessage);
         System.out.println(errorMessage);
         postJobNotify();
+    }
+
+    // Add location button press
+    public void onLocationBtnClick(View view){
+        Intent map = new Intent(PostJobActivity.this, MapsActivity.class);
+        startActivity(map);
+        setAddedTag();
     }
 
     public void openEmployerPage() {
@@ -126,6 +144,19 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     protected String getStartTime(){
         EditText insert_start_time = findViewById(R.id.insert_start_time);
         return insert_start_time.getText().toString().trim();
+    }
+
+    protected double getLat(){
+        return MainActivity.jobLatitude;
+    }
+
+    protected double getLng(){
+        return MainActivity.jobLongtitute;
+    }
+
+    public void setAddedTag(){
+        TextView addedTag = findViewById(R.id.added);
+        addedTag.setText("Added");
     }
 
     protected static boolean isEmptyJobTitle(String jobTitle){
