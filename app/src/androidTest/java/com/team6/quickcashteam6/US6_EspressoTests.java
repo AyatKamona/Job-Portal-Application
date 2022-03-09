@@ -150,11 +150,14 @@ public class US6_EspressoTests {
     }
 
     @Test
-    public void checkIfSumnitButtonTakesUserToRecommendationActivity(){
+    public void checkIfSubmitButtonTakesUserToRecommendationActivity(){
         onView(withId(R.id.moveToRecommend)).perform(click());
         intended(hasComponent(EmployerRecommendationActivity.class.getName()));
     }
 
+    /**
+     * Checks whether the user is taken back to the post job page after selecting a location.
+     */
     @Test
     public void checkIfMovedBackAfterAddingLocation(){
         onView(withId(R.id.postJobButton)).perform(click());
@@ -171,10 +174,11 @@ public class US6_EspressoTests {
     }
 
     /**
+     * Checks whether the "Added" tag is visible once the add location button is pressed.
      * MUST TEST INDIVIDUALLY!
      */
     @Test
-    public void checkIfAddedMarkerShowsUp(){
+    public void checkIfAddedTagIsVisible(){
         onView(withId(R.id.postJobButton)).perform(click());
         onView(withId(R.id.insert_job_title)).perform(typeText("Walking my dog"));
         onView(withId(R.id.insert_job_payment)).perform(typeText("$25/hr"));
