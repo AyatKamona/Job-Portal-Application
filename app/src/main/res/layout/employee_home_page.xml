@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5dp"
+    android:elevation="5dp"
+    android:layout_margin="5dp"
+    android:padding="25dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/job_titles"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_margin="5dp"
+            android:lineSpacingExtra="34sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/job_payments"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_margin="5dp"
+            android:lineSpacingExtra="34sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/job_skills"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_margin="5dp"
+            android:lineSpacingExtra="34sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/start_times"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_margin="5dp"
+            android:lineSpacingExtra="34sp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/job_descriptions"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_margin="5dp"
+            android:lineSpacingExtra="34sp"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/job_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#B575FD"
+            android:text="View Location"
+            tools:ignore="HardcodedText,TextContrastCheck" />
+
+        <Button
+            android:id="@+id/apply_to_job"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#673AB7"
+            android:text="Apply"
+            tools:ignore="HardcodedText" />
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
