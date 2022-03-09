@@ -23,6 +23,8 @@ before_script:
   - sdkmanager "platform-tools"
   - sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}"
   - chmod +x ./gradlew
+  - touch local properties
+  - echo "MAPS_API_KEY=AIzaSyDACMqr279vweh8M5Sv112hP2J240mZRnY" >> local.properties
 
 
 lintDebug:
