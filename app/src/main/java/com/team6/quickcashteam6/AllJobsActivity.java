@@ -14,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Map;
+
 public class AllJobsActivity extends AppCompatActivity {
 
     private RecyclerView rView;
@@ -40,12 +44,11 @@ public class AllJobsActivity extends AppCompatActivity {
     protected void onStart() {
 
         super.onStart();
-
+        
         FirebaseRecyclerOptions<JobData> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<JobData>().setQuery(jobPostReference, JobData.class).build();
 
         FirebaseRecyclerAdapter<JobData, ViewJobPosts> adapter = new FirebaseRecyclerAdapter<JobData, ViewJobPosts>(firebaseRecyclerOptions) {
-
-            @NonNull
+    @NonNull
             @Override
             public ViewJobPosts onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_post_card, parent, false);
@@ -60,13 +63,25 @@ public class AllJobsActivity extends AppCompatActivity {
                 holder.setSkills(modelJob.getSkills());
                 holder.setJobDescription(modelJob.getJobDescription());
             }
-
         };
 
         rView.setAdapter(adapter);
 
     }
 
+   /* public ArrayList<JobData> jobInfo (Map<String,Object> data){
+        ArrayList<JobData> jobs= new ArrayList<>();
+        for (Map.Entry<String,Object> map:data.entrySet()) {
+            Map jobMap = (Map) map.getValue();
+            long longLng= (long)jobMap.get("lng");
+            long longLat= (long) jobMap.get("lat");
+            JobData job = new JobData((String) jobMap.get("jobTitle"), (String) jobMap.get("payment"), (String) jobMap.get("startTime"),
+                    (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), (double) longLng , (double) longLat);
+            jobs.add(job);
+        }
+        return jobs;
+    }
+*/
     public static class ViewJobPosts extends RecyclerView.ViewHolder {
 
         View jobView;

@@ -71,4 +71,8 @@ public class JobData {
     public double getLat() { return jobLat; }
 
     public void setLat(double jobLat){ this.jobLat = jobLat;}
+
+    public JobData(){
+
+    }
 }
