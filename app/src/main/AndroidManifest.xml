@@ -79,6 +79,9 @@
         <activity
             android:name=".UserChoices"
             android:exported="true" />
+        <activity
+            android:name=".AllJobsActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

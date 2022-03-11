@@ -1,7 +1,6 @@
 package com.team6.quickcashteam6;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +11,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-
-import java.util.Objects;
 
 public class AllJobsActivity extends AppCompatActivity {
 
@@ -29,9 +24,6 @@ public class AllJobsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_job_postings);
 
-        Toolbar title = findViewById(R.id.job_postings_toolbar);
-        setSupportActionBar(title);
-        Objects.requireNonNull(getSupportActionBar()).setTitle("All Available Jobs");
         rView = findViewById(R.id.recycler_for_jobs);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setStackFromEnd(true);
@@ -44,7 +36,7 @@ public class AllJobsActivity extends AppCompatActivity {
     }
 
 
-    //References used: https://www.youtube.com/watch?v=xP1Ui8_nYWs
+    // Reference used: https://www.youtube.com/watch?v=xP1Ui8_nYWs
     @Override
     protected void onStart() {
 
