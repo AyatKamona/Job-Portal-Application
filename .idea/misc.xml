@@ -19,7 +19,19 @@
         <entry key="..\:/Users/alkin/Documents/iteration2/team6-dolphin-csci3130/app/src/main/res/layout/userchoice.xml" value="0.358695652173913" />
         <entry key="..\:/Users/ayata/CSCI3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_employer_page.xml" value="0.33" />
         <entry key="..\:/Users/ayata/CSCI3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_postjob.xml" value="0.33" />
+
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.38958333333333334" />
+
+        <entry key="app/src/main/res/layout/activity_employee_recommendation.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_employee_register_profile.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_employer_page.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_postjob.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/employeeitem.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/recommendation_activity.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/userchoice.xml" value="0.4036458333333333" />
+>>>>>>> a1a56e305217c318f4a9cef7e7141cc655609d7b
       </map>
     </option>
   </component>
