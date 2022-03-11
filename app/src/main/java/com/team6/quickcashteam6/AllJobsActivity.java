@@ -31,7 +31,7 @@ public class AllJobsActivity extends AppCompatActivity {
         rView.setHasFixedSize(true);
         rView.setLayoutManager(layoutManager);
 
-        jobPostReference = FirebaseDatabase.getInstance().getReference().child("Job Postings");
+        jobPostReference = FirebaseDatabase.getInstance().getReference().child("Public database");
         jobPostReference.keepSynced(true);
     }
 
