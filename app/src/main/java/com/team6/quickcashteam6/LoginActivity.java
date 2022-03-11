@@ -170,7 +170,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void switch2UserPage()  {
-        System.out.println((mAuth.getCurrentUser().getUid()));
+        String userID=mAuth.getCurrentUser().getUid();
+        System.out.println(userID);
         String user = "";
         for (Employee emply: employees) {
             System.out.println(emply.getID() + " ------------ " + mAuth.getCurrentUser().getUid());
@@ -188,9 +189,14 @@ public class LoginActivity extends AppCompatActivity {
 
         }
         if (user.equals("Employee"))  {
-            startActivity(new Intent(LoginActivity.this, EmployeeRecommendationActivity.class));
+            Intent employeeIntent= new Intent(LoginActivity.this,EmployeeRecommendationActivity.class);
+            employeeIntent.putExtra("ID",userID);
+            startActivity(employeeIntent);
+
         } else  {
-            startActivity(new Intent(LoginActivity.this, EmployerPageActivity.class));
+            Intent employerIntent= new Intent(LoginActivity.this, EmployerPageActivity.class);
+            employerIntent.putExtra("ID",userID);
+            startActivity(employerIntent);
         }
     }
 

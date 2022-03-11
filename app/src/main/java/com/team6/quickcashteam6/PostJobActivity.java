@@ -1,6 +1,5 @@
 package com.team6.quickcashteam6;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -20,14 +19,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class PostJobActivity extends AppCompatActivity implements View.OnClickListener {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postjob);
-
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
+
+        Button addLocationButton = findViewById(R.id.mapButton);
+        addLocationButton.setOnClickListener(this::onLocationBtnClick);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)  {
 
@@ -35,7 +35,6 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
             NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(channel);
         }
-
     }
 
     protected void setErrorMessage(String message){
@@ -43,6 +42,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         errorMessage.setText(message.trim());
     }
 
+    // Submit job button press
     @Override
     public void onClick(View view){
         String jobTitle = getJobTitle();
@@ -50,6 +50,9 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         String jobDescription = getDescription();
         String jobPayment = getPayment();
         String startTime = getStartTime();
+        double jobLat = getLat();
+        double jobLng = getLng();
+        String employerID =getEmployerID();
         String errorMessage = "";
 
         if (isEmptyJobTitle(jobTitle)){
@@ -73,9 +76,12 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         else {
-            JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription);
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
-            jobToPost.push().setValue(post);
+            String key= jobToPost.push().getKey();
+
+            JobData post = new JobData(employerID,key,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat );
+           FirebaseDatabase.getInstance().getReference("Job Postings/"+key).setValue(post);
+      //      jobToPost.push().setValue(post);
             openEmployerPage();
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
         }
@@ -86,8 +92,16 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         postJobNotify();
     }
 
+    // Add location button press
+    public void onLocationBtnClick(View view){
+        Intent map = new Intent(PostJobActivity.this, MapsActivity.class);
+        startActivity(map);
+        setAddedTag();
+    }
+
     public void openEmployerPage() {
         Intent submitJob = new Intent(PostJobActivity.this, EmployerPageActivity.class);
+        submitJob.putExtra("ID",getEmployerID());
         startActivity(submitJob);
     }
 
@@ -133,6 +147,23 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         return insert_start_time.getText().toString().trim();
     }
 
+    protected double getLat(){
+        return MainActivity.jobLatitude;
+    }
+
+    protected double getLng(){
+        return MainActivity.jobLongtitute;
+    }
+    protected String getEmployerID(){
+        Intent intent= getIntent();
+        return intent.getStringExtra("ID");
+    }
+
+    public void setAddedTag(){
+        TextView addedTag = findViewById(R.id.added);
+        addedTag.setText("Added");
+    }
+
     protected static boolean isEmptyJobTitle(String jobTitle){
         return jobTitle.isEmpty();
     }
@@ -162,16 +193,15 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         Accessed: 11/02/12
          */
 
-       NotificationCompat.Builder builder = new NotificationCompat.Builder(PostJobActivity.this, "New Job");
-       builder.setContentTitle("New Job");
-       builder.setContentText(getDescription());
-       builder.setSmallIcon(R.drawable.ic_launcher_background);
-       builder.setAutoCancel(true);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(PostJobActivity.this, "New Job");
+        builder.setContentTitle("New Job");
+        builder.setContentText(getDescription());
+        builder.setSmallIcon(R.drawable.ic_launcher_background);
+        builder.setAutoCancel(true);
 
         NotificationManagerCompat manager = NotificationManagerCompat.from(PostJobActivity.this);
         manager.notify(1, builder.build());
 
 
     }
-
 }

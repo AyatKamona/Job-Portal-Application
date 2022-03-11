@@ -2,7 +2,6 @@ package com.team6.quickcashteam6;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,13 +15,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class UserChoices extends AppCompatActivity implements View.OnClickListener {
     private CheckBox skill1,skill2,skill3,skill4,skill5,skill6,skill7,skill8,skill9,skill10;
     private FirebaseDatabase firebaseDB;
     private DatabaseReference firebaseDBEmployee;
+    private DatabaseReference firebaseDBIDs;
     private DatabaseReference firebaseDBEmployer;
+    private String UID;
     private  final String DB_URL= "https://quickcash-team6-default-rtdb.firebaseio.com/";
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.userchoice);
 
         Intent intent = getIntent();
+        UID=intent.getStringExtra("ID");
         Button employeeButton = findViewById(R.id.employeeButton);
         EditText nameText = findViewById(R.id.nameTxtBox);
 
@@ -140,9 +141,19 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                 }
                 else {
                     Employer employer = new Employer(RegisterActivity.userID,name);
+
                     firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
                     firebaseDBEmployer= firebaseDB.getReference().child("Employer");
-                    firebaseDBEmployer.push().setValue(employer);
+                    String key =firebaseDBEmployer.push().getKey();
+                    IDPairs pair= new IDPairs(RegisterActivity.userID,key);
+                    firebaseDBIDs= firebaseDB.getReference().child("IDs");
+                    firebaseDBIDs.push().setValue(pair);
+
+                 //   employer.setID(key);
+                    firebaseDB.getReference("Employer/"+key).setValue(employer);
+                  //  firebaseDBEmployer.push().setValue(employer);
+
+                    System.out.println(key);
                     startActivity(new Intent(UserChoices.this, LoginActivity.class));
                 }
 
