@@ -24,6 +24,10 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
     private DatabaseReference firebaseDBEmployee;
     private DatabaseReference firebaseDBEmployer;
     private  final String DB_URL= "https://quickcash-team6-default-rtdb.firebaseio.com/";
+    public static ArrayList<String> skills = new ArrayList<>();
+    public static String name;
+    public static Employee employee_profile;
+    public static Employer employer_profile;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +42,8 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
-
-                Employee employee = new Employee(RegisterActivity.userID,name);
+                employee_profile = new Employee(RegisterActivity.userID,name);
+                employee_profile.setEmployee();
                 LinearLayout layout= findViewById(R.id.linear);
                 layout.setVisibility(View.VISIBLE);
 
@@ -53,7 +57,6 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onClick(View view) {
                         int count=0;
-                        ArrayList<String> skills = new ArrayList<>();
                         skill1= findViewById(R.id.skill1);
                         skill2= findViewById(R.id.skill2);
                         skill3= findViewById(R.id.skill3);
@@ -116,8 +119,8 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                             skillsButton.setVisibility(View.GONE);
                         }
                         else {
-                            employee.addSkills(skills);
-                            addEmployeeTofireBase(employee);
+                            employee_profile.addSkills(skills);
+                           // addEmployeeTofireBase(employee_profile);
                             layout.setVisibility(View.GONE);
                             skillsButton.setVisibility(View.GONE);
                             startActivity(new Intent(UserChoices.this, EmployeeRegisterProfileActivity.class));
@@ -133,17 +136,15 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
         employerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = nameText.getText().toString().trim();
+                name = nameText.getText().toString().trim();
+                employer_profile = new Employer(RegisterActivity.userID,UserChoices.name);
 
                 if (name.equals("")){
                     Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Employer employer = new Employer(RegisterActivity.userID,name);
-                    firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
-                    firebaseDBEmployer= firebaseDB.getReference().child("Employer");
-                    firebaseDBEmployer.push().setValue(employer);
-                    startActivity(new Intent(UserChoices.this, LoginActivity.class));
+                    employer_profile.setEmployer();
+                    startActivity(new Intent(UserChoices.this, EmployeeRegisterProfileActivity.class));
                 }
 
 
@@ -156,9 +157,12 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
 
     }
+    /*
    public void addEmployeeTofireBase(Employee employee){
         firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
         firebaseDBEmployee= firebaseDB.getReference().child("Employee");
         firebaseDBEmployee.push().setValue(employee);
    }
+
+     */
 }
