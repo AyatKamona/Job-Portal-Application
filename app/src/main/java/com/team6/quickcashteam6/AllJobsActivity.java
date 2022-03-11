@@ -26,15 +26,14 @@ public class AllJobsActivity extends AppCompatActivity {
 
         rView = findViewById(R.id.recycler_for_jobs);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
         rView.setHasFixedSize(true);
         rView.setLayoutManager(layoutManager);
 
-        jobPostReference = FirebaseDatabase.getInstance().getReference().child("Public database");
+        jobPostReference = FirebaseDatabase.getInstance().getReference().child("Public Database");
         jobPostReference.keepSynced(true);
     }
-
 
     // Reference used: https://www.youtube.com/watch?v=xP1Ui8_nYWs
     @Override
@@ -44,17 +43,17 @@ public class AllJobsActivity extends AppCompatActivity {
 
         FirebaseRecyclerOptions<JobData> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<JobData>().setQuery(jobPostReference, JobData.class).build();
 
-        FirebaseRecyclerAdapter<JobData, ViewJobPosts> adapter = new FirebaseRecyclerAdapter<JobData, ViewJobPosts>(firebaseRecyclerOptions){
+        FirebaseRecyclerAdapter<JobData, ViewJobPosts> adapter = new FirebaseRecyclerAdapter<JobData, ViewJobPosts>(firebaseRecyclerOptions) {
 
             @NonNull
             @Override
             public ViewJobPosts onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.all_job_postings,parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_post_card, parent, false);
                 return new ViewJobPosts(view);
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull ViewJobPosts holder, int position, @NonNull JobData modelJob) {
+            protected void onBindViewHolder(@NonNull ViewJobPosts holder, int position, @NonNull final JobData modelJob) {
                 holder.setJobTitle(modelJob.getJobTitle());
                 holder.setJobPayment(modelJob.getPayment());
                 holder.setJobStartTime(modelJob.getStartTime());
@@ -67,6 +66,7 @@ public class AllJobsActivity extends AppCompatActivity {
         rView.setAdapter(adapter);
 
     }
+
     public static class ViewJobPosts extends RecyclerView.ViewHolder {
 
         View jobView;
@@ -77,7 +77,7 @@ public class AllJobsActivity extends AppCompatActivity {
         }
 
         public void setJobTitle(String title) {
-            TextView jobTitle = jobView.findViewById(R.id.job_title);
+            TextView jobTitle = jobView.findViewById(R.id.job_titles);
             jobTitle.setText(title);
         }
 
@@ -102,4 +102,5 @@ public class AllJobsActivity extends AppCompatActivity {
         }
 
     }
+
 }

@@ -28,7 +28,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postjob);
-        publicDatabase = FirebaseDatabase.getInstance().getReference().child("Public database");
+        publicDatabase = FirebaseDatabase.getInstance().getReference().child("Public Database");
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
 
@@ -88,7 +88,6 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
             openEmployerPage();
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
         }
-
 
         setErrorMessage(errorMessage);
         System.out.println(errorMessage);
