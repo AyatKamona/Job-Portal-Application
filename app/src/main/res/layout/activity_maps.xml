@@ -20,10 +20,11 @@
         andriod:text="Set Location"></Button>
 
     <LinearLayout
-     andriod:layout_width="match_parent"
-     andriod:layout_height="match_parent"
-     andriod:orientation="horizontal">
+        andriod:layout_width="match_parent"
+        andriod:layout_height="match_parent"
+        andriod:orientation="horizontal">
 
     </LinearLayout>
 
 </LinearLayout>
+

@@ -28,6 +28,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postjob);
+
         publicDatabase = FirebaseDatabase.getInstance().getReference().child("Public Database");
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
@@ -58,6 +59,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         String startTime = getStartTime();
         double jobLat = getLat();
         double jobLng = getLng();
+        String employerID =getEmployerID();
         String errorMessage = "";
 
         if (isEmptyJobTitle(jobTitle)){
@@ -81,10 +83,15 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         else {
-            JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat);
-            publicDatabase.child(jobTitle).setValue(post);
+        //    JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat);
+          //  publicDatabase.child(jobTitle).setValue(post);
+
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
-            jobToPost.push().setValue(post);
+            String key= jobToPost.push().getKey();
+
+            JobData post = new JobData(employerID,key,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat );
+           FirebaseDatabase.getInstance().getReference("Job Postings/"+key).setValue(post);
+      //      jobToPost.push().setValue(post);
             openEmployerPage();
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
         }
@@ -97,12 +104,14 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     // Add location button press
     public void onLocationBtnClick(View view){
         Intent map = new Intent(PostJobActivity.this, MapsActivity.class);
+        map.putExtra("ID", getEmployerID());
         startActivity(map);
         setAddedTag();
     }
 
     public void openEmployerPage() {
         Intent submitJob = new Intent(PostJobActivity.this, EmployerPageActivity.class);
+        submitJob.putExtra("ID",getEmployerID());
         startActivity(submitJob);
     }
 
@@ -155,6 +164,10 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     protected double getLng(){
         return MainActivity.jobLongtitute;
     }
+    protected String getEmployerID(){
+        Intent intent= getIntent();
+        return intent.getStringExtra("ID");
+    }
 
     public void setAddedTag(){
         TextView addedTag = findViewById(R.id.added);
@@ -190,11 +203,11 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         Accessed: 11/02/12
          */
 
-       NotificationCompat.Builder builder = new NotificationCompat.Builder(PostJobActivity.this, "New Job");
-       builder.setContentTitle("New Job");
-       builder.setContentText(getDescription());
-       builder.setSmallIcon(R.drawable.ic_launcher_background);
-       builder.setAutoCancel(true);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(PostJobActivity.this, "New Job");
+        builder.setContentTitle("New Job");
+        builder.setContentText(getDescription());
+        builder.setSmallIcon(R.drawable.ic_launcher_background);
+        builder.setAutoCancel(true);
 
         NotificationManagerCompat manager = NotificationManagerCompat.from(PostJobActivity.this);
         manager.notify(1, builder.build());

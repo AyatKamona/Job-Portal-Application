@@ -83,10 +83,23 @@
             android:exported="true" />
         <activity
             android:name=".UserChoices"
+            android:exported="true"/>
+        <activity
+            android:name=".JobEditActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".EditEmployerProfile"
+            android:exported="true"/>
+
+
+        <activity
+            android:name=".EmployeeRegisterProfileActivity"/>
+
         <activity
             android:name=".AllJobsActivity"
             android:exported="true" />
+
         <activity
             android:name=".EmployeePageActivity"
             android:exported="true">
@@ -96,6 +109,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

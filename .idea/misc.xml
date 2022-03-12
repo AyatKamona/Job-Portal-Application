@@ -3,16 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
+        <entry key="../../../../../../../layout/custom_preview.xml" value="0.20520833333333333" />
         <entry key="../../../../../../layout/custom_preview.xml" value="0.196875" />
         <entry key="..\:/Uni Stuff/Year 3/csci3130/quickCash/team6-dolphin-csci3130/app/src/main/res/layout/activity_employee_recommendation.xml" value="0.2" />
-=======
->>>>>>> main
+        <entry key="..\:/Uni Stuff/Year 3/csci3130/quickCash/team6-dolphin-csci3130/app/src/main/res/layout/activity_job_edit.xml" value="0.19342053111375346" />
+        <entry key="..\:/Uni Stuff/Year 3/csci3130/quickCash/team6-dolphin-csci3130/app/src/main/res/layout/activity_postjob.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Quist/git/csci3130/Project/team6-dolphin-csci3130/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2435" />
         <entry key="..\:/Users/Quist/git/csci3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_employer_page.xml" value="0.25" />
         <entry key="..\:/Users/Quist/git/csci3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Quist/git/csci3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_postjob.xml" value="0.25" />
-<<<<<<< HEAD
         <entry key="..\:/Users/alkin/Documents/temprepT6/team6-dolphin-csci3130/app/src/main/res/layout/activity_employer_page.xml" value="0.22" />
         <entry key="..\:/Users/alkin/Documents/temprepT6/team6-dolphin-csci3130/app/src/main/res/layout/activity_postjob.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/alkin/Documents/temprepT6/team6-dolphin-csci3130/app/src/main/res/layout/employeeitem.xml" value="0.10778985507246377" />
@@ -21,18 +20,15 @@
         <entry key="..\:/Users/ayata/CSCI3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_employer_page.xml" value="0.33" />
         <entry key="..\:/Users/ayata/CSCI3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_postjob.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_employee_recommendation.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_employee_register_profile.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_employer_page.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_maps.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_postjob.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/employeeitem.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/recommendation_activity.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/userchoice.xml" value="0.4036458333333333" />
-=======
-        <entry key="..\:/Users/ayata/CSCI3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_employer_page.xml" value="0.33" />
-        <entry key="..\:/Users/ayata/CSCI3130/Project/team6-dolphin-csci3130/app/src/main/res/layout/activity_postjob.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.38958333333333334" />
->>>>>>> main
       </map>
     </option>
   </component>

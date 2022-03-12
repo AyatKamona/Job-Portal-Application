@@ -73,8 +73,6 @@ public class RegisterActivity extends AppCompatActivity {
                             //Message upon registration success
                             Log.d("RegistrationActivity", "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            userID = mAuth.getCurrentUser().getUid();
-
 
                             Toast.makeText(RegisterActivity.this, "Authentication Success." + user.getEmail(),
                                     Toast.LENGTH_SHORT).show();
@@ -92,8 +90,9 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void switch2UserChoices()  {
-
+        userID = mAuth.getCurrentUser().getUid();
         Intent switch2UserChoices = new Intent(this, UserChoices.class);
+        switch2UserChoices.putExtra("ID",userID);
         startActivity(switch2UserChoices);
     }
 }

@@ -1,5 +1,6 @@
 package com.team6.quickcashteam6;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,15 +28,19 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
   //  private EmployerRecommendationAdapter recommendationAdapter;
  //   private ArrayList<Employee> recommendedEmployees;
     ArrayList<Employee> employees;
-
+    String employerID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.employeeitem);
+      //  init();
+        recommendedEmployees= new ArrayList<>();
+        Intent intent= getIntent();
+       employerID= intent.getStringExtra("ID");
+
          init();
         recommendedEmployees = new ArrayList<>();
-
 
         Button recmndButton = findViewById(R.id.RecommendButton1);
         recmndButton.setOnClickListener(this);
@@ -112,6 +117,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View view) {
+
        /*
         EditText name1,  name2;
         EditText skills1,skill2 ;
@@ -142,6 +148,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
         linear1.setVisibility(View.VISIBLE);
         linear2.setVisibility(View.VISIBLE);
          recommendationAdapter.startListening();
+>>>>>>> main
 
         LinearLayout linear1= findViewById(R.id.linearLayout1);
         LinearLayout linear2= findViewById(R.id.linearLayout2);
