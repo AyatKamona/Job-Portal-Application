@@ -7,10 +7,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class JobEditActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +30,10 @@ public class JobEditActivity extends AppCompatActivity implements View.OnClickLi
     EditText desc;
 
     JobData job;
+
+    String key;
+
+    Map<String, Object> jobMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +50,11 @@ public class JobEditActivity extends AppCompatActivity implements View.OnClickLi
 
         Button button = findViewById(R.id.submitJobButton);
 
+        Intent intent = getIntent();
+        key = intent.getStringExtra("key");
 
+        getJob(key);
 
-        job = getJob();
-        populateFields(job);
 
 
         button.setOnClickListener(this);
@@ -54,9 +66,32 @@ public class JobEditActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     //TODO: Get job from firebase
-    private JobData getJob(){
+    private void getJob(String key){
+        DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(key);
+        jobToPost.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                setJobData((Map<String, Object>) snapshot.getValue());
+                populateFields(job);
 
-         return new JobData("mm","nn","Title", "Payment", "Start Time", "Skills, Other Skill, Third Skill", "Description",0.00,0.00);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+    }
+
+    private void setJobData(Map<String, Object> map){
+
+        long longLng= 0;
+        long longLat= 0;
+        job = new JobData((String) map.get("id"), (String) map.get("jobID"),(String) map.get("jobTitle"), (String) map.get("payment"), (String) map.get("startTime"),
+                (String) map.get("skills"), (String) map.get("jobDescription"), (double) longLng , (double) longLat);
     }
 
     private void populateFields(JobData job){
@@ -81,26 +116,25 @@ public class JobEditActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void submit(){
-        job.setJobDescription(desc.getText().toString());
-        job.setJobTitle(title.getText().toString());
-        job.setPayment(payment.getText().toString());
-        job.setStartTime(startTime.getText().toString());
+        DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(key);
+
+        jobToPost.child("jobDescription").setValue(desc.getText().toString());
+        jobToPost.child("jobTitle").setValue(title.getText().toString());
+        jobToPost.child("payment").setValue(payment.getText().toString());
+        jobToPost.child("startTime").setValue(startTime.getText().toString());
 
         String[] skills = job.getSkills().split(",");
 
         if(skills.length > 2){
-            job.setSkills(skills[0] + "," + skills[1] + "," + skills[2]);
+            jobToPost.child("skills").setValue(skills[0] + "," + skills[1] + "," + skills[2]);
         }
         else if(skills.length > 1){
-            job.setSkills(skills[0] + "," + skills[1]);
+            jobToPost.child("skills").setValue(skills[0] + "," + skills[1]);
         }
         else{
-            job.setSkills(skills[0]);
+            jobToPost.child("skills").setValue(skills[0]);
         }
 
-        //TODO: Edit job in Firebase
-        DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
-        jobToPost.push().setValue(job);
         Toast.makeText(JobEditActivity.this, "Successful", Toast.LENGTH_LONG).show();
 
         startActivity(new Intent(JobEditActivity.this, EmployerPageActivity.class));
