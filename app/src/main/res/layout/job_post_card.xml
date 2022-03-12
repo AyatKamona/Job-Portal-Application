@@ -66,6 +66,24 @@
             android:text="View Location"
             tools:ignore="HardcodedText,TextContrastCheck" />
 
+        <TextView
+            android:id="@+id/lng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:lineSpacingExtra="20sp"
+            android:textSize="1dp"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/lat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:lineSpacingExtra="20sp"
+            android:textSize="1dp"
+            android:textColor="@color/black" />
+
         <Button
             android:id="@+id/apply_to_job"
             android:layout_width="match_parent"

@@ -25,8 +25,13 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+            android:value="MAPS_API_KEY" />
 
+        <activity
+            android:name=".ViewLocationMap"
+            android:exported="false"
+            android:label="@string/title_activity_view_location_map"
+            android:parentActivityName=".AllJobsActivity"/>
         <activity
             android:name=".MapsActivity"
             android:exported="false"
