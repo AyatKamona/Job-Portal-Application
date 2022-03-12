@@ -7,17 +7,9 @@
     android:orientation="vertical"
     tools:context=".AllJobsActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/job_postings_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/purple_500" />
-
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_for_jobs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:id="@+id/recycler_for_jobs">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>
