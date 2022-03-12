@@ -19,6 +19,7 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDB;
     private DatabaseReference firebaseDBEmployee;
     private DatabaseReference firebaseDBEmployer;
+    private DatabaseReference firebaseDBIDs;
     private final String DB_URL = "https://quickcash-team6-default-rtdb.firebaseio.com/";
     private EditText age;
     private CheckBox gender_male;
@@ -29,6 +30,7 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
     private int checkedBoxes = 0;
     private Employee employee;
     private FirebaseAuth mAuth;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,18 +59,31 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
                     addEmployeeToFireBase();
                 }
 
-                startActivity(new Intent(EmployeeRegisterProfileActivity.this, LoginActivity.class));
+                Intent loginPage= new Intent(EmployeeRegisterProfileActivity.this, LoginActivity.class);
+                loginPage.putExtra("ID",key);
+                startActivity(loginPage);
+
             }
         });
     }
 
     protected void saveEmployer_ProfileToFirebase()  {
+
+        firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
+        firebaseDBEmployer= firebaseDB.getReference().child("Employer");
+        key =firebaseDBEmployer.push().getKey();
+        IDPairs pair= new IDPairs(RegisterActivity.userID,key);
+        firebaseDBIDs= firebaseDB.getReference().child("IDs");
+        firebaseDBIDs.push().setValue(pair);
+        firebaseDB.getReference("Employer/"+key).setValue(UserChoices.employer_profile);
         firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
         firebaseDBEmployer= firebaseDB.getReference().child("Employer");
         firebaseDBEmployer.push().setValue(UserChoices.employer_profile);
     }
 
     public void addEmployeeToFireBase(){
+
+
         firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
         firebaseDBEmployee= firebaseDB.getReference().child("Employee");
         firebaseDBEmployee.push().setValue(UserChoices.employee_profile);

@@ -16,7 +16,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.Map;
 
 public class JobEditActivity extends AppCompatActivity implements View.OnClickListener {
@@ -54,8 +53,6 @@ public class JobEditActivity extends AppCompatActivity implements View.OnClickLi
         key = intent.getStringExtra("key");
 
         getJob(key);
-
-
 
         button.setOnClickListener(this);
     }
@@ -137,7 +134,10 @@ public class JobEditActivity extends AppCompatActivity implements View.OnClickLi
 
         Toast.makeText(JobEditActivity.this, "Successful", Toast.LENGTH_LONG).show();
 
-        startActivity(new Intent(JobEditActivity.this, EmployerPageActivity.class));
+        Intent intent = new Intent(JobEditActivity.this, EmployerPageActivity.class);
+        intent.putExtra("ID",key);
+        startActivity(intent);
+
     }
 
 }

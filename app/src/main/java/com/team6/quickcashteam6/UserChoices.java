@@ -48,7 +48,6 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                 String name = nameText.getText().toString().trim();
                 employee_profile = new Employee(mAuth.getUid(),name);
                 employee_profile.setEmployee();
-
                 LinearLayout layout= findViewById(R.id.linear);
                 layout.setVisibility(View.VISIBLE);
 
@@ -143,6 +142,7 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             public void onClick(View view) {
 
                 name = nameText.getText().toString().trim();
+               employer_profile = new Employer(mAuth.getUid(),UserChoices.name);
 
                 if (name.equals("")){
                     Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
@@ -166,10 +166,10 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
                   //  firebaseDBEmployer.push().setValue(employer);
 
                  //   System.out.println(key);
-                    startActivity(new Intent(UserChoices.this, LoginActivity.class));
+                 //   startActivity(new Intent(UserChoices.this, LoginActivity.class));
 
-            //        employer_profile.setEmployer();
-          //          startActivity(new Intent(UserChoices.this, EmployeeRegisterProfileActivity.class));
+                   employer_profile.setEmployer();
+                    startActivity(new Intent(UserChoices.this, EmployeeRegisterProfileActivity.class));
 
                 }
 

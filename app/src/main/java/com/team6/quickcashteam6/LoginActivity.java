@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ArrayList<Employee> employees = new ArrayList<>();
     private ArrayList<Employer> employers = new ArrayList<>();
-    private ArrayList<User> users = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +54,9 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println(lEmail.getText().toString() + " " + lPassword.getText().toString());
                 login(lEmail.getText().toString(), lPassword.getText().toString());
                 checkUserType();
-                // System.out.println(lEmail.getText().toString() + " " + lPassword.getText().toString());
-
-                //startActivity(new Intent(LoginActivity.this, EmployeeRecommendationActivity.class));
-
-
             }
         });
+
         //Loads register button
         TextView registerL = findViewById(R.id.registrationLink);
         //listener to check for user registration
@@ -74,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(String email, String password) {
-        //Authnticates user credentials
+        //Authenticates user credentials
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -108,20 +103,6 @@ public class LoginActivity extends AppCompatActivity {
         DatabaseReference employerRef = firebase.getReference("Employer");
         DatabaseReference UserRef = firebase.getReference("Test");
 
-        /*
-        UserRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                users = collectUsers(((Map<String, Object>) snapshot.getValue()));
-                switch2UserPage();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        */
         employeeRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -170,26 +151,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<User> collectUsers(Map<String, Object> value) {
-        ArrayList<User> UsersList = new ArrayList<>();
-        for (Map.Entry<String, Object> entry : value.entrySet()) {
-            Map singleUser = (Map) entry.getValue();
-
-            User user = new User((String) singleUser.get("id"), (String) singleUser.get("name"));
-            long age = (long) singleUser.get("age");
-            user.setAge((int) age);
-            user.setGender((String) singleUser.get("gender"));
-            if ((((Boolean) singleUser.get("employee")) == true)) {
-                user.setEmployee();
-            } else {
-                user.setEmployer();
-            }
-            UsersList.add(user);
-        }
-
-        return UsersList;
-
-    }
 
     private ArrayList<Employer> collectEmployers(Map<String, Object> value) {
         ArrayList<Employer> employersList = new ArrayList<>();
@@ -211,6 +172,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void switch2UserPage() {
+        String userID=mAuth.getCurrentUser().getUid();
 
         for (Employee employee1 : employees) {
             System.out.println("User ID: " + employee1.getID());
@@ -227,7 +189,9 @@ public class LoginActivity extends AppCompatActivity {
             System.out.println("User ID: " + employer1.getID());
             if (employer1.getID().equals(mAuth.getUid())) {
                 if (employer1.isEmployer()) {
-                    startActivity(new Intent(LoginActivity.this, EmployerPageActivity.class));
+                    Intent employerIntent= new Intent(LoginActivity.this, EmployerPageActivity.class);
+                    employerIntent.putExtra("ID",userID);
+                    startActivity(employerIntent);
                 }
                 break;
             }

@@ -28,7 +28,7 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_employer_page);
         Intent intent = getIntent();
         employerID = intent.getStringExtra("ID");
-        if (employerID.charAt(0) == '-'){
+        if (employerID.charAt(0) == '-') {
             employerKey= employerID;
         }
         else {
