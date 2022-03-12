@@ -116,10 +116,10 @@ public class EditEmployerProfile extends AppCompatActivity  {
         ArrayList<JobData> jobs= new ArrayList<>();
         for (Map.Entry<String,Object> map:data.entrySet()) {
             Map jobMap = (Map) map.getValue();
-           long longLng= (long)jobMap.get("lng");
-           long longLat= (long) jobMap.get("lat");
+            String longLng= jobMap.get("lng").toString();
+            String longLat= jobMap.get("lat").toString();
             JobData job = new JobData((String) jobMap.get("id"), (String) jobMap.get("jobID"),(String) jobMap.get("jobTitle"), (String) jobMap.get("payment"), (String) jobMap.get("startTime"),
-                    (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), (double) longLng , (double) longLat);
+                    (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), Double.parseDouble(longLng), Double.parseDouble(longLat));
             jobs.add(job);
         }
         return jobs;
