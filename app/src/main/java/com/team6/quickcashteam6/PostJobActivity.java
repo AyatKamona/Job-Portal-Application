@@ -83,13 +83,12 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         else {
-        //    JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat);
-          //  publicDatabase.child(jobTitle).setValue(post);
-
+            //JobData post = new JobData(employerID,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat);
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
             String key= jobToPost.push().getKey();
 
             JobData post = new JobData(employerID,key,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat );
+            publicDatabase.child(jobTitle).setValue(post);
            FirebaseDatabase.getInstance().getReference("Job Postings/"+key).setValue(post);
       //      jobToPost.push().setValue(post);
             openEmployerPage();
