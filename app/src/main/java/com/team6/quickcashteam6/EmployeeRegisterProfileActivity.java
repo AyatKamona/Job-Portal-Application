@@ -76,9 +76,6 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         firebaseDBIDs= firebaseDB.getReference().child("IDs");
         firebaseDBIDs.push().setValue(pair);
         firebaseDB.getReference("Employer/"+key).setValue(UserChoices.employer_profile);
-        firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
-        firebaseDBEmployer= firebaseDB.getReference().child("Employer");
-        firebaseDBEmployer.push().setValue(UserChoices.employer_profile);
     }
 
     public void addEmployeeToFireBase(){

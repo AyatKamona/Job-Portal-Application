@@ -75,7 +75,7 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
 
         DatabaseReference ref = firebase.getReference().child("IDs");
 
-                allIDs= new ArrayList<>();
+        allIDs= new ArrayList<>();
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

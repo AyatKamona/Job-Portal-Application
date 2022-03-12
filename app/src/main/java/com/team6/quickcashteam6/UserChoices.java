@@ -142,33 +142,12 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             public void onClick(View view) {
 
                 name = nameText.getText().toString().trim();
-               employer_profile = new Employer(mAuth.getUid(),UserChoices.name);
 
                 if (name.equals("")){
                     Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
-                }
-                else {
+                } else  {
                     employer_profile = new Employer(mAuth.getUid(), name);
                     employer_profile.setEmployer();
-
-                    Employer employer = new Employer(RegisterActivity.userID,name);
-                    startActivity(new Intent(UserChoices.this, EmployeeRegisterProfileActivity.class));
-
-                    firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
-                    firebaseDBEmployer= firebaseDB.getReference().child("Employer");
-                    String key =firebaseDBEmployer.push().getKey();
-                    IDPairs pair= new IDPairs(RegisterActivity.userID,key);
-                    firebaseDBIDs= firebaseDB.getReference().child("IDs");
-                    firebaseDBIDs.push().setValue(pair);
-
-                 //   employer.setID(key);
-                    firebaseDB.getReference("Employer/"+key).setValue(employer);
-                  //  firebaseDBEmployer.push().setValue(employer);
-
-                 //   System.out.println(key);
-                 //   startActivity(new Intent(UserChoices.this, LoginActivity.class));
-
-                   employer_profile.setEmployer();
                     startActivity(new Intent(UserChoices.this, EmployeeRegisterProfileActivity.class));
 
                 }
@@ -180,12 +159,5 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
 
     }
-    /*
-   public void addEmployeeTofireBase(Employee employee){
-        firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
-        firebaseDBEmployee= firebaseDB.getReference().child("Employee");
-        firebaseDBEmployee.push().setValue(employee);
-   }
 
-     */
 }
