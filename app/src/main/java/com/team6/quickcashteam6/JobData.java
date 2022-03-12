@@ -89,4 +89,8 @@ public class JobData {
 
     public void setLat(double jobLat){ this.jobLat = jobLat;}
 
+    public JobData(){
+
+    }
+
 }
