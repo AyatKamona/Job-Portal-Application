@@ -84,7 +84,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
             JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat);
             publicDatabase.child(jobTitle).setValue(post);
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
-            jobToPost.setValue(post);
+            jobToPost.push().setValue(post);
             openEmployerPage();
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
         }
