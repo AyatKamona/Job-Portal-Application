@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -27,12 +28,14 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
     private Button submitProfile;
     private int checkedBoxes = 0;
     private Employee employee;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_register_profile);
 
+        mAuth = FirebaseAuth.getInstance();
         age = findViewById(R.id.insert_age);
         gender_male = findViewById(R.id.male);
         gender_female = findViewById(R.id.female);
@@ -43,17 +46,13 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         submitProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("print in click");
                 checkFieldsAreNotEmpty();
-                System.out.println("after check");
                 if (UserChoices.employer_profile != null && UserChoices.employer_profile.isEmployer() && !UserChoices.employer_profile.isEmployee())  {
-                    System.out.println("In Employer");
                     setEmployerInfo();
-                    saveEmployee_ProfileToFirebase();
+                    saveEmployer_ProfileToFirebase();
                 }
 
                 if ( UserChoices.employee_profile != null && UserChoices.employee_profile.isEmployee() && !UserChoices.employee_profile.isEmployer())  {
-                    System.out.println("In Employee");
                     setEmployeeInfo();
                     addEmployeeToFireBase();
                 }
@@ -63,7 +62,7 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         });
     }
 
-    protected void saveEmployee_ProfileToFirebase()  {
+    protected void saveEmployer_ProfileToFirebase()  {
         firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
         firebaseDBEmployer= firebaseDB.getReference().child("Employer");
         firebaseDBEmployer.push().setValue(UserChoices.employer_profile);

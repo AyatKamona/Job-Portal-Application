@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,6 +29,7 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
     public static String name;
     public static Employee employee_profile;
     public static Employer employer_profile;
+    private FirebaseAuth mAuth;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,13 +38,14 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
         Intent intent = getIntent();
         Button employeeButton = findViewById(R.id.employeeButton);
         EditText nameText = findViewById(R.id.nameTxtBox);
+        mAuth = FirebaseAuth.getInstance();
 
         //Listener to check for user submission
         employeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
-                employee_profile = new Employee(RegisterActivity.userID,name);
+                employee_profile = new Employee(mAuth.getUid(),name);
                 employee_profile.setEmployee();
                 LinearLayout layout= findViewById(R.id.linear);
                 layout.setVisibility(View.VISIBLE);
@@ -137,12 +140,12 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                 name = nameText.getText().toString().trim();
-                employer_profile = new Employer(RegisterActivity.userID,UserChoices.name);
 
                 if (name.equals("")){
                     Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
                 }
                 else {
+                    employer_profile = new Employer(mAuth.getUid(), name);
                     employer_profile.setEmployer();
                     startActivity(new Intent(UserChoices.this, EmployeeRegisterProfileActivity.class));
                 }
