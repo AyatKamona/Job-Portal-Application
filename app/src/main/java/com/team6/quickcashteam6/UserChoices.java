@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,8 +27,9 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
     private  final String DB_URL= "https://quickcash-team6-default-rtdb.firebaseio.com/";
     public static ArrayList<String> skills = new ArrayList<>();
    public static String name;
- //   public static Employee employee_profile;
-   // public static Employer employer_profile;
+   public static Employee employee_profile;
+    public static Employer employer_profile;
+    private FirebaseAuth mAuth ;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +39,15 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
         UID=intent.getStringExtra("ID");
         Button employeeButton = findViewById(R.id.employeeButton);
         EditText nameText = findViewById(R.id.nameTxtBox);
+        mAuth= FirebaseAuth.getInstance();
 
         //Listener to check for user submission
         employeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String name = nameText.getText().toString().trim();
-             //   employee_profile = new Employee(RegisterActivity.userID,name);
-           //     employee_profile.setEmployee();
+                employee_profile = new Employee(mAuth.getUid(),name);
+                employee_profile.setEmployee();
                 LinearLayout layout= findViewById(R.id.linear);
                 layout.setVisibility(View.VISIBLE);
 
@@ -138,31 +141,17 @@ public class UserChoices extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View view) {
                   name = nameText.getText().toString().trim();
-        //        employer_profile = new Employer(RegisterActivity.userID,UserChoices.name);
+               employer_profile = new Employer(mAuth.getUid(),UserChoices.name);
 
                 if (name.equals("")){
                     Toast.makeText(UserChoices.this, "Please enter a name", Toast.LENGTH_LONG).show();
                 }
                 else {
-
-                    Employer employer = new Employer(RegisterActivity.userID,name);
-
-                    firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
-                    firebaseDBEmployer= firebaseDB.getReference().child("Employer");
-                    String key =firebaseDBEmployer.push().getKey();
-                    IDPairs pair= new IDPairs(RegisterActivity.userID,key);
-                    firebaseDBIDs= firebaseDB.getReference().child("IDs");
-                    firebaseDBIDs.push().setValue(pair);
-
-                 //   employer.setID(key);
-                    firebaseDB.getReference("Employer/"+key).setValue(employer);
-                  //  firebaseDBEmployer.push().setValue(employer);
-
                  //   System.out.println(key);
-                    startActivity(new Intent(UserChoices.this, LoginActivity.class));
+                 //   startActivity(new Intent(UserChoices.this, LoginActivity.class));
 
-            //        employer_profile.setEmployer();
-          //          startActivity(new Intent(UserChoices.this, EmployeeRegisterProfileActivity.class));
+                   employer_profile.setEmployer();
+                    startActivity(new Intent(UserChoices.this, EmployeeRegisterProfileActivity.class));
 
                 }
 

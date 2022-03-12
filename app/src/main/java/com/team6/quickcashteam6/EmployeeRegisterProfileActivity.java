@@ -1,9 +1,12 @@
 package com.team6.quickcashteam6;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +18,7 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDB;
     private DatabaseReference firebaseDBEmployee;
     private DatabaseReference firebaseDBEmployer;
+    private DatabaseReference firebaseDBIDs;
     private final String DB_URL = "https://quickcash-team6-default-rtdb.firebaseio.com/";
     private EditText age;
     private CheckBox gender_male;
@@ -24,6 +28,7 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
     private Button submitProfile;
     private int checkedBoxes = 0;
     private Employee employee;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,7 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         gender_other = findViewById(R.id.other);
         mobile = findViewById(R.id.insert_mobile);
         submitProfile = findViewById(R.id.register_employee_profile);
-/*
+
         submitProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,18 +60,32 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
                     addEmployeeToFireBase();
                 }
 
-                startActivity(new Intent(EmployeeRegisterProfileActivity.this, LoginActivity.class));
+                Intent loginPage= new Intent(EmployeeRegisterProfileActivity.this, LoginActivity.class);
+                loginPage.putExtra("ID",key);
+                startActivity(loginPage);
+
             }
         });
     }
 
     protected void saveEmployee_ProfileToFirebase()  {
+
+        firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
+        firebaseDBEmployer= firebaseDB.getReference().child("Employer");
+         key =firebaseDBEmployer.push().getKey();
+        IDPairs pair= new IDPairs(RegisterActivity.userID,key);
+        firebaseDBIDs= firebaseDB.getReference().child("IDs");
+        firebaseDBIDs.push().setValue(pair);
+
+        firebaseDB.getReference("Employer/"+key).setValue(UserChoices.employer_profile);
         firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
         firebaseDBEmployer= firebaseDB.getReference().child("Employer");
         firebaseDBEmployer.push().setValue(UserChoices.employer_profile);
     }
 
     public void addEmployeeToFireBase(){
+
+
         firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
         firebaseDBEmployee= firebaseDB.getReference().child("Employee");
         firebaseDBEmployee.push().setValue(UserChoices.employee_profile);
@@ -139,8 +158,5 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         if (mobile.getText().toString().trim().equals("") || mobileDigits.length() != 10)  {
             Toast.makeText(EmployeeRegisterProfileActivity.this, "Please enter a valid phone number", Toast.LENGTH_LONG).show();
         }
-    }
-}
-*/
     }
 }
