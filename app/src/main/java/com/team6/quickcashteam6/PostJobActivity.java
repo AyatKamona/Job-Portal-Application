@@ -22,11 +22,13 @@ import java.text.BreakIterator;
 
 public class PostJobActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private DatabaseReference publicDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postjob);
-
+        publicDatabase = FirebaseDatabase.getInstance().getReference().child("Public Database");
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
 
@@ -80,12 +82,12 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         else {
             JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat);
+            publicDatabase.child(jobTitle).setValue(post);
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
             jobToPost.push().setValue(post);
             openEmployerPage();
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
         }
-
 
         setErrorMessage(errorMessage);
         System.out.println(errorMessage);
