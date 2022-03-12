@@ -78,6 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void switch2UserChoices()  {
 
         Intent switch2UserChoices = new Intent(this, UserChoices.class);
+        switch2UserChoices.putExtra("ID",userID);
         startActivity(switch2UserChoices);
     }
 }

@@ -9,15 +9,40 @@ public class JobData {
     String startTime;
     String skills;
     String jobDescription;
+    double jobLng;
+    double jobLat;
+    String employerKey;
+    String jobID;
 
-    public JobData(String jobTitle, String payment, String startTime, String skills, String jobDescription) {
+
+    public JobData(String employerID,String jobID,String jobTitle, String payment, String startTime, String skills, String jobDescription,double jobLng, double jobLat){
         this.jobTitle = jobTitle;
         this.payment = payment;
         this.startTime = startTime;
         this.skills = skills;
         this.jobDescription = jobDescription;
+        this.jobLng = jobLng;
+        this.jobLat = jobLat;
+        this.employerKey = employerID;
+        this.jobID= jobID;
     }
 
+/*    public JobData(String jobTitle, String payment, String startTime, String skills, String jobDescription, double jobLng, double jobLat) {
+        this.jobTitle = jobTitle;
+        this.payment = payment;
+        this.startTime = startTime;
+        this.skills = skills;
+        this.jobDescription = jobDescription;
+        this.jobLng = jobLng;
+        this.jobLat = jobLat;
+    }
+
+ */
+
+    public void setJobID(String jobID){ this.jobID= jobID; }
+    public String getJobID (){return jobID;}
+    public void setID(String ID){ this.employerKey = ID; }
+    public String getID(){return employerKey;}
     public String getJobTitle() {
         return jobTitle;
     }
@@ -57,4 +82,12 @@ public class JobData {
     public void setJobDescription(String jobDescription) {
         this.jobDescription = jobDescription;
     }
+
+    public double getLng() { return jobLng; }
+
+    public void setLng(double jobLng){ this.jobLng = jobLng;}
+
+    public double getLat() { return jobLat; }
+
+    public void setLat(double jobLat){ this.jobLat = jobLat;}
 }

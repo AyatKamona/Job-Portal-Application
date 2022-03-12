@@ -219,6 +219,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, EmployeeRecommendationActivity.class));
                 }
                 break;
+
             }
         }
 

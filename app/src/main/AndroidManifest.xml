@@ -66,6 +66,12 @@
             android:name=".JobEditActivity"
             android:exported="true" />
 
+        <activity android:name=".EditEmployerProfile"
+            android:exported="true"/>
+        <activity android:name=".MapsActivity"
+            android:exported="true"/>
+
+
         <activity
             android:name=".EmployeeRegisterProfileActivity"
             android:exported="true">
@@ -75,6 +81,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
     </application>
 

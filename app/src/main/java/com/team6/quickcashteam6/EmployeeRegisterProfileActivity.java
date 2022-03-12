@@ -19,7 +19,7 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDB;
     private DatabaseReference firebaseDBEmployee;
     private DatabaseReference firebaseDBEmployer;
-    private  final String DB_URL= "https://quickcash-team6-default-rtdb.firebaseio.com/";
+    private final String DB_URL = "https://quickcash-team6-default-rtdb.firebaseio.com/";
     private EditText age;
     private CheckBox gender_male;
     private CheckBox gender_female;
