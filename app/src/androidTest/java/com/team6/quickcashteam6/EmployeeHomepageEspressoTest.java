@@ -29,7 +29,7 @@ package com.team6.quickcashteam6;
 @RunWith(AndroidJUnit4.class)
 public class EmployeeHomepageEspressoTest {
     @Rule
-    public ActivityScenarioRule<EmployeePageActvity> myRule = new ActivityScenarioRule<>(EmployeePageActivity.class);
+    public ActivityScenarioRule<EmployeePageActivity> myRule = new ActivityScenarioRule<EmployeePageActivity>(EmployeePageActivity.class);
 
     @BeforeClass
     public static void setup() {
@@ -43,7 +43,7 @@ public class EmployeeHomepageEspressoTest {
 
     @Test
     public void checkIfMovedToPostJobPage(){
-        onView(withId(R.id.allJobs)).perform(click());
+        onView(withId(R.id.viewJobsButton)).perform(click());
         intended(hasComponent(AllJobsActivity.class.getName()));
     }
 }

@@ -32,7 +32,7 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
     }
 
     private void onTestClick(View view) {
-        Intent i = new Intent(EmployerPageActivity.this, AllJobsActivity.class);
+        Intent i = new Intent(EmployerPageActivity.this, EmployeePageActivity.class);
         startActivity(i);
     }
 
