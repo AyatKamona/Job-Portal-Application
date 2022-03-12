@@ -51,6 +51,11 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
         TextView lat;
         Button job_location;
 
+        /*
+        Each job is shown as a card view and all the details of one are taken from FireBase
+        and put into each of these variables to be displayed to the employee in the
+        AllJobsActivity class.
+         */
         public jobsViewholder(@NonNull View itemView) {
             super(itemView);
 

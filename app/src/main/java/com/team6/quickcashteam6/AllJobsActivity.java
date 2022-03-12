@@ -25,6 +25,10 @@ public class AllJobsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_job_postings);
 
+        /*
+        Retrieving the posted jobs from public database instead of the regular one as it will not work
+        otherwise. The regular "Job Postings" database is secure and will not allow retrieval.
+         */
         publicBase = FirebaseDatabase.getInstance().getReference().child("Public Database");
 
         recyclerView = findViewById(R.id.recycler_for_jobs);

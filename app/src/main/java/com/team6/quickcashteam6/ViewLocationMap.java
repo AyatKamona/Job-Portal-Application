@@ -42,6 +42,11 @@ public class ViewLocationMap extends AppCompatActivity implements OnMapReadyCall
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
+    /*
+    Job location is retrieved from an intent and is displayed as a marker on the map API for the
+    employee to view.
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -51,9 +56,9 @@ public class ViewLocationMap extends AppCompatActivity implements OnMapReadyCall
         if(extras!=null) {
             lng = Double.parseDouble(extras.getString("lng"));
             lat = Double.parseDouble(extras.getString("lat"));
-            LatLng sydney = new LatLng(lat, lng);
-            mMap.addMarker(new MarkerOptions().position(sydney).title("Job Location"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            LatLng jobLocation = new LatLng(lat, lng);
+            mMap.addMarker(new MarkerOptions().position(jobLocation).title("Job Location"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(jobLocation));
         }
 
     }

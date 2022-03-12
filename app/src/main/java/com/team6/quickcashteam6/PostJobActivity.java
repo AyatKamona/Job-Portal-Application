@@ -29,7 +29,9 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postjob);
 
+        // Creating a separate "not secure" database to also store jobs in for retrieval for employees.
         publicDatabase = FirebaseDatabase.getInstance().getReference().child("Public Database");
+
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
 
@@ -83,14 +85,14 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         else {
-            //JobData post = new JobData(employerID,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat);
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
             String key= jobToPost.push().getKey();
-
             JobData post = new JobData(employerID,key,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat );
+
+            // Also storing the job in an unsecure database for employee retrieval later.
             publicDatabase.child(jobTitle).setValue(post);
-           FirebaseDatabase.getInstance().getReference("Job Postings/"+key).setValue(post);
-      //      jobToPost.push().setValue(post);
+
+            FirebaseDatabase.getInstance().getReference("Job Postings/"+key).setValue(post);
             openEmployerPage();
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
         }

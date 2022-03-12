@@ -16,7 +16,6 @@ public class JobData {
     String employerKey;
     String jobID;
 
-
     public JobData(String employerKey, String jobID, String jobTitle, String payment, String startTime, String skills, String jobDescription, double jobLng, double jobLat) {
         this.jobTitle = jobTitle;
         this.payment = payment;
@@ -28,7 +27,6 @@ public class JobData {
         this.employerKey = employerKey;
         this.jobID= jobID;
     }
-
 
     public void setJobID(String jobID) {
         this.jobID= jobID; }
