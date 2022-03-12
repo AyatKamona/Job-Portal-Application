@@ -69,6 +69,9 @@ public class EditEmployerProfile extends AppCompatActivity  {
                         employerRef.child("name").setValue(name.getText().toString());
                         employerRef.child("phone").setValue(phone.getText().toString());
 
+                        Intent intent= new Intent(EditEmployerProfile.this,EmployerPageActivity.class);
+                        intent.putExtra("ID",employerKey);
+                        startActivity(intent);
                     }
                 });
 
