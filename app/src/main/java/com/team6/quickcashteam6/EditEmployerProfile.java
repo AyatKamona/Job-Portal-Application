@@ -119,7 +119,7 @@ public class EditEmployerProfile extends AppCompatActivity  {
            long longLng= (long)jobMap.get("lng");
            long longLat= (long) jobMap.get("lat");
             JobData job = new JobData((String) jobMap.get("id"), (String) jobMap.get("jobID"),(String) jobMap.get("jobTitle"), (String) jobMap.get("payment"), (String) jobMap.get("startTime"),
-                    (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), (double) longLng , (double) longLat);
+                    (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), (double) longLng, (double) longLat);
             jobs.add(job);
         }
         return jobs;
