@@ -19,9 +19,6 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
 
         Button moveToRecommend = findViewById(R.id.moveToRecommend);
 
-        Button testButton = findViewById(R.id.testButton);
-        testButton.setOnClickListener(this::onTestClick);
-
         moveToRecommend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,11 +26,6 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-    }
-
-    private void onTestClick(View view) {
-        Intent i = new Intent(EmployerPageActivity.this, EmployeePageActivity.class);
-        startActivity(i);
     }
 
     @Override

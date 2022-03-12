@@ -63,6 +63,7 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
             lat = itemView.findViewById(R.id.lat);
             job_location = itemView.findViewById(R.id.job_location);
             job_location.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(), ViewLocationMap.class);

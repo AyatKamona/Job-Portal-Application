@@ -30,10 +30,7 @@ public class AllJobsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_for_jobs);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        FirebaseRecyclerOptions<JobData> options
-                = new FirebaseRecyclerOptions.Builder<JobData>()
-                .setQuery(publicBase, JobData.class)
-                .build();
+        FirebaseRecyclerOptions<JobData> options = new FirebaseRecyclerOptions.Builder<JobData>().setQuery(publicBase, JobData.class).build();
 
         adapter = new employeeJobAdapter(options);
         recyclerView.setAdapter(adapter);

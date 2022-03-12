@@ -41,6 +41,10 @@ public class EmployeeHomepageEspressoTest {
         System.gc();
     }
 
+    /*
+    Checks whether the button properly takes you to the All jobs page.
+     */
+
     @Test
     public void checkIfMovedToPostJobPage(){
         onView(withId(R.id.viewJobsButton)).perform(click());
