@@ -34,6 +34,7 @@ import static org.hamcrest.Matchers.not;
 @RunWith(AndroidJUnit4.class)
 
 public class LoginActivityEspressoTest {
+    /*
     @Rule
     public ActivityScenarioRule<LoginActivity> myRule = new ActivityScenarioRule<>(LoginActivity.class);
     public IntentsTestRule<LoginActivity> myIntentRule = new IntentsTestRule<>(LoginActivity.class);
@@ -62,5 +63,7 @@ public class LoginActivityEspressoTest {
         onView(withId(R.id.buttonLogin)).perform(click());
         intended(hasComponent(EmployerPageActivity.class.getName()));
     }
+
+     */
 
 }

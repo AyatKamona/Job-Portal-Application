@@ -10,19 +10,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.BreakIterator;
+
 public class PostJobActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private DatabaseReference publicDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postjob);
+
+        publicDatabase = FirebaseDatabase.getInstance().getReference().child("Public Database");
         Button submitJobButton = findViewById(R.id.submitJobButton);
         submitJobButton.setOnClickListener(this);
 
@@ -76,6 +83,9 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         else {
+        //    JobData post = new JobData(jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat);
+          //  publicDatabase.child(jobTitle).setValue(post);
+
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
             String key= jobToPost.push().getKey();
 
@@ -86,7 +96,6 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
         }
 
-
         setErrorMessage(errorMessage);
         System.out.println(errorMessage);
         postJobNotify();
@@ -95,6 +104,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
     // Add location button press
     public void onLocationBtnClick(View view){
         Intent map = new Intent(PostJobActivity.this, MapsActivity.class);
+        map.putExtra("ID", getEmployerID());
         startActivity(map);
         setAddedTag();
     }

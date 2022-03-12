@@ -1,9 +1,11 @@
+package com.team6.quickcashteam6;
 
-        package com.team6.quickcashteam6;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DataSnapshot;
@@ -13,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Map;
+
 public class EmployeeRecommendationActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String Fb_URL = "https://quickcash-team6-default-rtdb.firebaseio.com/";
     ArrayList<JobData> jobsToBeSorted = new ArrayList<>();
@@ -28,8 +31,6 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_employee_recommendation);
         Intent intent = getIntent();
         employeeID= intent.getStringExtra("ID");
-        employee = new Employee(employeeID, "Eli");
-        employee.addSingleSkill("Responsible,");
         Button recmndButton = findViewById(R.id.jobNotify);
         recmndButton.setOnClickListener(this);
     }
@@ -38,6 +39,7 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         retrieveJobsFromDB();
         //checkUserType();
     }
+
     public void retrieveJobsFromDB() {
         FirebaseDatabase firebase = FirebaseDatabase.getInstance(Fb_URL);
         DatabaseReference ref = firebase.getReference("Job Postings");
@@ -55,24 +57,7 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
             }
         });
     }
-    public void checkUserType() {
-        /*
-        Retrieve all employees and employers put them in an array and determine what instance of then use if statement to switch
-         */
-        FirebaseDatabase firebase = FirebaseDatabase.getInstance(Fb_URL);
-        DatabaseReference ref = firebase.getReference("Employee");
-        ArrayList<String> skills = new ArrayList<>();
-        int i = 0;
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                users = collectEmployees(((Map<String, Object>) dataSnapshot.getValue()));
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
+
     /*
     This methods is referenced "Retrieving Java object data from Firebase in Android Studio"
     URL: https://www.youtube.com/watch?v=aPLh31MWewc&ab_channel=BrandanJones
@@ -95,6 +80,8 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
             Map singleUser = (Map) entry.getValue();
             jobs.add(new JobData("mm","kk",((String) singleUser.get("jobTitle")), ((String) singleUser.get("payment")), ((String) singleUser.get("startTime")), ((String) singleUser.get("skills")), ((String) singleUser.get("jobDescription")), ((double) singleUser.get("lng")), ((double) singleUser.get("lat"))));
         }
+
         return jobs;
     }
+
 }

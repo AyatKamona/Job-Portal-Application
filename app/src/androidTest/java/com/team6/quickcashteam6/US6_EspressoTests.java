@@ -1,9 +1,5 @@
 package com.team6.quickcashteam6;
 
-
-
-import android.content.Context;
-
 import androidx.test.espresso.intent.Intents;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -152,10 +148,48 @@ public class US6_EspressoTests {
         onView(withId(R.id.submitJobButton)).perform(click());
         onView(withId(R.id.errorMessage)).check(matches(withText(R.string.EMPTY_JOB_DESCRIPTION)));
     }
+
     @Test
-    public void checkIfSumnitButtonTakesUserToRecommendationActivity(){
+    public void checkIfSubmitButtonTakesUserToRecommendationActivity(){
         onView(withId(R.id.moveToRecommend)).perform(click());
         intended(hasComponent(EmployerRecommendationActivity.class.getName()));
+    }
+
+    /**
+     * Checks whether the user is taken back to the post job page after selecting a location.
+     */
+    @Test
+    public void checkIfMovedBackAfterAddingLocation(){
+        onView(withId(R.id.postJobButton)).perform(click());
+        onView(withId(R.id.insert_job_title)).perform(typeText("Walking my dog"));
+        onView(withId(R.id.insert_job_payment)).perform(typeText("$25/hr"));
+        onView(withId(R.id.insert_start_time)).perform(typeText("2022-02-14 at 6pm"));
+        onView(withId(R.id.skill1)).perform(typeText("Responsible"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
+        onView(withId(R.id.insert_job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
+        onView(withId(R.id.mapButton)).perform(click());
+        onView(withId(R.id.setLocation)).perform(click());
+        intended(hasComponent(PostJobActivity.class.getName()));
+    }
+
+    /**
+     * Checks whether the "Added" tag is visible once the add location button is pressed.
+     * MUST TEST INDIVIDUALLY!
+     */
+    @Test
+    public void checkIfAddedTagIsVisible(){
+        onView(withId(R.id.postJobButton)).perform(click());
+        onView(withId(R.id.insert_job_title)).perform(typeText("Walking my dog"));
+        onView(withId(R.id.insert_job_payment)).perform(typeText("$25/hr"));
+        onView(withId(R.id.insert_start_time)).perform(typeText("2022-02-14 at 6pm"));
+        onView(withId(R.id.skill1)).perform(typeText("Responsible"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
+        onView(withId(R.id.insert_job_description)).perform(typeText("Babysit a 4 year old"));
+        onView(withId(R.id.insert_job_description)).perform(closeSoftKeyboard());
+        onView(withId(R.id.mapButton)).perform(click());
+        onView(withId(R.id.setLocation)).perform(click());
+        onView(withId(R.id.added)).check(matches(withText("Added")));
     }
 
 }

@@ -48,7 +48,23 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-     private void signUp(String email, String password) {
+    protected String getrEmail(){
+        EditText rEmail = findViewById(R.id.rEmail);
+        return rEmail.getText().toString().trim();
+    }
+    protected static boolean isEmptyrEmail(String Email){
+        return Email.isEmpty();
+    }
+    protected String getrPassword(){
+        EditText rPassword = findViewById(R.id.rPassword);
+        return rPassword.getText().toString().trim();
+    }
+    protected static boolean isEmptyrPassword(String Password){
+        return Password.isEmpty();
+    }
+
+
+    private void signUp(String email, String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override

@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class EmployerPageActivity extends AppCompatActivity implements View.OnClickListener {
     String employerID;
-    String employerKey;
+    public static String employerKey;
     private static final String Fb_URL = "https://quickcash-team6-default-rtdb.firebaseio.com/";
     ArrayList<IDPairs> allIDs;
     @Override
@@ -107,3 +107,4 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
         return IDs;
     }
 }
+

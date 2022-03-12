@@ -1,9 +1,10 @@
 package com.team6.quickcashteam6;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
 
 import java.util.ArrayList;
 
@@ -76,7 +77,7 @@ public class RecommendationActivityTest {
         Employee employee = new Employee("5", "Eli");
         employee.addSingleSkill("Responsible");
 
-        jobs.add(new JobData("Job1", "$20", "Now", "Responsible", "A Job"));
+        jobs.add(new JobData("Job1", "$20", "Now", "Responsible", "A Job", 44.651070, -63.582687));
 
         ArrayList<JobData> potentialJobs = recommendationService.employeeRecommendation(jobs, employee.getSkills());
 

@@ -2,6 +2,8 @@ package com.team6.quickcashteam6;
 
 // This class acts as a container for all a job's information to be stored into FireBase.
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class JobData {
 
     String jobTitle;
@@ -15,7 +17,7 @@ public class JobData {
     String jobID;
 
 
-    public JobData(String employerID,String jobID,String jobTitle, String payment, String startTime, String skills, String jobDescription,double jobLng, double jobLat){
+    public JobData(String employerKey, String jobID, String jobTitle, String payment, String startTime, String skills, String jobDescription, double jobLng, double jobLat) {
         this.jobTitle = jobTitle;
         this.payment = payment;
         this.startTime = startTime;
@@ -23,26 +25,22 @@ public class JobData {
         this.jobDescription = jobDescription;
         this.jobLng = jobLng;
         this.jobLat = jobLat;
-        this.employerKey = employerID;
+        this.employerKey = employerKey;
         this.jobID= jobID;
     }
 
-/*    public JobData(String jobTitle, String payment, String startTime, String skills, String jobDescription, double jobLng, double jobLat) {
-        this.jobTitle = jobTitle;
-        this.payment = payment;
-        this.startTime = startTime;
-        this.skills = skills;
-        this.jobDescription = jobDescription;
-        this.jobLng = jobLng;
-        this.jobLat = jobLat;
+
+    public void setJobID(String jobID) {
+        this.jobID= jobID; }
+
+    public String getJobID (){
+        return jobID;
     }
 
- */
-
-    public void setJobID(String jobID){ this.jobID= jobID; }
-    public String getJobID (){return jobID;}
     public void setID(String ID){ this.employerKey = ID; }
+
     public String getID(){return employerKey;}
+
     public String getJobTitle() {
         return jobTitle;
     }
@@ -90,4 +88,5 @@ public class JobData {
     public double getLat() { return jobLat; }
 
     public void setLat(double jobLat){ this.jobLat = jobLat;}
+
 }

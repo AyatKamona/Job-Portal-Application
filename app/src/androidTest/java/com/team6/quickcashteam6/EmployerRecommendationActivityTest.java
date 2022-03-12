@@ -27,7 +27,6 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withAlpha;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-@RunWith(AndroidJUnit4.class)
 public class EmployerRecommendationActivityTest {
     @Rule
    public ActivityScenarioRule<EmployerRecommendationActivity> myRule = new ActivityScenarioRule<EmployerRecommendationActivity>(EmployerRecommendationActivity.class);
@@ -42,7 +41,7 @@ public class EmployerRecommendationActivityTest {
     }
 
     @Test
-    public void testRecommendButton(){
+    public void testRecommendButton (){
         onView(withId(R.id.RecommendButton1)).perform(click());
         onView(withId(R.id.linearLayout1)).check(matches(isDisplayed()));
         onView(withId(R.id.linearLayout2)).check(matches(isDisplayed()));
