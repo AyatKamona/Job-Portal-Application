@@ -3,6 +3,7 @@ package com.team6.quickcashteam6;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -29,6 +30,7 @@ public class FindJobActivity extends AppCompatActivity implements View.OnClickLi
 
     private DatabaseReference displayJobs;
     private List<JobData> jobsList;
+    private int range = 5000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,6 @@ public class FindJobActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_findjob);
 
         displayJobs = FirebaseDatabase.getInstance().getReference("Job Postings");
-        jobsList = new ArrayList<>();
-
         displayJobs.addListenerForSingleValueEvent(valueEventListener);
 
         Button findJobButton = findViewById(R.id.findJobButton);
@@ -64,8 +64,16 @@ public class FindJobActivity extends AppCompatActivity implements View.OnClickLi
             jobsList.clear();
             if (dataSnapshot.exists()) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    JobData artist = snapshot.getValue(JobData.class);
-                    jobsList.add(artist);
+                    JobData job = snapshot.getValue(JobData.class);
+                    float lat = (float) job.getLat();
+                    float lng = (float) job.getLng();
+                    float res[] = new float[5];
+
+                    Location.distanceBetween(44.651070, -63.582687, lat, lng, res);
+
+                    if (res[0] <= range) {
+                        jobsList.add(job);
+                    }
                 }
             }
         }
