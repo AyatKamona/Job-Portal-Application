@@ -1,3 +1,9 @@
+/*
+    * Citation:
+    * URL: https://git.cs.dal.ca/dashah/csci3130firebasecrud
+    * Lines: all code
+    * Description: The code is inspired by the firebase tutorial and the firebasecrud project
+*/
 package com.team6.quickcashteam6;
 import android.content.Context;
 import android.util.Log;
