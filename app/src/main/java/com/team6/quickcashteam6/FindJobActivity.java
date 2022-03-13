@@ -79,20 +79,14 @@ public class FindJobActivity extends AppCompatActivity implements View.OnClickLi
     // Add location button press
     public void onLocationBtnClick(View view){
         Intent map = new Intent(FindJobActivity.this, MapsActivity.class);
-        map.putExtra("ID", getEmployerID());
+        map.putExtra("ID", getID());
+        LatLng job = new LatLng(getLat(), getLng());
         startActivity(map);
     }
 
     public void openUserPage() {
         Intent findJob = new Intent(FindJobActivity.this, User.class);
     }
-
-    /*
-    protected String getID(){
-        EditText insert_ID = findViewById(R.id.insert_ID);
-        return insert_ID.getText().toString().trim();
-    }
-    */
 
     protected String getStartTime(){
         EditText insert_start_time = findViewById(R.id.insert_start_time);
@@ -106,8 +100,8 @@ public class FindJobActivity extends AppCompatActivity implements View.OnClickLi
     protected double getLng(){
         return MainActivity.jobLongtitute;
     }
-    protected String getEmployerID(){
-        Intent intent= getIntent();
+    protected String getID(){
+        Intent intent = getIntent();
         return intent.getStringExtra("ID");
     }
 
