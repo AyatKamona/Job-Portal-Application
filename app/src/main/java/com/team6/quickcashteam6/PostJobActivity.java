@@ -107,7 +107,6 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         Intent map = new Intent(PostJobActivity.this, MapsActivity.class);
         map.putExtra("ID", getEmployerID());
         startActivity(map);
-        setAddedTag();
     }
 
     public void openEmployerPage() {
@@ -170,10 +169,6 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         return intent.getStringExtra("ID");
     }
 
-    public void setAddedTag(){
-        TextView addedTag = findViewById(R.id.added);
-        addedTag.setText("Added");
-    }
 
     protected static boolean isEmptyJobTitle(String jobTitle){
         return jobTitle.isEmpty();
