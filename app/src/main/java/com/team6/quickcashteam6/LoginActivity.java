@@ -70,7 +70,8 @@ public class LoginActivity extends AppCompatActivity {
         registerL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -191,7 +192,8 @@ public class LoginActivity extends AppCompatActivity {
             System.out.println("User ID: " + employee1.getID());
             if (employee1.getID().equals(mAuth.getUid())) {
                 if (employee1.isEmployee()) {
-                    startActivity(new Intent(LoginActivity.this, EmployeePageActivity.class));
+                    Intent intent = new Intent(LoginActivity.this, EmployeePageActivity.class);
+                    startActivity(intent);
                 }
                 break;
 
