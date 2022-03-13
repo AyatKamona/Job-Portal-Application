@@ -15,22 +15,33 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.BreakIterator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FindJobActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private DatabaseReference publicDatabase;
+    private DatabaseReference displayJobs;
+    private List<JobData> jobsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_findjob);
 
-        Button submitJobButton = findViewById(R.id.findJobButton);
-        submitJobButton.setOnClickListener(this);
+        displayJobs = FirebaseDatabase.getInstance().getReference("Job Postings");
+        jobsList = new ArrayList<>();
+
+        displayJobs.addListenerForSingleValueEvent(valueEventListener);
+
+        Button findJobButton = findViewById(R.id.findJobButton);
+        findJobButton.setOnClickListener(this);
 
         Button addLocationButton = findViewById(R.id.mapButton);
         addLocationButton.setOnClickListener(this::onLocationBtnClick);
@@ -41,18 +52,29 @@ public class FindJobActivity extends AppCompatActivity implements View.OnClickLi
         errorMessage.setText(message.trim());
     }
 
-    // Submit job button press
+    // Display job postings button press
     @Override
     public void onClick(View view){
-        String startTime = getStartTime();
-        double jobLat = getLat();
-        double jobLng = getLng();
-        //String ID =getID();
-        String errorMessage = "";
 
-        setErrorMessage(errorMessage);
-        System.out.println(errorMessage);
     }
+
+    ValueEventListener valueEventListener = new ValueEventListener() {
+        @Override
+        public void onDataChange(DataSnapshot dataSnapshot) {
+            jobsList.clear();
+            if (dataSnapshot.exists()) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    JobData artist = snapshot.getValue(JobData.class);
+                    jobsList.add(artist);
+                }
+            }
+        }
+
+        @Override
+        public void onCancelled(DatabaseError databaseError) {
+
+        }
+    };
 
     // Add location button press
     public void onLocationBtnClick(View view){
