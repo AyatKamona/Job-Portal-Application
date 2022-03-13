@@ -114,10 +114,12 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+
     public void checkUserType() {
 
         /*
-        Retrieve all employees and employers put them in an array and determine what instance of then use if statement to switch
+        Retrieve all employees and employers put them in an arraylists
          */
 
         FirebaseDatabase firebase = FirebaseDatabase.getInstance();
@@ -184,6 +186,12 @@ public class LoginActivity extends AppCompatActivity {
 
         return employersList;
     }
+
+    /*
+    switch2UserPage() method moves the user to the page based on the registration if his ID is registered as
+    an employee then after logging in he is moved to the employee page and if he registered as an employer
+    he is moved to the employer main page
+     */
 
     public void switch2UserPage() {
         String userID=mAuth.getCurrentUser().getUid();

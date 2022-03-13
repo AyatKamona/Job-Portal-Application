@@ -67,6 +67,10 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         });
     }
 
+    /*
+    Adds the employer registration information to firebase
+     */
+
     protected void saveEmployer_ProfileToFirebase()  {
 
         firebaseDB  = FirebaseDatabase.getInstance(DB_URL);
@@ -78,6 +82,10 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         firebaseDB.getReference("Employer/"+key).setValue(UserChoices.employer_profile);
     }
 
+    /*
+    Adds the employee registration information to firebase
+     */
+
     public void addEmployeeToFireBase(){
 
 
@@ -85,6 +93,11 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         firebaseDBEmployee= firebaseDB.getReference().child("Employee");
         firebaseDBEmployee.push().setValue(UserChoices.employee_profile);
     }
+
+     /*
+    setEmployerInfo() adds all the information retrieved from the employer interface
+    to the employer object
+     */
 
     public void setEmployerInfo()  {
 
@@ -102,6 +115,11 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         UserChoices.employer_profile.setPhone(mobile.getText().toString());
     }
 
+    /*
+    setEmployeeInfo() adds all the information retrieved from the employee interface
+    to the employee object
+     */
+
     public void setEmployeeInfo()  {
 
         if (gender_male.isChecked())  {
@@ -117,6 +135,10 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         UserChoices.employee_profile.setAge(Integer.parseInt(age.getText().toString()));
         UserChoices.employee_profile.setPhone(mobile.getText().toString());
     }
+
+    /*
+    This method uses Toast class to make sure all field are entered correctly
+     */
 
     public void checkFieldsAreNotEmpty()  {
         System.out.println("start of check");
