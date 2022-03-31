@@ -29,7 +29,6 @@ import java.util.Map;
 public class EmployeePageActivity extends AppCompatActivity {
 
     ArrayList<IDPairs> allIDs;
-    public static String employeeKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,7 @@ public class EmployeePageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         MainActivity.employeeID = intent.getStringExtra("ID");
         if (MainActivity.employeeID.charAt(0) == '-') {
-            employeeKey = MainActivity.employeeID;
+            MainActivity.employeeKey = MainActivity.employeeID;
         }
         else {
             findEmployeeKey();
@@ -68,7 +67,7 @@ public class EmployeePageActivity extends AppCompatActivity {
                 allIDs= collectPairs((Map<String,Object>) snapshot.getValue());
                 for (IDPairs pair:allIDs){
                     if (pair.getUserID().equals(MainActivity.employeeID)){
-                        employeeKey=pair.getDatabaseKey();
+                        MainActivity.employeeKey=pair.getDatabaseKey();
                         break;
                     }
                 }

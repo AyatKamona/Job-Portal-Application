@@ -15,6 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Map;
 
 // Reference Used: https://www.geeksforgeeks.org/how-to-populate-recyclerview-with-firebase-data-using-firebaseui-in-android-studio/
 
@@ -91,9 +98,38 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
         public void ApplyOnClick(View view) {
             Toast.makeText(apply.getContext(), "Applied to Job Successfully!", Toast.LENGTH_LONG).show();
-            
-            String thisID = MainActivity.employeeID;
+
+            String jobTitle = job_titles.getText().toString();
+            String thisID = MainActivity.employeeKey;
+            getEmployeeName();
+            String employeeName = MainActivity.employeeName;
+
+            ApplicantData applicant = new ApplicantData(employeeName, thisID, jobTitle);
+
+            DatabaseReference applicantToPost = FirebaseDatabase.getInstance().getReference().child("Applicants");
+            applicantToPost.push().setValue(applicant);
         }
 
-        }
+    }
+
+    public void getEmployeeName(){
+
+        DatabaseReference employeeRef= FirebaseDatabase.getInstance().getReference().child("Employee").child(MainActivity.employeeKey);
+        employeeRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Map map = (Map<String, Object>) snapshot.getValue();
+                Employee employee = new Employee((String) map.get("id"), (String) map.get("name"));
+                MainActivity.employeeName = employee.getName();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+
+    }
 }
