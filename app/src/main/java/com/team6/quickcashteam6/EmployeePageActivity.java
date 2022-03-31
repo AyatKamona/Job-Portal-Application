@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 
 public class EmployeePageActivity extends AppCompatActivity {
 
@@ -38,12 +39,16 @@ public class EmployeePageActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         MainActivity.employeeID = intent.getStringExtra("ID");
+
         if (MainActivity.employeeID.charAt(0) == '-') {
             MainActivity.employeeKey = MainActivity.employeeID;
         }
         else {
             findEmployeeKey();
         }
+
+        TextView test = findViewById(R.id.textView);
+        test.setText(MainActivity.employeeKey);
 
         viewJobsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +69,7 @@ public class EmployeePageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                allIDs= collectPairs((Map<String,Object>) snapshot.getValue());
+                allIDs= collectPairs((Map<String,Object>) Objects.requireNonNull(snapshot.getValue()));
                 for (IDPairs pair:allIDs){
                     if (pair.getUserID().equals(MainActivity.employeeID)){
                         MainActivity.employeeKey=pair.getDatabaseKey();
@@ -72,7 +77,6 @@ public class EmployeePageActivity extends AppCompatActivity {
                     }
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
