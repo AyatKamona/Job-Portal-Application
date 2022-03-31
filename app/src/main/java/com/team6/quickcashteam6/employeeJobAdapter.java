@@ -119,7 +119,8 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Employee employee = snapshot.getValue(Employee.class);
+                Map map = (Map<String,Object>) snapshot.getValue();
+                Employee employee = new Employee((String) map.get("id"),(String) map.get("name") );
                 MainActivity.employeeName = employee.getName();
             }
 
