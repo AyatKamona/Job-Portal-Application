@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,12 +52,14 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
         TextView lng;
         TextView lat;
         Button job_location;
+        Button apply;
 
         /*
         Each job is shown as a card view and all the details of one are taken from FireBase
         and put into each of these variables to be displayed to the employee in the
         AllJobsActivity class.
          */
+
         public jobsViewholder(@NonNull View itemView) {
             super(itemView);
 
@@ -79,6 +83,15 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
                     view.getContext().startActivity(intent);
                 }
             });
+
+            apply = itemView.findViewById(R.id.apply_to_job);
+            apply.setOnClickListener(this::ApplyOnClick);
+
         }
-    }
+
+        public void ApplyOnClick(View view) {
+            Toast.makeText(apply.getContext(), "Applied to Job Successfully!", Toast.LENGTH_LONG).show();
+        }
+
+        }
 }
