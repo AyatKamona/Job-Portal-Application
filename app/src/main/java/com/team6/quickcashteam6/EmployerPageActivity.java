@@ -57,6 +57,15 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                 startActivity(updateProfileIntent);
             }
         });
+
+        Button moveToPayment = findViewById(R.id.moveToPayment);
+        moveToPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent getPaypal = new Intent(EmployerPageActivity.this, PaypalActivity.class);
+                startActivity(getPaypal);
+            }
+        });
     }
 
     @Override

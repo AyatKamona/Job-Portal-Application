@@ -1,4 +1,4 @@
-/* Following activity code is take from the paypal tutorial found */
+/* Following activity code is take from the paypal tutorial found on https://git.cs.dal.ca/prof3130/paypal_demo*/
 package com.team6.quickcashteam6;
 
 import static android.content.ContentValues.TAG;
@@ -29,7 +29,7 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 
-public class PaypalActivity extends AppCompatActivity {
+public class PaypalActivity extends AppCompatActivity{
 
     ActivityResultLauncher activityResultLauncher;
 
@@ -44,7 +44,7 @@ public class PaypalActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_payment);
         config = new PayPalConfiguration()
                 .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
                 .clientId(Config.PAYPAL_CLIENT_ID);
