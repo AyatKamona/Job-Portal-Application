@@ -91,6 +91,8 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
         public void ApplyOnClick(View view) {
             Toast.makeText(apply.getContext(), "Applied to Job Successfully!", Toast.LENGTH_LONG).show();
+            
+            String thisID = MainActivity.employeeID;
         }
 
         }
