@@ -8,6 +8,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static double jobLongtitute;
     public static double jobLatitude;
+    public static String employeeID;
+    public static String employeeKey;
+    public static String employeeName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
