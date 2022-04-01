@@ -34,7 +34,7 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
         else {
             findEmployerKey();
         }
-
+        MainActivity.employeeKey=employerKey;
         Button postJobButton = findViewById(R.id.postJobButton);
         postJobButton.setOnClickListener(this);
 
@@ -55,6 +55,15 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                 Intent updateProfileIntent= new Intent(EmployerPageActivity.this,EditEmployerProfile.class);
                 updateProfileIntent.putExtra("ID",employerKey);
                 startActivity(updateProfileIntent);
+            }
+        });
+
+        Button viewMyJobs= findViewById(R.id.viewPostedJobsButton);
+        viewMyJobs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmployerPageActivity.this,ViewMyJobs.class);
+                startActivity(intent);
             }
         });
     }

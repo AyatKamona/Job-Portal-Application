@@ -107,10 +107,6 @@ public class EditEmployerProfile extends AppCompatActivity  {
 
 
 
-      //  jobs.add(new JobData("Plumbing","$20","7pm","Hard Labour","I need someone to fix my bathroom"));
-      //  jobs.add(new JobData("Moving","$30","3pm","Hard Labour, lifting","I need someone to help me with moving my furniture"));
-     //   jobs.add(new JobData("Pet Sitting","$50","1pm","Gentle, Respectful","Need someone to look after my dog while im gone"));
-
     }
     public ArrayList<JobData> collectJobs (Map<String,Object> data){
         ArrayList<JobData> jobs= new ArrayList<>();
