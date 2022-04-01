@@ -7,13 +7,21 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class RatingEmployerPage extends AppCompatActivity {
 
     private Button submitBtn;
     private RatingBar ratingBarStars;
     private float ratingNumber;
+    int weight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -51,9 +59,61 @@ public class RatingEmployerPage extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                postRating(ratingNumber);
                 Intent toEmployerPage = new Intent(RatingEmployerPage.this, EmployeePageActivity.class);
                 startActivity(toEmployerPage);
+
             }
         });
+    }
+
+    private boolean postRating(float rating){
+        FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+        DatabaseReference ref = firebase.getReference("Employer").child("-Mxv1BSNyBQZN33f-7wW").child("Ratings");
+        DatabaseReference ref2 = firebase.getReference("Employer").child("-Mxv1BSNyBQZN33f-7wW").child("Weight");
+
+
+
+        //change to single event
+        ref2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int tempWeight = dataSnapshot.getValue(Integer.class);
+                setWeight(tempWeight);
+
+                ref2.setValue(weight);
+
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        float ratings = dataSnapshot.getValue(Float.class);
+                        ratings = ((ratings*(weight-1))+rating)/weight;
+                        ref.setValue(ratings);
+
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+
+
+
+
+        return true;
+    }
+
+    private void setWeight(int newWeight){
+        weight = newWeight + 1;
     }
 }
