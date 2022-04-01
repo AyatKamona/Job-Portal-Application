@@ -47,6 +47,7 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
     @Override
     public jobsViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.job_post_card, parent, false);
+        getEmployeeName();
         return new employeeJobAdapter.jobsViewholder(view);
     }
 
@@ -98,13 +99,12 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
         public void ApplyOnClick(View view) {
             Toast.makeText(apply.getContext(), "Applied to Job Successfully!", Toast.LENGTH_LONG).show();
-
             String jobTitle = job_titles.getText().toString();
             String thisID = MainActivity.employeeKey;
-            getEmployeeName();
             String employeeName = MainActivity.employeeName;
+            String employeePhone = MainActivity.employeePhone;
 
-            ApplicantData applicant = new ApplicantData(employeeName, thisID, jobTitle);
+            ApplicantData applicant = new ApplicantData(employeeName, thisID, jobTitle, employeePhone);
 
             DatabaseReference applicantToPost = FirebaseDatabase.getInstance().getReference().child("Applicants");
             applicantToPost.push().setValue(applicant);
@@ -119,9 +119,11 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Map map = (Map<String,Object>) snapshot.getValue();
-                Employee employee = new Employee((String) map.get("id"),(String) map.get("name") );
+                //Map map = (Map<String,Object>) snapshot.getValue();
+                //Employee employee = new Employee((String) map.get("id"),(String) map.get("name"));
+                Employee employee = snapshot.getValue(Employee.class);
                 MainActivity.employeeName = employee.getName();
+                MainActivity.employeePhone = employee.getPhone();
             }
 
             @Override

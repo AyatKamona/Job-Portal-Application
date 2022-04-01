@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     public static String employeeID;
     public static String employeeKey;
     public static String employeeName;
+    public static String employeePhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

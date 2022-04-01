@@ -8,6 +8,9 @@ public class Employee extends User{
         employeeSkills= new ArrayList<>();
     }
 
+    public Employee() {
+    }
+
     private ArrayList<String> employeeSkills;
 
     public void addSkills(ArrayList<String> skills){
