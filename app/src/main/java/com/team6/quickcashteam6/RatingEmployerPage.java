@@ -51,7 +51,7 @@ public class RatingEmployerPage extends AppCompatActivity {
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toEmployerPage = new Intent(RatingEmployerPage.this, EmployerPageActivity.class);
+                Intent toEmployerPage = new Intent(RatingEmployerPage.this, EmployeePageActivity.class);
                 startActivity(toEmployerPage);
             }
         });
