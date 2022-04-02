@@ -34,10 +34,6 @@ public class currentJobActivity extends AppCompatActivity{
 
     }
 
-    public void onCompleteClick(View view){
-
-    }
-
     public void fillCurrentJobDetails(){
 
         DatabaseReference currentJobRef = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(MainActivity.currentJobID);
@@ -70,6 +66,16 @@ public class currentJobActivity extends AppCompatActivity{
             }
 
         });
+    }
+
+    public void onCompleteClick(View view){
+        DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(MainActivity.currentJobID);
+        jobRef.child("status").setValue("Complete");
+
+        DatabaseReference deleteCurrentJob = FirebaseDatabase.getInstance().getReference().child("Employee").child(MainActivity.employeeKey);
+        deleteCurrentJob.child("currentJobID").setValue(null);
+        MainActivity.currentJobID = null;
+
     }
 
 }
