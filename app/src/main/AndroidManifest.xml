@@ -108,6 +108,10 @@
             android:exported="true" />
 
         <activity
+            android:name=".PaypalActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".EmployeePageActivity"
             android:exported="true">
             <intent-filter>
