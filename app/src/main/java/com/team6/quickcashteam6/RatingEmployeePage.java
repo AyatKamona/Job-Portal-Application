@@ -61,6 +61,7 @@ public class RatingEmployeePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent toEmployeePage = new Intent(RatingEmployeePage.this, EmployerPageActivity.class);
+                toEmployeePage.putExtra("ID", "A");
                 startActivity(toEmployeePage);
             }
         });

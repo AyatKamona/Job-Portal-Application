@@ -26,7 +26,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
     private ArrayList<Employee> recommendedEmployees = new ArrayList<>();
     private RecyclerView recyclerView;
   //  private EmployerRecommendationAdapter recommendationAdapter;
- //   private ArrayList<Employee> recommendedEmployees;
+  //  private ArrayList<Employee> recommendedEmployees;
     ArrayList<Employee> employees;
     String employerID;
 
@@ -38,9 +38,8 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
         recommendedEmployees= new ArrayList<>();
         Intent intent= getIntent();
        employerID= intent.getStringExtra("ID");
-
-         init();
-        recommendedEmployees = new ArrayList<>();
+       init();
+       recommendedEmployees = new ArrayList<>();
 
         Button recmndButton = findViewById(R.id.RecommendButton1);
         recmndButton.setOnClickListener(this);
@@ -117,8 +116,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
 
     @Override
     public void onClick(View view) {
-
-       /*
+        /*
         EditText name1,  name2;
         EditText skills1,skill2 ;
         EditText email1,email2 ;
@@ -148,15 +146,17 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
         linear1.setVisibility(View.VISIBLE);
         linear2.setVisibility(View.VISIBLE);
          recommendationAdapter.startListening();
->>>>>>> main
-
         LinearLayout linear1= findViewById(R.id.linearLayout1);
         LinearLayout linear2= findViewById(R.id.linearLayout2);
         linear1.setVisibility(View.VISIBLE);
         linear2.setVisibility(View.VISIBLE);
         Button button= findViewById(R.id.RecommendButton1);
         button.setVisibility(View.GONE);
-*/
+        Intent intent = new Intent(EmployerRecommendationActivity.this, EmployerPageActivity.class);
+        intent.putExtra("ID", "A");
+        startActivity(intent);
+
+         */
     }
 
 
