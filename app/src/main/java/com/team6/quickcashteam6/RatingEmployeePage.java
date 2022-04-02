@@ -115,11 +115,6 @@ public class RatingEmployeePage extends AppCompatActivity {
         });
 
 
-
-
-
-
-
         return true;
     }
 

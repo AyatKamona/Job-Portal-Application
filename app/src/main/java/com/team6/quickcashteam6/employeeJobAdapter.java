@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,6 +50,7 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
         TextView job_descriptions;
         TextView lng;
         TextView lat;
+        RatingBar ratingBarStars;
         Button job_location;
 
         /*
@@ -66,6 +68,7 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
             job_descriptions = itemView.findViewById(R.id.job_descriptions);
             lng = itemView.findViewById(R.id.lng);
             lat = itemView.findViewById(R.id.lat);
+            ratingBarStars = itemView.findViewById(R.id.JobPostCardRBtn);
             job_location = itemView.findViewById(R.id.job_location);
             job_location.setOnClickListener(new View.OnClickListener() {
 

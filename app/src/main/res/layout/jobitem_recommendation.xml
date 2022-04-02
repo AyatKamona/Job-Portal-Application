@@ -36,13 +36,13 @@
         android:layout_marginHorizontal="16dp"
         android:text="View Employee"
         tools:ignore="HardcodedText" />
+
     <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="29dp"
         android:layout_marginHorizontal="16dp"
-        android:visibility="gone"
         android:text="Rate"
-        />
+        android:visibility="gone" />
 
     <RatingBar
         android:layout_width="wrap_content"
