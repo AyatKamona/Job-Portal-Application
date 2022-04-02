@@ -52,17 +52,27 @@
             android:layout_marginTop="0.1dp"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="0.1dp" />
+            android:textSize="0.01dp" />
 
         <TextView
-            android:id="@+id/jobKey"
+            android:id="@+id/employeeID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="0.1dp"
             android:text=""
             android:textColor="@color/black"
-            android:textSize="0.1dp" />
+            android:textSize="0.01dp" />
+
+        <TextView
+            android:id="@+id/jobKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="0.01dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="0.01dp" />
 
 
         <Button

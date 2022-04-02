@@ -47,9 +47,6 @@ public class EmployeePageActivity extends AppCompatActivity {
             findEmployeeKey();
         }
 
-        TextView test = findViewById(R.id.textView);
-        test.setText(MainActivity.employeeKey);
-
         viewJobsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -43,6 +43,7 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
         holder.phoneNumber.setText(model.getEmployeePhone());
         holder.key.setText(model.getKey());
         holder.jobID.setText(model.getJobID());
+        holder.employeeID.setText(model.getEmployeeID());
 
     }
 
@@ -60,6 +61,7 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
         TextView phoneNumber;
         TextView key;
         TextView jobID;
+        TextView employeeID;
         Button accept;
         Button deny;
 
@@ -79,6 +81,7 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
             phoneNumber = itemView.findViewById(R.id.applicantPhone);
             key = itemView.findViewById(R.id.applicantKey);
             jobID = itemView.findViewById(R.id.jobKey);
+            employeeID = itemView.findViewById(R.id.employeeID);
             accept = itemView.findViewById(R.id.accept);
             accept.setOnClickListener(new View.OnClickListener() {
 
@@ -92,6 +95,9 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
 
                     //DatabaseReference publicRef = FirebaseDatabase.getInstance().getReference().child("Public Database").child(jobTitle.getText().toString());
                     //publicRef.child("status").setValue("In-Progress");
+
+                    DatabaseReference employeeRef = FirebaseDatabase.getInstance().getReference().child("Employee").child(employeeID.getText().toString());
+                    employeeRef.child("currentJobID").setValue(jobID.getText().toString());
 
                     DatabaseReference deletePublicRef = FirebaseDatabase.getInstance().getReference().child("Public Database").child(jobTitle.getText().toString());
                     deletePublicRef.removeValue();;
