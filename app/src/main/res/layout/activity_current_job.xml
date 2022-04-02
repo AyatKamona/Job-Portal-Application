@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="96dp"
+        android:layout_width="412dp"
+        android:layout_height="75dp"
         android:background="#74D4FA"
         android:backgroundTint="#C6BCD8"
         android:orientation="vertical"
