@@ -71,8 +71,6 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
         AllJobsActivity class.
          */
 
-
-
         public applicantViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -92,9 +90,6 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
                     MainActivity.jobID = jobID.getText().toString();
                     DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(MainActivity.jobID);
                     jobRef.child("status").setValue("In-Progress");
-
-                    //DatabaseReference publicRef = FirebaseDatabase.getInstance().getReference().child("Public Database").child(jobTitle.getText().toString());
-                    //publicRef.child("status").setValue("In-Progress");
 
                     DatabaseReference employeeRef = FirebaseDatabase.getInstance().getReference().child("Employee").child(employeeID.getText().toString());
                     employeeRef.child("currentJobID").setValue(jobID.getText().toString());
