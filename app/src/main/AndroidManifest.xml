@@ -39,6 +39,9 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
+
+        <activity android:name=".AllApplicantsActivity"
+            android:exported="true"/>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -98,6 +101,10 @@
 
         <activity
             android:name=".AllJobsActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".currentJobActivity"
             android:exported="true" />
 
         <activity

@@ -87,7 +87,8 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
         else {
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
             String key= jobToPost.push().getKey();
-            JobData post = new JobData(employerID,key,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat );
+            String status = getResources().getString(R.string.OPEN_STATUS).trim();
+            JobData post = new JobData(employerID,key,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat, status);
 
             // Also storing the job in an unsecure database for employee retrieval later.
             publicDatabase.child(jobTitle).setValue(post);

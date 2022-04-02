@@ -35,6 +35,16 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
             findEmployerKey();
         }
 
+        Button applicantPage = findViewById(R.id.showApplicants);
+        applicantPage.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent applicants = new Intent(EmployerPageActivity.this, AllApplicantsActivity.class);
+                startActivity(applicants);
+            }
+        });
+
+
         Button postJobButton = findViewById(R.id.postJobButton);
         postJobButton.setOnClickListener(this);
 

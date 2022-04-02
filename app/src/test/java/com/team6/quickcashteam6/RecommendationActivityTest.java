@@ -77,7 +77,7 @@ public class RecommendationActivityTest {
         Employee employee = new Employee("5", "Eli");
         employee.addSingleSkill("Responsible");
 
-        jobs.add(new JobData("","", "Job1", "$20", "Now", "Responsible", "A Job", 44.651070, -63.582687));
+        jobs.add(new JobData("","", "Job1", "$20", "Now", "Responsible", "A Job", 44.651070, -63.582687, "Available"));
 
         ArrayList<JobData> potentialJobs = recommendationService.employeeRecommendation(jobs, employee.getSkills());
 

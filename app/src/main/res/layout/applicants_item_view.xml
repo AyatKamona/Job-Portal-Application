@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F6CCF4"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E8D2D2"
+        android:backgroundTint="#FFC3D8"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/jobTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/applicantName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/applicantPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/applicantKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="0.1dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="0.01dp" />
+
+        <TextView
+            android:id="@+id/employeeID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="0.1dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="0.01dp" />
+
+        <TextView
+            android:id="@+id/jobKey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="0.01dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="0.01dp" />
+
+
+        <Button
+            android:id="@+id/accept"
+            android:layout_width="184dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="14dp"
+            android:backgroundTint="#11C818"
+            android:text="ACCEPT"
+            app:iconTint="#4CAF50"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/deny"
+            android:layout_width="181dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:backgroundTint="#E30B0B"
+            android:text="DENY"
+            app:iconTint="#D50D0D"
+            tools:ignore="HardcodedText" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

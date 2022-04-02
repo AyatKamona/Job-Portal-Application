@@ -201,6 +201,7 @@ public class LoginActivity extends AppCompatActivity {
             if (employee1.getID().equals(mAuth.getUid())) {
                 if (employee1.isEmployee()) {
                     Intent intent = new Intent(LoginActivity.this, EmployeePageActivity.class);
+                    intent.putExtra("ID", userID);
                     startActivity(intent);
                 }
                 break;
