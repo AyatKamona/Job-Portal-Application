@@ -23,8 +23,6 @@ public class currentJobActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_job);
 
-        Toast.makeText(currentJobActivity.this, MainActivity.currentJobID, Toast.LENGTH_LONG).show();
-
         if (MainActivity.currentJobID != null) {
             fillCurrentJobDetails();
         }
