@@ -30,18 +30,24 @@ import java.util.Objects;
 public class EmployeePageActivity extends AppCompatActivity {
 
     ArrayList<IDPairs> allIDs;
+    String keyToSend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_page);
+
         Button viewJobsButton = findViewById(R.id.viewJobsButton);
+
+        Button currentJobButton = findViewById(R.id.currentJobButton);
+        currentJobButton.setOnClickListener(this::onCurrentJobButtonClick);
 
         Intent intent = getIntent();
         MainActivity.employeeID = intent.getStringExtra("ID");
 
         if (MainActivity.employeeID.charAt(0) == '-') {
             MainActivity.employeeKey = MainActivity.employeeID;
+            keyToSend = MainActivity.employeeID;
         }
         else {
             findEmployeeKey();
@@ -70,6 +76,29 @@ public class EmployeePageActivity extends AppCompatActivity {
                 for (IDPairs pair:allIDs){
                     if (pair.getUserID().equals(MainActivity.employeeID)){
                         MainActivity.employeeKey=pair.getDatabaseKey();
+                        keyToSend = pair.getDatabaseKey();
+
+                        DatabaseReference getJobIDRef= FirebaseDatabase.getInstance().getReference().child("Employee").child(MainActivity.employeeKey);
+                        getJobIDRef.addValueEventListener(new ValueEventListener() {
+
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                                Employee employee = snapshot.getValue(Employee.class);
+
+                                assert employee != null;
+                                if (employee.getCurrentJobID() != null) {
+                                    MainActivity.currentJobID = employee.getCurrentJobID();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+
+                        });
+
                         break;
                     }
                 }
@@ -91,5 +120,18 @@ public class EmployeePageActivity extends AppCompatActivity {
             IDs.add(pairs);
         }
         return IDs;
+    }
+
+    public void onCurrentJobButtonClick(View view){
+
+        if (MainActivity.currentJobID != null) {
+            Intent currentJobPage = new Intent(EmployeePageActivity.this, currentJobActivity.class);
+            currentJobPage.putExtra("employee", keyToSend);
+            startActivity(currentJobPage);
+        }
+
+        else {
+            Toast.makeText(EmployeePageActivity.this, "You do not have a current job.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

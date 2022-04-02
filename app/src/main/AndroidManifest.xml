@@ -104,6 +104,10 @@
             android:exported="true" />
 
         <activity
+            android:name=".currentJobActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".EmployeePageActivity"
             android:exported="true">
             <intent-filter>
