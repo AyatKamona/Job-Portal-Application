@@ -27,6 +27,16 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/job_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="0.1dp"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="0.1dp" />
+
+        <TextView
             android:id="@+id/job_payments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

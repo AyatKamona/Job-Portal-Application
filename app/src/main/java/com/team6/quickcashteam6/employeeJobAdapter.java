@@ -38,6 +38,7 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
         holder.job_skills.setText(model.getSkills());
         holder.start_times.setText(model.getStartTime());
         holder.job_descriptions.setText(model.getJobDescription());
+        holder.job_id.setText(model.getJobID());
         holder.lng.setText(Double.toString(model.getLng()));
         holder.lat.setText(Double.toString(model.getLat()));
 
@@ -57,6 +58,7 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
         TextView job_skills;
         TextView start_times;
         TextView job_descriptions;
+        TextView job_id;
         TextView lng;
         TextView lat;
         Button job_location;
@@ -76,6 +78,7 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
             job_skills = itemView.findViewById(R.id.job_skills);
             start_times = itemView.findViewById(R.id.start_times);
             job_descriptions = itemView.findViewById(R.id.job_descriptions);
+            job_id = itemView.findViewById(R.id.job_id);
             lng = itemView.findViewById(R.id.lng);
             lat = itemView.findViewById(R.id.lat);
             job_location = itemView.findViewById(R.id.job_location);
@@ -103,11 +106,13 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
             String thisID = MainActivity.employeeKey;
             String employeeName = MainActivity.employeeName;
             String employeePhone = MainActivity.employeePhone;
-
-            ApplicantData applicant = new ApplicantData(employeeName, thisID, jobTitle, employeePhone);
+            MainActivity.jobID = job_id.getText().toString();
 
             DatabaseReference applicantToPost = FirebaseDatabase.getInstance().getReference().child("Applicants");
-            applicantToPost.push().setValue(applicant);
+            MainActivity.applicantKey = applicantToPost.push().getKey();
+
+            ApplicantData applicant = new ApplicantData(employeeName, thisID, jobTitle, employeePhone,  MainActivity.applicantKey, MainActivity.jobID);
+            FirebaseDatabase.getInstance().getReference("Applicants/"+ MainActivity.applicantKey).setValue(applicant);
         }
 
     }
@@ -134,4 +139,5 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
         });
 
     }
+
 }

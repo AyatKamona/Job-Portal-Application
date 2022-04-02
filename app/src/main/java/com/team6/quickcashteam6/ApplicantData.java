@@ -6,12 +6,16 @@ public class ApplicantData {
     String employeeID;
     String jobTitle;
     String employeePhone;
+    String key;
+    String jobID;
 
-    public ApplicantData(String employeeName, String employeeID, String jobTitle, String employeePhone){
+    public ApplicantData(String employeeName, String employeeID, String jobTitle, String employeePhone, String key, String jobID){
         this.employeeName = employeeName;
         this.employeeID = employeeID;
         this.jobTitle = jobTitle;
         this.employeePhone = employeePhone;
+        this.key = key;
+        this.jobID = jobID;
     }
 
     public String getEmployeeName() {
@@ -44,6 +48,22 @@ public class ApplicantData {
 
     public void setEmployeePhone(String employeePhone) {
         this.employeePhone = employeePhone;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getJobID() {
+        return jobID;
+    }
+
+    public void setJobID(String jobID) {
+        this.jobID = jobID;
     }
 
     public ApplicantData(){

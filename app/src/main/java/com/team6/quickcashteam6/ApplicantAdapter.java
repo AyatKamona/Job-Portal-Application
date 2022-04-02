@@ -3,6 +3,7 @@ package com.team6.quickcashteam6;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +16,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.common.io.Resources;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
@@ -34,8 +39,10 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
     @Override
     protected void onBindViewHolder(@NonNull applicantViewHolder holder, int position, @NonNull ApplicantData model) {
         holder.applicantName.setText(model.getEmployeeName());
-        holder.employeeID.setText(model.getEmployeeID());
         holder.jobTitle.setText(model.getJobTitle());
+        holder.phoneNumber.setText(model.getEmployeePhone());
+        holder.key.setText(model.getKey());
+        holder.jobID.setText(model.getJobID());
 
     }
 
@@ -44,12 +51,15 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
     public applicantViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.applicants_item_view, parent, false);
         return new ApplicantAdapter.applicantViewHolder(view);
+
     }
 
     class applicantViewHolder extends RecyclerView.ViewHolder {
         TextView jobTitle;
         TextView applicantName;
-        TextView employeeID;
+        TextView phoneNumber;
+        TextView key;
+        TextView jobID;
         Button accept;
         Button deny;
 
@@ -59,18 +69,37 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
         AllJobsActivity class.
          */
 
+
+
         public applicantViewHolder(@NonNull View itemView) {
             super(itemView);
 
             jobTitle = itemView.findViewById(R.id.jobTitle);
             applicantName = itemView.findViewById(R.id.applicantName);
-            employeeID = itemView.findViewById(R.id.applicantPhone);
+            phoneNumber = itemView.findViewById(R.id.applicantPhone);
+            key = itemView.findViewById(R.id.applicantKey);
+            jobID = itemView.findViewById(R.id.jobKey);
             accept = itemView.findViewById(R.id.accept);
             accept.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(deny.getContext(), "Applicant Accepted", Toast.LENGTH_LONG).show();
+
+                    MainActivity.jobID = jobID.getText().toString();
+                    DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(MainActivity.jobID);
+                    jobRef.child("status").setValue("In-Progress");
+
+                    //DatabaseReference publicRef = FirebaseDatabase.getInstance().getReference().child("Public Database").child(jobTitle.getText().toString());
+                    //publicRef.child("status").setValue("In-Progress");
+
+                    DatabaseReference deletePublicRef = FirebaseDatabase.getInstance().getReference().child("Public Database").child(jobTitle.getText().toString());
+                    deletePublicRef.removeValue();;
+
+                    MainActivity.applicantKey = key.getText().toString();
+                    DatabaseReference removeRef = FirebaseDatabase.getInstance().getReference().child("Applicants").child(MainActivity.applicantKey);
+                    removeRef.removeValue();
+
                 }
             });
 
@@ -80,10 +109,17 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
         }
 
         public void DenyOnClick(View view) {
+            MainActivity.applicantKey = key.getText().toString();
             Toast.makeText(deny.getContext(), "Applicant Denied", Toast.LENGTH_LONG).show();
+            if(MainActivity.applicantKey !=null) {
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Applicants").child(MainActivity.applicantKey);
+                ref.removeValue();
+            }
+                }
 
         }
 
+
     }
-}
+
 
