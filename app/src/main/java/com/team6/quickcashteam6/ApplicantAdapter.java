@@ -101,7 +101,7 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
                     DatabaseReference removeRef = FirebaseDatabase.getInstance().getReference().child("Applicants").child(MainActivity.applicantKey);
                     removeRef.removeValue();
 
-                    FirebaseDatabase.getInstance().getReference("Job Postings/"+ MainActivity.jobID+"/employeeKey").setValue(key.getText().toString());
+                    FirebaseDatabase.getInstance().getReference("Job Postings/"+ MainActivity.jobID+"/employeeKey").setValue(employeeID.getText().toString());
 
 
                 }

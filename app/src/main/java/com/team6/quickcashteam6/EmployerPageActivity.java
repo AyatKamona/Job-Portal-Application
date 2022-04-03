@@ -37,7 +37,7 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
             }
 
         }
-        MainActivity.employeeKey=employerKey;
+       // MainActivity.employeeKey=employerKey;
 
 
         Button applicantPage = findViewById(R.id.showApplicants);

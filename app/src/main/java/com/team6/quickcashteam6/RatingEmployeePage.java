@@ -39,7 +39,7 @@ public class RatingEmployeePage extends AppCompatActivity {
         setContentView(R.layout.activity_rating_employee);
 
         Intent intent = getIntent();
-        employeeKey= intent.getStringExtra("key");
+        employeeKey= intent.getStringExtra("employeeKey");
         submitBtn = findViewById(R.id.submitEmployeeRating);
         ratingBarStars = findViewById(R.id.EmployeeRatingBar);
 
@@ -81,10 +81,11 @@ public class RatingEmployeePage extends AppCompatActivity {
     }
 
     private boolean postRating(float rating){
+
         FirebaseDatabase firebase = FirebaseDatabase.getInstance();
 
-        DatabaseReference ref = firebase.getReference("Employee").child(MainActivity.applicantKey).child("Ratings");
-        DatabaseReference ref2 = firebase.getReference("Employee").child(MainActivity.applicantKey).child("Weight");
+        DatabaseReference ref = firebase.getReference("Employee").child(employeeKey).child("Ratings");
+        DatabaseReference ref2 = firebase.getReference("Employee").child(employeeKey).child("Weight");
 
 
 

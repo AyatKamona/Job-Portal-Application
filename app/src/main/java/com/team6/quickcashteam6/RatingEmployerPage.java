@@ -76,8 +76,8 @@ public class RatingEmployerPage extends AppCompatActivity {
 
     private boolean postRating(float rating){
         FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        DatabaseReference ref = firebase.getReference("Employer").child("-Mxv1BSNyBQZN33f-7wW").child("Ratings");
-        DatabaseReference ref2 = firebase.getReference("Employer").child("-Mxv1BSNyBQZN33f-7wW").child("Weight");
+        DatabaseReference ref = firebase.getReference("Employer").child(MainActivity.currentJobID).child("Ratings");
+        DatabaseReference ref2 = firebase.getReference("Employer").child(MainActivity.currentJobID).child("Weight");
 
 
 

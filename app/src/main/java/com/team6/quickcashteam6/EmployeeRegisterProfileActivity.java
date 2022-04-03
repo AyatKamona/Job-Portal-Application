@@ -80,6 +80,8 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         firebaseDBIDs= firebaseDB.getReference().child("IDs");
         firebaseDBIDs.push().setValue(pair);
         firebaseDB.getReference("Employer/"+key).setValue(UserChoices.employer_profile);
+        firebaseDB.getReference("Employer/"+key+"/Ratings").setValue((float)0);
+        firebaseDB.getReference("Employer/"+key+"/Weight").setValue((int) 0);
     }
 
     /*
@@ -96,6 +98,8 @@ public class EmployeeRegisterProfileActivity extends AppCompatActivity {
         firebaseDBIDs = firebaseDB.getReference().child("IDs");
         firebaseDBIDs.push().setValue(pair);
         firebaseDB.getReference("Employee/"+key).setValue(UserChoices.employee_profile);
+        firebaseDB.getReference("Employee/"+key+"/Ratings").setValue((float)0);
+        firebaseDB.getReference("Employee/"+key+"/Weight").setValue((int) 0);
     }
 
      /*

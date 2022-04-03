@@ -72,7 +72,7 @@ public class currentJobActivity extends AppCompatActivity{
 
         DatabaseReference deleteCurrentJob = FirebaseDatabase.getInstance().getReference().child("Employee").child(MainActivity.employeeKey);
         deleteCurrentJob.child("currentJobID").setValue(null);
-        MainActivity.currentJobID = null;
+       MainActivity.currentJobID = null;
 
     }
 

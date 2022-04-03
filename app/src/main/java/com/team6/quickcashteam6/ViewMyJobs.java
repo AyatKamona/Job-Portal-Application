@@ -67,6 +67,7 @@ public class ViewMyJobs extends AppCompatActivity {
             JobData job = new JobData((String) jobMap.get("id"), (String) jobMap.get("jobID"),(String) jobMap.get("jobTitle"), (String) jobMap.get("payment"), (String) jobMap.get("startTime"),
 
                     (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), Double.parseDouble(longLng), Double.parseDouble(longLat),(String) jobMap.get("status"));
+            job.employeeKey= (String) jobMap.get("employeeKey");
             jobs.add(job);
         }
         return jobs;
