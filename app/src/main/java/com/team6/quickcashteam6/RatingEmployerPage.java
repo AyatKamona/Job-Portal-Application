@@ -22,7 +22,7 @@ public class RatingEmployerPage extends AppCompatActivity {
     private RatingBar ratingBarStars;
     private float ratingNumber;
     int weight;
-    @Override
+
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating_employer);
@@ -64,8 +64,14 @@ public class RatingEmployerPage extends AppCompatActivity {
                 toEmployerPage.putExtra("ID", "A");
                 startActivity(toEmployerPage);
 
+
             }
         });
+    }
+
+
+    private void setWeight(int newWeight){
+        weight = newWeight + 1;
     }
 
     private boolean postRating(float rating){
@@ -99,7 +105,6 @@ public class RatingEmployerPage extends AppCompatActivity {
 
 
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -109,9 +114,7 @@ public class RatingEmployerPage extends AppCompatActivity {
         return true;
     }
 
-    private void setWeight(int newWeight){
-        weight = newWeight + 1;
-    }
+
 }
 
 

@@ -32,6 +32,7 @@ public class RatingEmployeePage extends AppCompatActivity {
     private float ratingNumber;
     private int weight;
     private String employeeKey;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
@@ -81,6 +82,7 @@ public class RatingEmployeePage extends AppCompatActivity {
 
     private boolean postRating(float rating){
         FirebaseDatabase firebase = FirebaseDatabase.getInstance();
+
         DatabaseReference ref = firebase.getReference("Employee").child(MainActivity.applicantKey).child("Ratings");
         DatabaseReference ref2 = firebase.getReference("Employee").child(MainActivity.applicantKey).child("Weight");
 

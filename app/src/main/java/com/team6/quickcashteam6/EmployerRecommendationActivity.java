@@ -26,7 +26,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
     private ArrayList<Employee> recommendedEmployees = new ArrayList<>();
     private RecyclerView recyclerView;
   //  private EmployerRecommendationAdapter recommendationAdapter;
- //   private ArrayList<Employee> recommendedEmployees;
+  //  private ArrayList<Employee> recommendedEmployees;
     ArrayList<Employee> employees;
     String employerID;
 
@@ -38,9 +38,8 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
         recommendedEmployees= new ArrayList<>();
         Intent intent= getIntent();
        employerID= intent.getStringExtra("ID");
-
-         init();
-        recommendedEmployees = new ArrayList<>();
+       init();
+       recommendedEmployees = new ArrayList<>();
 
         Button recmndButton = findViewById(R.id.RecommendButton1);
         recmndButton.setOnClickListener(this);
