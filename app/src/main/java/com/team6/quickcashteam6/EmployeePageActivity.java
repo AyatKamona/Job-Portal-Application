@@ -15,11 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.text.BreakIterator;
 
 public class EmployeePageActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,20 @@ public class EmployeePageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent allJobsPage = new Intent(EmployeePageActivity.this, AllJobsActivity.class);
                 startActivity(allJobsPage);
+            }
+        });
+
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        Button logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent reLogin = new Intent(EmployeePageActivity.this, MainActivity.class);
+                startActivity(reLogin);
             }
         });
     }
