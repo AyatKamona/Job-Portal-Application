@@ -34,33 +34,16 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        
+        String name = data.get(position).getName();
+        int age= data.get(position).getAge();
+        float rate= data.get(position).rating;
+
+        holder.name.setText(name);
+        holder.age.setText(String.valueOf(age) );
+        holder.rate.setRating(rate);
 
 
-        /*
-        String smallDescription=data.get(position).jobDescription;
-        String status = data.get(position).status;
-        holder.description.setText(smallDescription);
 
-            holder.jobEditBtn.setVisibility(View.GONE);
-            holder.rateBtn.setVisibility(View.VISIBLE);
-
-
-        holder.rateBtn.setOnClickListener(view-> {
-            final Intent rateIntent = new Intent(holder.context,RatingEmployeePage.class);
-            rateIntent.putExtra("key",data.get(position).employerKey);
-            rateIntent.putExtra("employeeKey",data.get(position).employeeKey);
-            holder.context.startActivity(rateIntent);
-        });
-
-        holder.jobEditBtn.setOnClickListener(view-> {
-            final Intent intent = new Intent(holder.context, JobEditActivity.class);
-            intent.putExtra("key", data.get(position).getJobID());
-            holder.context.startActivity(intent);
-
-
-        });
-      */
     }
 
     @Override
