@@ -67,10 +67,11 @@ public class currentJobActivity extends AppCompatActivity{
     }
 
     public void onCompleteClick(View view){
+
         DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(MainActivity.currentJobID);
         jobRef.child("status").setValue("Complete");
-
         DatabaseReference deleteCurrentJob = FirebaseDatabase.getInstance().getReference().child("Employee").child(MainActivity.employeeKey);
+        startActivity(new Intent(currentJobActivity.this, RatingEmployerPage.class));
         deleteCurrentJob.child("currentJobID").setValue(null);
         MainActivity.currentJobID = null;
 

@@ -22,11 +22,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 // Reference Used: https://www.geeksforgeeks.org/how-to-populate-recyclerview-with-firebase-data-using-firebaseui-in-android-studio/
 
 public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employeeJobAdapter.jobsViewholder> {
+
+    private String id;
+    float rating;
 
     public employeeJobAdapter(@NonNull FirebaseRecyclerOptions<JobData> options) {
         super(options);
@@ -113,6 +117,7 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
             DatabaseReference applicantToPost = FirebaseDatabase.getInstance().getReference().child("Applicants");
             MainActivity.applicantKey = applicantToPost.push().getKey();
+            ratingBarStars.setRating(getStarsRating());
 
             ApplicantData applicant = new ApplicantData(employeeName, thisID, jobTitle, employeePhone,  MainActivity.applicantKey, MainActivity.jobID);
             FirebaseDatabase.getInstance().getReference("Applicants/"+ MainActivity.applicantKey).setValue(applicant);
@@ -139,6 +144,44 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
             }
 
         });
+
+    }
+
+    public float getStarsRating()  {
+
+        DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(MainActivity.currentJobID).child("id");
+
+        jobRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String ID = (String) snapshot.getValue(String.class);
+                id = ID;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        DatabaseReference employerRef = FirebaseDatabase.getInstance().getReference().child("Employer").child(id).child("Ratings");
+
+        employerRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                float ratingNum = (float) snapshot.getValue(float.class);
+                rating = ratingNum;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return rating;
 
     }
 
