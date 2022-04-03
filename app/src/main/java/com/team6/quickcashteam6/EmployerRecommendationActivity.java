@@ -58,8 +58,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity  {
             Long longAge = (Long) employeeMap.get("age");
             employee.setAge(longAge.intValue());
             if (( employeeMap.get("Ratings")) != null){
-                Long longRate = (Long) employeeMap.get("Ratings");
-                employee.rating=  longRate.floatValue();
+                employee.rating=  Float.parseFloat(employeeMap.get("Ratings").toString());
             }
 
             allEmployees.add(employee);
