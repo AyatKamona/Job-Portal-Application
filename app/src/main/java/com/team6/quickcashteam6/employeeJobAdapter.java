@@ -29,8 +29,9 @@ import java.util.Map;
 
 public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employeeJobAdapter.jobsViewholder> {
 
-    private String id;
-    float rating;
+    private String id = new String();
+    private float rating;
+    private float rateNum;
 
     public employeeJobAdapter(@NonNull FirebaseRecyclerOptions<JobData> options) {
         super(options);
@@ -46,6 +47,9 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
         holder.job_id.setText(model.getJobID());
         holder.lng.setText(Double.toString(model.getLng()));
         holder.lat.setText(Double.toString(model.getLat()));
+        getStarsRating(model.jobID, holder);
+        holder.ratingBarStars.setIsIndicator(true);
+        holder.ratingBarStars.setClickable(false);
 
     }
 
@@ -117,15 +121,14 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
             DatabaseReference applicantToPost = FirebaseDatabase.getInstance().getReference().child("Applicants");
             MainActivity.applicantKey = applicantToPost.push().getKey();
-            ratingBarStars.setRating(getStarsRating());
-
             ApplicantData applicant = new ApplicantData(employeeName, thisID, jobTitle, employeePhone,  MainActivity.applicantKey, MainActivity.jobID);
             FirebaseDatabase.getInstance().getReference("Applicants/"+ MainActivity.applicantKey).setValue(applicant);
+
         }
 
     }
 
-    public void getEmployeeName(){
+    public void getEmployeeName()  {
 
         DatabaseReference employeeRef= FirebaseDatabase.getInstance().getReference().child("Employee").child(MainActivity.employeeKey);
         employeeRef.addValueEventListener(new ValueEventListener() {
@@ -147,9 +150,8 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
     }
 
-    public float getStarsRating()  {
-
-        DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(MainActivity.currentJobID).child("id");
+    public float getStarsRating(String jobID, jobsViewholder holder)  {
+        DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(jobID).child("id");
 
         jobRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -157,22 +159,7 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
                 String ID = (String) snapshot.getValue(String.class);
                 id = ID;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        DatabaseReference employerRef = FirebaseDatabase.getInstance().getReference().child("Employer").child(id).child("Ratings");
-
-        employerRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                float ratingNum = (float) snapshot.getValue(float.class);
-                rating = ratingNum;
+                rating = getRating(id, holder);
             }
 
             @Override
@@ -182,7 +169,35 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
         });
 
         return rating;
+    }
 
+    public float getRating(String employerID, jobsViewholder holder)  {
+        System.out.println("Employer ID: " + employerID);
+        DatabaseReference employerRef = FirebaseDatabase.getInstance().getReference().child("Employer").child(employerID);
+        System.out.println("In getRating");
+
+        employerRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                Map<String, Object> value = (Map<String, Object>) (snapshot.getValue());
+
+                if ((value.get("Ratings").toString()) != null) {
+                    System.out.println("Rating1: " + value.get("Ratings").toString());
+                    rating = Float.parseFloat(value.get("Ratings").toString());
+                    System.out.println("Rating2: " + rating);
+                    rateNum = rating;
+                    holder.ratingBarStars.setRating(rating);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return rating;
     }
 
 }

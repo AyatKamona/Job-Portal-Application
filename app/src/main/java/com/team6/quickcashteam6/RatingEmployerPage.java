@@ -21,7 +21,9 @@ public class RatingEmployerPage extends AppCompatActivity {
     private Button submitBtn;
     private RatingBar ratingBarStars;
     private float ratingNumber;
-    int weight;
+    private RatingBar employerStars;
+    private int weight;
+    private String employerID;
 
     protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,7 @@ public class RatingEmployerPage extends AppCompatActivity {
 
         submitBtn = findViewById(R.id.submitEmployerRating);
         ratingBarStars = findViewById(R.id.EmployerRatingBar);
+        employerStars = findViewById(R.id.JobPostCardRBtn);
 
         ratingBarStars.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
@@ -76,35 +79,55 @@ public class RatingEmployerPage extends AppCompatActivity {
 
     private boolean postRating(float rating){
         FirebaseDatabase firebase = FirebaseDatabase.getInstance();
-        DatabaseReference ref = firebase.getReference("Employer").child("-Mxv1BSNyBQZN33f-7wW").child("Ratings");
-        DatabaseReference ref2 = firebase.getReference("Employer").child("-Mxv1BSNyBQZN33f-7wW").child("Weight");
+        DatabaseReference employerRef = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(MainActivity.currentJobID).child("id");
 
-
-
-        //change to single event
-        ref2.addListenerForSingleValueEvent(new ValueEventListener() {
+        employerRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int tempWeight = dataSnapshot.getValue(Integer.class);
-                setWeight(tempWeight);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                ref2.setValue(weight);
+                String ID = snapshot.getValue(String.class);
+                employerID = ID;
 
-                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                DatabaseReference ref = firebase.getReference("Employer").child(employerID).child("Ratings");
+                DatabaseReference ref2 = firebase.getReference("Employer").child(employerID).child("Weight");
+
+                //change to single event
+                ref2.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        float ratings = dataSnapshot.getValue(Float.class);
-                        ratings = ((ratings*(weight-1))+rating)/weight;
-                        ref.setValue(ratings);
+                        int tempWeight = dataSnapshot.getValue(Integer.class);
+                        setWeight(tempWeight);
+
+                        ref2.setValue(weight);
+
+                        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                float ratings = dataSnapshot.getValue(Float.class);
+                                ratings = ((ratings*(weight-1))+rating)/weight;
+                                ref.setValue(ratings);
+
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+
+                        DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(MainActivity.currentJobID);
+                        jobRef.child("status").setValue("Complete");
+                        DatabaseReference deleteCurrentJob = FirebaseDatabase.getInstance().getReference().child("Employee").child(MainActivity.employeeKey);
+                        deleteCurrentJob.child("currentJobID").setValue(null);
+                        MainActivity.currentJobID = null;
+
 
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
+
                     }
                 });
-
-
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

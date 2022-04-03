@@ -53,15 +53,7 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
         recyclerView.setLayoutManager(linearLayoutManager);
     }
 
-    private void connectToFirebaseDB() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //   DatabaseReference jobRef= database.getReference("job Postings");
-        //    DatabaseReference employeeRef= database.getReference("Employee");
-        // getRecommenedEmployees();
-        //  recommendationAdapter= new EmployerRecommendationAdapter(EmployerRecommendationActivity.this,recommendedEmployees);
-        //  recyclerView.setAdapter(recommendationAdapter);
 
-    }
 
     private ArrayList<Employee> collectEmployees(Map<String, Object> data) {
         ArrayList<Employee> allEmployees = new ArrayList<>();

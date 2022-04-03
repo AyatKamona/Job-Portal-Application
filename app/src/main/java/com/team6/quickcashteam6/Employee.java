@@ -31,6 +31,10 @@ public class Employee extends User{
         return currentJobID;
     }
 
+    public float getRating() {
+        return rating;
+    }
+
     public void setCurrentJobID(String currentJobID) {
         this.currentJobID = currentJobID;
     }
