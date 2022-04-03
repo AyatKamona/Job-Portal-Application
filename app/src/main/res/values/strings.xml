@@ -9,5 +9,8 @@
     <string name="NO_NAME_TOAST">Please choose only 5 skills</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_view_location_map">ViewLocationMap</string>
+    <string name="OPEN_STATUS">Available</string>
+    <string name="IN_PROGRESS_STATUS">In-Progress</string>
+    <string name="CLOSED_STATUS">Completed</string>
 
 </resources>

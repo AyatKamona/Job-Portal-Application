@@ -88,7 +88,7 @@ public class JobEditActivity extends AppCompatActivity implements View.OnClickLi
         long longLng= 0;
         long longLat= 0;
         job = new JobData((String) map.get("id"), (String) map.get("jobID"),(String) map.get("jobTitle"), (String) map.get("payment"), (String) map.get("startTime"),
-                (String) map.get("skills"), (String) map.get("jobDescription"), (double) longLng , (double) longLat);
+                (String) map.get("skills"), (String) map.get("jobDescription"), (double) longLng , (double) longLat, (String) map.get("status"));
     }
 
     private void populateFields(JobData job){
