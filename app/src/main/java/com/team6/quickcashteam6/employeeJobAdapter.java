@@ -1,17 +1,14 @@
 package com.team6.quickcashteam6;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -20,12 +17,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.Map;
 
 // Reference Used: https://www.geeksforgeeks.org/how-to-populate-recyclerview-with-firebase-data-using-firebaseui-in-android-studio/
 
 public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employeeJobAdapter.jobsViewholder> {
+
+    private String id = new String();
+    private float rating;
+    private float rateNum;
 
     public employeeJobAdapter(@NonNull FirebaseRecyclerOptions<JobData> options) {
         super(options);
@@ -41,6 +41,9 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
         holder.job_id.setText(model.getJobID());
         holder.lng.setText(Double.toString(model.getLng()));
         holder.lat.setText(Double.toString(model.getLat()));
+        getStarsRating(model.jobID, holder);
+        holder.ratingBarStars.setIsIndicator(true);
+        holder.ratingBarStars.setClickable(false);
 
     }
 
@@ -61,6 +64,7 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
         TextView job_id;
         TextView lng;
         TextView lat;
+        RatingBar ratingBarStars;
         Button job_location;
         Button apply;
 
@@ -81,6 +85,7 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
             job_id = itemView.findViewById(R.id.job_id);
             lng = itemView.findViewById(R.id.lng);
             lat = itemView.findViewById(R.id.lat);
+            ratingBarStars = itemView.findViewById(R.id.JobPostCardRBtn);
             job_location = itemView.findViewById(R.id.job_location);
             job_location.setOnClickListener(new View.OnClickListener() {
 
@@ -97,7 +102,6 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
             apply = itemView.findViewById(R.id.apply_to_job);
             apply.setOnClickListener(this::ApplyOnClick);
-
         }
 
         public void ApplyOnClick(View view) {
@@ -110,7 +114,6 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
             DatabaseReference applicantToPost = FirebaseDatabase.getInstance().getReference().child("Applicants");
             MainActivity.applicantKey = applicantToPost.push().getKey();
-
             ApplicantData applicant = new ApplicantData(employeeName, thisID, jobTitle, employeePhone,  MainActivity.applicantKey, MainActivity.jobID);
             FirebaseDatabase.getInstance().getReference("Applicants/"+ MainActivity.applicantKey).setValue(applicant);
         }
@@ -118,7 +121,6 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
     }
 
     public void getEmployeeName(){
-
         DatabaseReference employeeRef= FirebaseDatabase.getInstance().getReference().child("Employee").child(MainActivity.employeeKey);
         employeeRef.addValueEventListener(new ValueEventListener() {
 
@@ -139,4 +141,53 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
     }
 
+    public float getStarsRating(String jobID, jobsViewholder holder)  {
+        DatabaseReference jobRef = FirebaseDatabase.getInstance().getReference().child("Job Postings").child(jobID).child("id");
+
+        jobRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                String ID = (String) snapshot.getValue(String.class);
+                id = ID;
+                rating = getRating(id, holder);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return rating;
+    }
+
+    public float getRating(String employerID, jobsViewholder holder)  {
+        System.out.println("Employer ID: " + employerID);
+        DatabaseReference employerRef = FirebaseDatabase.getInstance().getReference().child("Employer").child(employerID);
+        System.out.println("In getRating");
+
+        employerRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                Map<String, Object> value = (Map<String, Object>) (snapshot.getValue());
+
+                if ((value.get("Ratings").toString()) != null) {
+                    System.out.println("Rating1: " + value.get("Ratings").toString());
+                    rating = Float.parseFloat(value.get("Ratings").toString());
+                    System.out.println("Rating2: " + rating);
+                    rateNum = rating;
+                    holder.ratingBarStars.setRating(rating);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return rating;
+    }
 }

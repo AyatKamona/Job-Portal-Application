@@ -32,8 +32,13 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
             employerKey= employerID;
         }
         else {
-            findEmployerKey();
+            if (MainActivity.employeeKey==null){
+                findEmployerKey();
+            }
+
         }
+
+       // MainActivity.employeeKey=employerKey;
 
         Button applicantPage = findViewById(R.id.showApplicants);
         applicantPage.setOnClickListener( new View.OnClickListener() {
@@ -65,6 +70,15 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                 Intent updateProfileIntent= new Intent(EmployerPageActivity.this,EditEmployerProfile.class);
                 updateProfileIntent.putExtra("ID",employerKey);
                 startActivity(updateProfileIntent);
+            }
+        });
+
+        Button viewMyJobs= findViewById(R.id.viewPostedJobsButton);
+        viewMyJobs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmployerPageActivity.this,ViewMyJobs.class);
+                startActivity(intent);
             }
         });
 
@@ -103,11 +117,11 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                 for (IDPairs pair:allIDs){
                     if (pair.getUserID().equals(employerID)){
                         employerKey=pair.getDatabaseKey();
+                        MainActivity.employeeKey= pair.getDatabaseKey();
                         break;
                     }
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

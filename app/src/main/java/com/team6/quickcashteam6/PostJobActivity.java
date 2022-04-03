@@ -13,12 +13,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
-import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.BreakIterator;
 
 public class PostJobActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -86,6 +82,7 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         else {
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
+            String available= "Available";
             String key= jobToPost.push().getKey();
             String status = getResources().getString(R.string.OPEN_STATUS).trim();
             JobData post = new JobData(employerID,key,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat, status);
@@ -94,6 +91,8 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
             publicDatabase.child(jobTitle).setValue(post);
 
             FirebaseDatabase.getInstance().getReference("Job Postings/"+key).setValue(post);
+            FirebaseDatabase.getInstance().getReference("Job Postings/"+key+"/employeeKey").setValue("N/A");
+          //  FirebaseDatabase.getInstance().getReference("Job Postings/"+key+"/employeeKey").setValue("-Mzc6TkN2HvPvF3rGQN2");
             openEmployerPage();
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
         }

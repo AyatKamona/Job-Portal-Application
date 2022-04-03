@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class Employee extends User{
 
+    float rating;
+    int weight;
     private String currentJobID;
-
     public Employee (String ID, String name){
         super(ID, name);
         employeeSkills= new ArrayList<>();
@@ -33,7 +34,12 @@ public class Employee extends User{
         return currentJobID;
     }
 
+    public float getRating() {
+        return rating;
+    }
+
     public void setCurrentJobID(String currentJobID) {
         this.currentJobID = currentJobID;
     }
+
 }
