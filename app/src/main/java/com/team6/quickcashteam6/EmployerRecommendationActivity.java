@@ -21,36 +21,30 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class EmployerRecommendationActivity extends AppCompatActivity implements View.OnClickListener {
+public class EmployerRecommendationActivity extends AppCompatActivity  {
 
-    private ArrayList<Employee> recommendedEmployees = new ArrayList<>();
+    private ArrayList<Employee> recommendedEmployees;
     private RecyclerView recyclerView;
+
   //  private EmployerRecommendationAdapter recommendationAdapter;
   //  private ArrayList<Employee> recommendedEmployees;
     ArrayList<Employee> employees;
     String employerID;
-
+    EmployeeAdapter employeeAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.employeeitem);
-      //  init();
+        setContentView(R.layout.recommendation_activity);
         recommendedEmployees= new ArrayList<>();
-        Intent intent= getIntent();
-       employerID= intent.getStringExtra("ID");
-       init();
-       recommendedEmployees = new ArrayList<>();
-
-        Button recmndButton = findViewById(R.id.RecommendButton1);
-        recmndButton.setOnClickListener(this);
+        getRecommendEmployees();
+        init();
 
     }
 
     private void init() {
         recyclerView = findViewById(R.id.EmployeeList);
-        //recyclerView.setLayoutManager(new WrapLinearLayoutManger(this, LinearLayoutManager.VERTICAL,false));
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setLayoutManager(new WrapLinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+
     }
 
 
@@ -61,6 +55,13 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
             Map employeeMap = (Map) map.getValue();
             Employee employee = new Employee((String) employeeMap.get("id"), ((String) employeeMap.get("name")));
             employee.addSkills((ArrayList<String>) employeeMap.get("skills"));
+            Long longAge = (Long) employeeMap.get("age");
+            employee.setAge(longAge.intValue());
+            if (( employeeMap.get("Ratings")) != null){
+                Long longRate = (Long) employeeMap.get("Ratings");
+                employee.rating=  longRate.floatValue();
+            }
+
             allEmployees.add(employee);
 
         }
@@ -81,10 +82,21 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
                         Map<String, Object> jobsMap = ((Map<String, Object>) snapshot.getValue());
                         for (Map.Entry<String, Object> map : jobsMap.entrySet()) {
                             Map job = (Map) map.getValue();
-                                String skills = (String) job.get("skills");
-                                   recommendedEmployees= RecommendationService.employerRecommendation(skills,employees);
-                                break;
+                                if (job.get("id").equals(MainActivity.employeeKey)){
+                                    String skills = (String) job.get("skills");
+                                    ArrayList <Employee> tempEmployees =RecommendationService.employerRecommendation(skills,employees);
+                                    for (int i=0; i<tempEmployees.size();i++){
+                                        if (!recommendedEmployees.contains(tempEmployees.get(i))){
+                                            recommendedEmployees.add(tempEmployees.get(i));
+                                        }
+                                    }
+
+
+                                }
+
                         }
+                        employeeAdapter= new EmployeeAdapter(EmployerRecommendationActivity.this,recommendedEmployees);
+                        recyclerView.setAdapter(employeeAdapter);
                     }
 
                     @Override
@@ -103,10 +115,6 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
 
     }
 
-    @Override
-    public void onClick(View view) {
-
-    }
 
 
 }
