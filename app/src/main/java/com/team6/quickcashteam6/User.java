@@ -17,11 +17,15 @@ public class User {
 
     }
 
+
     public String getID() {
         return ID;
     }
     public void setID(String ID){this.ID=ID;}
     public String getName(){return name;}
+    public void setName(){
+        this.name = name;
+    }
 
     public void setEmail(String email){
         this.email = email;

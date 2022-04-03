@@ -1,7 +1,5 @@
 package com.team6.quickcashteam6;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +8,7 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -21,8 +17,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 import java.util.Map;
 
 // Reference Used: https://www.geeksforgeeks.org/how-to-populate-recyclerview-with-firebase-data-using-firebaseui-in-android-studio/
@@ -108,7 +102,6 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
             apply = itemView.findViewById(R.id.apply_to_job);
             apply.setOnClickListener(this::ApplyOnClick);
-
         }
 
         public void ApplyOnClick(View view) {
@@ -123,13 +116,11 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
             MainActivity.applicantKey = applicantToPost.push().getKey();
             ApplicantData applicant = new ApplicantData(employeeName, thisID, jobTitle, employeePhone,  MainActivity.applicantKey, MainActivity.jobID);
             FirebaseDatabase.getInstance().getReference("Applicants/"+ MainActivity.applicantKey).setValue(applicant);
-
         }
 
     }
 
-    public void getEmployeeName()  {
-
+    public void getEmployeeName(){
         DatabaseReference employeeRef= FirebaseDatabase.getInstance().getReference().child("Employee").child(MainActivity.employeeKey);
         employeeRef.addValueEventListener(new ValueEventListener() {
 
@@ -199,5 +190,4 @@ public class employeeJobAdapter extends FirebaseRecyclerAdapter<JobData, employe
 
         return rating;
     }
-
 }

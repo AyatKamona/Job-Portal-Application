@@ -49,7 +49,6 @@ public class currentJobActivity extends AppCompatActivity{
                 TextView currentJobPayment = findViewById(R.id.currentJobPayment);
                 TextView currentJobStartTime = findViewById(R.id.currentJobStartTime);
                 TextView currentJobStatus = findViewById(R.id.currentJobStatus);
-
                 currentJobTitle.setText(currentJob.getJobTitle());
                 currentJobDescription.setText(currentJob.getJobDescription());
                 currentJobSkills.setText(currentJob.getSkills());
@@ -67,9 +66,7 @@ public class currentJobActivity extends AppCompatActivity{
     }
 
     public void onCompleteClick(View view){
-
         startActivity(new Intent(currentJobActivity.this, RatingEmployerPage.class));
-
     }
 
 }

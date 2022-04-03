@@ -37,8 +37,8 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
             }
 
         }
-       // MainActivity.employeeKey=employerKey;
 
+       // MainActivity.employeeKey=employerKey;
 
         Button applicantPage = findViewById(R.id.showApplicants);
         applicantPage.setOnClickListener( new View.OnClickListener() {
@@ -48,6 +48,7 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                 startActivity(applicants);
             }
         });
+
 
         Button postJobButton = findViewById(R.id.postJobButton);
         postJobButton.setOnClickListener(this);
@@ -81,8 +82,14 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-
-
+        Button moveToPayment = findViewById(R.id.moveToPayment);
+        moveToPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent getPaypal = new Intent(EmployerPageActivity.this, PaypalActivity.class);
+                startActivity(getPaypal);
+            }
+        });
     }
 
     @Override
@@ -115,7 +122,6 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                     }
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

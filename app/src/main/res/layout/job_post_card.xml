@@ -87,6 +87,12 @@
             android:layout_marginBottom="5dp"
             android:textStyle="bold" />
 
+        <!--
+            * How to implement a rating bar
+            * URL: https://www.youtube.com/watch?v=GQsibTm-aw4&ab_channel=Stevdza-San
+             * Author: Stevdza-San
+            * Accessed: 31/03/2022
+        -->
 
         <RatingBar
             android:id="@+id/JobPostCardRBtn"

@@ -13,12 +13,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
-import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.BreakIterator;
 
 public class PostJobActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -88,7 +84,9 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
             String available= "Available";
             String key= jobToPost.push().getKey();
-            JobData post = new JobData(employerID,key,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat,available );
+            String status = getResources().getString(R.string.OPEN_STATUS).trim();
+            JobData post = new JobData(employerID,key,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat, status);
+
             // Also storing the job in an unsecure database for employee retrieval later.
             publicDatabase.child(jobTitle).setValue(post);
 

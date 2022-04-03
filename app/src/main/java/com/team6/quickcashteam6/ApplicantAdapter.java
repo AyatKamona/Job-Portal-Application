@@ -1,32 +1,17 @@
 package com.team6.quickcashteam6;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.common.io.Resources;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Map;
 
 // Reference Used: https://www.geeksforgeeks.org/how-to-populate-recyclerview-with-firebase-data-using-firebaseui-in-android-studio/
 
@@ -102,8 +87,6 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
                     removeRef.removeValue();
 
                     FirebaseDatabase.getInstance().getReference("Job Postings/"+ MainActivity.jobID+"/employeeKey").setValue(employeeID.getText().toString());
-
-
                 }
             });
 
@@ -119,11 +102,11 @@ public class ApplicantAdapter extends FirebaseRecyclerAdapter<ApplicantData, App
                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Applicants").child(MainActivity.applicantKey);
                 ref.removeValue();
             }
-                }
-
         }
 
-
     }
+
+
+}
 
 

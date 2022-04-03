@@ -1,3 +1,10 @@
+/**
+ * How to implement a rating bar
+ * URL: https://www.youtube.com/watch?v=GQsibTm-aw4&ab_channel=Stevdza-San
+ * Author: Stevdza-San
+ * Accessed: 31/03/2022
+ */
+
 package com.team6.quickcashteam6;
 
 import android.os.Bundle;

@@ -2,8 +2,6 @@ package com.team6.quickcashteam6;
 
 // This class acts as a container for all a job's information to be stored into FireBase.
 
-import com.google.android.gms.maps.model.LatLng;
-
 public class JobData {
 
     String jobTitle;
@@ -17,6 +15,7 @@ public class JobData {
     String jobID;
     String status;
     String employeeKey;
+
     public JobData(String employerKey, String jobID, String jobTitle, String payment, String startTime, String skills, String jobDescription, double jobLng, double jobLat, String status) {
         this.jobTitle = jobTitle;
         this.payment = payment;
