@@ -37,7 +37,8 @@ public class EditEmployerProfile extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.updateprofile);
         Intent intent = getIntent();
-        employerKey= intent.getStringExtra("ID");
+      //  employerKey= intent.getStringExtra("ID");
+        employerKey= MainActivity.employeeKey;
         name= findViewById(R.id.insert_name);
         age=findViewById(R.id.insert_Age);
         phone= findViewById(R.id.insert_Phone);
@@ -93,7 +94,7 @@ public class EditEmployerProfile extends AppCompatActivity  {
                        jobsToShow.add(job);
                    }
                }
-                jobAdapter= new JobAdapter(EditEmployerProfile.this,jobsToShow);
+                jobAdapter= new JobAdapter(EditEmployerProfile.this,jobsToShow,"edit");
                 recyclerView.setAdapter(jobAdapter);
 
 
@@ -116,7 +117,7 @@ public class EditEmployerProfile extends AppCompatActivity  {
             String longLat= jobMap.get("lat").toString();
             JobData job = new JobData((String) jobMap.get("id"), (String) jobMap.get("jobID"),(String) jobMap.get("jobTitle"), (String) jobMap.get("payment"), (String) jobMap.get("startTime"),
 
-                    (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), Double.parseDouble(longLng), Double.parseDouble(longLat));
+                    (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), Double.parseDouble(longLng), Double.parseDouble(longLat),(String) jobMap.get("status"));
             jobs.add(job);
         }
         return jobs;

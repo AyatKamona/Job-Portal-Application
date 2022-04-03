@@ -31,7 +31,7 @@ public class ViewMyJobs extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.jobsRecyclingView);
         recyclerView.setLayoutManager(new WrapLinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
+        employerKey= MainActivity.employeeKey;
         DatabaseReference employerRef = FirebaseDatabase.getInstance().getReference().child("Employer").child(employerKey);
 
         jobsRef.addValueEventListener(new ValueEventListener() {
@@ -43,7 +43,7 @@ public class ViewMyJobs extends AppCompatActivity {
                         jobsToShow.add(job);
                     }
                 }
-                jobAdapter= new JobAdapter(ViewMyJobs.this,jobsToShow);
+                jobAdapter= new JobAdapter(ViewMyJobs.this,jobsToShow,"show");
                 recyclerView.setAdapter(jobAdapter);
 
 
@@ -66,7 +66,7 @@ public class ViewMyJobs extends AppCompatActivity {
             String longLat= jobMap.get("lat").toString();
             JobData job = new JobData((String) jobMap.get("id"), (String) jobMap.get("jobID"),(String) jobMap.get("jobTitle"), (String) jobMap.get("payment"), (String) jobMap.get("startTime"),
 
-                    (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), Double.parseDouble(longLng), Double.parseDouble(longLat));
+                    (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), Double.parseDouble(longLng), Double.parseDouble(longLat),(String) jobMap.get("status"));
             jobs.add(job);
         }
         return jobs;

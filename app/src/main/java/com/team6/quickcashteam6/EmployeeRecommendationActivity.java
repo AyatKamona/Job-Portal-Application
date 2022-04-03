@@ -78,7 +78,7 @@ public class EmployeeRecommendationActivity extends AppCompatActivity implements
         ArrayList<JobData> jobs = new ArrayList<>();
         for (Map.Entry<String, Object> entry : map.entrySet()) {
             Map singleUser = (Map) entry.getValue();
-            jobs.add(new JobData("mm","kk",((String) singleUser.get("jobTitle")), ((String) singleUser.get("payment")), ((String) singleUser.get("startTime")), ((String) singleUser.get("skills")), ((String) singleUser.get("jobDescription")), ((double) singleUser.get("lng")), ((double) singleUser.get("lat"))));
+            jobs.add(new JobData("mm","kk",((String) singleUser.get("jobTitle")), ((String) singleUser.get("payment")), ((String) singleUser.get("startTime")), ((String) singleUser.get("skills")), ((String) singleUser.get("jobDescription")), ((double) singleUser.get("lng")), ((double) singleUser.get("lat")),(String) singleUser.get("status")));
         }
 
         return jobs;

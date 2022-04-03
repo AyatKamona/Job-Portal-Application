@@ -32,9 +32,23 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
             employerKey= employerID;
         }
         else {
-            findEmployerKey();
+            if (MainActivity.employeeKey==null){
+                findEmployerKey();
+            }
+
         }
         MainActivity.employeeKey=employerKey;
+
+
+        Button applicantPage = findViewById(R.id.showApplicants);
+        applicantPage.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent applicants = new Intent(EmployerPageActivity.this, AllApplicantsActivity.class);
+                startActivity(applicants);
+            }
+        });
+
         Button postJobButton = findViewById(R.id.postJobButton);
         postJobButton.setOnClickListener(this);
 
@@ -66,6 +80,9 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                 startActivity(intent);
             }
         });
+
+
+
     }
 
     @Override
@@ -93,6 +110,7 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                 for (IDPairs pair:allIDs){
                     if (pair.getUserID().equals(employerID)){
                         employerKey=pair.getDatabaseKey();
+                        MainActivity.employeeKey= pair.getDatabaseKey();
                         break;
                     }
                 }

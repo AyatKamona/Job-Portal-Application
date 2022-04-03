@@ -51,6 +51,35 @@
         app:layout_constraintTop_toBottomOf="@id/postJobButton"
         android:layout_marginTop="20dp"
         app:rippleColor="#9C27B0" />
+    <Button
+        android:id="@+id/showApplicants"
+        android:layout_width="200dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="112dp"
+        android:backgroundTint="#49199E"
+        android:text="Show Applicants"
+        app:iconTint="#9C27B0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/postJobButton"
+        app:rippleColor="#9C27B0" />
+    <Button
+        android:id="@+id/moveToPayment"
+        android:layout_width="300dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="112dp"
+        android:backgroundTint="#49199E"
+        android:text="Pay An Employee"
+        app:iconTint="#9C27B0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97"
+        app:rippleColor="#9C27B0" />
+
 
     <TextView
         android:id="@+id/welcomeLabel"

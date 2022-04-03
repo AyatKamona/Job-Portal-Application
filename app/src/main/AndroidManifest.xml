@@ -119,7 +119,12 @@
             android:name=".RatingEmployerPage"
             android:exported="true">
         </activity>
-
+        <activity android:name=".ViewMyJobs"
+            android:exported="true"/>
+        <activity android:name=".AllApplicantsActivity"
+        android:exported="true"/>
+        <activity android:name=".currentJobActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

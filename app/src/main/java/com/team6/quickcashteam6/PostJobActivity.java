@@ -86,13 +86,15 @@ public class PostJobActivity extends AppCompatActivity implements View.OnClickLi
 
         else {
             DatabaseReference jobToPost = FirebaseDatabase.getInstance().getReference().child("Job Postings");
+            String available= "Available";
             String key= jobToPost.push().getKey();
-            JobData post = new JobData(employerID,key,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat );
-
+            JobData post = new JobData(employerID,key,jobTitle, jobPayment, startTime, skills, jobDescription, jobLng, jobLat,available );
             // Also storing the job in an unsecure database for employee retrieval later.
             publicDatabase.child(jobTitle).setValue(post);
 
             FirebaseDatabase.getInstance().getReference("Job Postings/"+key).setValue(post);
+            FirebaseDatabase.getInstance().getReference("Job Postings/"+key+"/employeeKey").setValue("N/A");
+          //  FirebaseDatabase.getInstance().getReference("Job Postings/"+key+"/employeeKey").setValue("-Mzc6TkN2HvPvF3rGQN2");
             openEmployerPage();
             Toast.makeText(PostJobActivity.this, "Successful", Toast.LENGTH_LONG).show();
         }

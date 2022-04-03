@@ -15,8 +15,9 @@ public class JobData {
     double jobLat;
     String employerKey;
     String jobID;
-
-    public JobData(String employerKey, String jobID, String jobTitle, String payment, String startTime, String skills, String jobDescription, double jobLng, double jobLat) {
+    String status;
+    String employeeKey;
+    public JobData(String employerKey, String jobID, String jobTitle, String payment, String startTime, String skills, String jobDescription, double jobLng, double jobLat, String status) {
         this.jobTitle = jobTitle;
         this.payment = payment;
         this.startTime = startTime;
@@ -25,7 +26,8 @@ public class JobData {
         this.jobLng = jobLng;
         this.jobLat = jobLat;
         this.employerKey = employerKey;
-        this.jobID= jobID;
+        this.jobID = jobID;
+        this.status = status;
     }
 
     public void setJobID(String jobID) {
@@ -87,8 +89,17 @@ public class JobData {
 
     public void setLat(double jobLat){ this.jobLat = jobLat;}
 
+    public void setStatus(String status){
+        this.status = status;
+    }
+
+    public String getStatus(){
+        return this.status;
+    }
+
     public JobData(){
 
     }
 
 }
+

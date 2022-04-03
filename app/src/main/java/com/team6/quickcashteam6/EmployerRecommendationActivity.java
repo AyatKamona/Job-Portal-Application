@@ -90,12 +90,9 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
                         Map<String, Object> jobsMap = ((Map<String, Object>) snapshot.getValue());
                         for (Map.Entry<String, Object> map : jobsMap.entrySet()) {
                             Map job = (Map) map.getValue();
-
-                            if (((String) map.getKey()).equals("-Mvj4JmACXsCddWw91gJ")) {
                                 String skills = (String) job.get("skills");
-                                //   recommendedEmployees= RecommendationService.employerRecommendation(skills,employees);
+                                   recommendedEmployees= RecommendationService.employerRecommendation(skills,employees);
                                 break;
-                            }
                         }
                     }
 
@@ -118,45 +115,6 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
     @Override
     public void onClick(View view) {
 
-       /*
-        EditText name1,  name2;
-        EditText skills1,skill2 ;
-        EditText email1,email2 ;
-        name1= findViewById(R.id.employeeName);
-        name2= findViewById(R.id.employeeName1);
-        skills1= findViewById(R.id.employeeSkills);
-        skill2 = findViewById(R.id.employeeSkills1);
-        email1= findViewById(R.id.employeeEmail);
-        email2= findViewById(R.id.employeeEmail1);
-        //connectToFirebaseDB();
-        getRecommendEmployees();
-        name1.setText("Name: "+ recommendedEmployees.get(0).getName());
-        name2.setText(recommendedEmployees.get(1).getName());
-        String skillse1="";
-        for (int i=0; i<recommendedEmployees.get(0).getSkills().size();i++){
-            skillse1+=recommendedEmployees.get(0).getSkills().get(i);
-        }
-        skillse1="";
-        for (int i=0; i<recommendedEmployees.get(1).getSkills().size();i++){
-            skillse1+=recommendedEmployees.get(1).getSkills().get(i);
-        }
-        skills1.setText(skillse1);
-        email1.setText(recommendedEmployees.get(0).getEmail());
-        email2.setText(recommendedEmployees.get(1).getEmail());
-        LinearLayout linear1= findViewById(R.id.linearLayout1);
-        LinearLayout linear2= findViewById(R.id.linearLayout2);
-        linear1.setVisibility(View.VISIBLE);
-        linear2.setVisibility(View.VISIBLE);
-         recommendationAdapter.startListening();
->>>>>>> main
-
-        LinearLayout linear1= findViewById(R.id.linearLayout1);
-        LinearLayout linear2= findViewById(R.id.linearLayout2);
-        linear1.setVisibility(View.VISIBLE);
-        linear2.setVisibility(View.VISIBLE);
-        Button button= findViewById(R.id.RecommendButton1);
-        button.setVisibility(View.GONE);
-*/
     }
 
 
