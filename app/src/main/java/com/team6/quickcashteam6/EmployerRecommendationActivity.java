@@ -26,10 +26,8 @@ public class EmployerRecommendationActivity extends AppCompatActivity  {
     private ArrayList<Employee> recommendedEmployees;
     private RecyclerView recyclerView;
 
-  //  private EmployerRecommendationAdapter recommendationAdapter;
-  //  private ArrayList<Employee> recommendedEmployees;
+
     ArrayList<Employee> employees;
-    String employerID;
     EmployeeAdapter employeeAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -98,6 +98,16 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                 startActivity(getPaypal);
             }
         });
+
+        Button viewMyJobs= findViewById(R.id.viewPostedJobsButton);
+        viewMyJobs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EmployerPageActivity.this,ViewMyJobs.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

@@ -15,16 +15,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+
     <Button
         android:id="@+id/viewPostedJobsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="316dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="304dp"
         android:text="My Jobs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-        />
 
     <Button
         android:id="@+id/logout"

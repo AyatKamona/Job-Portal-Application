@@ -103,7 +103,7 @@ public class EmployeePageActivity extends AppCompatActivity {
 
                                 Employee employee = snapshot.getValue(Employee.class);
 
-                                assert employee != null;
+                            //    assert employee != null;
                                 if (employee.getCurrentJobID() != null) {
                                     MainActivity.currentJobID = employee.getCurrentJobID();
                                 }
