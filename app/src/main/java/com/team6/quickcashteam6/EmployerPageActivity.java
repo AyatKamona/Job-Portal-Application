@@ -8,6 +8,8 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class EmployerPageActivity extends AppCompatActivity implements View.OnClickListener {
+    private FirebaseAuth mAuth;
     String employerID;
     public static String employerKey;
     private static final String Fb_URL = "https://quickcash-team6-default-rtdb.firebaseio.com/";
@@ -32,8 +35,13 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
             employerKey= employerID;
         }
         else {
-            findEmployerKey();
+            if (MainActivity.employeeKey==null){
+                findEmployerKey();
+            }
+
         }
+
+       // MainActivity.employeeKey=employerKey;
 
         Button applicantPage = findViewById(R.id.showApplicants);
         applicantPage.setOnClickListener( new View.OnClickListener() {
@@ -65,6 +73,20 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                 Intent updateProfileIntent= new Intent(EmployerPageActivity.this,EditEmployerProfile.class);
                 updateProfileIntent.putExtra("ID",employerKey);
                 startActivity(updateProfileIntent);
+            }
+        });
+
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        Button logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent reLogin = new Intent(EmployerPageActivity.this, MainActivity.class);
+                startActivity(reLogin);
             }
         });
 
@@ -103,11 +125,11 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                 for (IDPairs pair:allIDs){
                     if (pair.getUserID().equals(employerID)){
                         employerKey=pair.getDatabaseKey();
+                        MainActivity.employeeKey= pair.getDatabaseKey();
                         break;
                     }
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
