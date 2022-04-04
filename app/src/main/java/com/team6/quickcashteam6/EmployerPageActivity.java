@@ -35,8 +35,13 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
             employerKey= employerID;
         }
         else {
-            findEmployerKey();
+            if (MainActivity.employeeKey==null){
+                findEmployerKey();
+            }
+
         }
+
+       // MainActivity.employeeKey=employerKey;
 
         Button applicantPage = findViewById(R.id.showApplicants);
         applicantPage.setOnClickListener( new View.OnClickListener() {
@@ -120,11 +125,11 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
                 for (IDPairs pair:allIDs){
                     if (pair.getUserID().equals(employerID)){
                         employerKey=pair.getDatabaseKey();
+                        MainActivity.employeeKey= pair.getDatabaseKey();
                         break;
                     }
                 }
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

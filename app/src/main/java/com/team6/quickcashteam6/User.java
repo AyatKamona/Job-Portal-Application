@@ -12,11 +12,11 @@ public class User {
     public User (String ID, String name){
         this.ID = ID;
         this.name=name;
-    };
-
-    public User() {
+    }
+    public User(){
 
     }
+
 
     public String getID() {
         return ID;
@@ -73,4 +73,5 @@ public class User {
     public String getGender() {
         return gender;
     }
+
 }

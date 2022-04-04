@@ -22,9 +22,11 @@ import java.util.List;
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
     LayoutInflater inflater;
     List<JobData> data;
-    public JobAdapter (Context context, List<JobData> data){
+    String purpose;
+    public JobAdapter (Context context, List<JobData> data,String purpose){
         this.inflater= LayoutInflater.from(context);
         this.data= data;
+        this.purpose= purpose;
     }
 
     @NonNull
@@ -36,10 +38,23 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String smallDescription=data.get(position).jobDescription;
-        holder.description.setText(smallDescription);
-        holder.jobEditBtn.setOnClickListener(view-> {
 
+        String smallDescription=data.get(position).jobDescription;
+        String status = data.get(position).status;
+        holder.description.setText(smallDescription);
+        if (purpose.equals("show") && status.equals("Complete")){
+            holder.jobEditBtn.setVisibility(View.GONE);
+            holder.rateBtn.setVisibility(View.VISIBLE);
+        }
+        
+        holder.rateBtn.setOnClickListener(view-> {
+            final Intent rateIntent = new Intent(holder.context,RatingEmployeePage.class);
+            rateIntent.putExtra("key",data.get(position).employerKey);
+            rateIntent.putExtra("employeeKey",data.get(position).employeeKey);
+            holder.context.startActivity(rateIntent);
+        });
+
+        holder.jobEditBtn.setOnClickListener(view-> {
           final Intent intent = new Intent(holder.context, JobEditActivity.class);
             intent.putExtra("key", data.get(position).getJobID());
             holder.context.startActivity(intent);
@@ -54,12 +69,14 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView description;
         Button jobEditBtn;
+        Button rateBtn;
         private final Context context;
 
         ViewHolder(View item) {
             super(item);
             description = item.findViewById(R.id.JName);
             jobEditBtn = item.findViewById(R.id.viewJobButton);
+            rateBtn= item.findViewById(R.id.rateBtn);
             context = item.getContext();
         }
     }

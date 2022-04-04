@@ -21,48 +21,33 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class EmployerRecommendationActivity extends AppCompatActivity implements View.OnClickListener {
+public class EmployerRecommendationActivity extends AppCompatActivity  {
 
-    private ArrayList<Employee> recommendedEmployees = new ArrayList<>();
+    private ArrayList<Employee> recommendedEmployees;
     private RecyclerView recyclerView;
+
   //  private EmployerRecommendationAdapter recommendationAdapter;
- //   private ArrayList<Employee> recommendedEmployees;
+  //  private ArrayList<Employee> recommendedEmployees;
     ArrayList<Employee> employees;
     String employerID;
-
+    EmployeeAdapter employeeAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.employeeitem);
-      //  init();
+        setContentView(R.layout.recommendation_activity);
         recommendedEmployees= new ArrayList<>();
-        Intent intent= getIntent();
-       employerID= intent.getStringExtra("ID");
-
-         init();
-        recommendedEmployees = new ArrayList<>();
-
-        Button recmndButton = findViewById(R.id.RecommendButton1);
-        recmndButton.setOnClickListener(this);
+        getRecommendEmployees();
+        init();
 
     }
 
     private void init() {
         recyclerView = findViewById(R.id.EmployeeList);
-        //recyclerView.setLayoutManager(new WrapLinearLayoutManger(this, LinearLayoutManager.VERTICAL,false));
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-    }
-
-    private void connectToFirebaseDB() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //   DatabaseReference jobRef= database.getReference("job Postings");
-        //    DatabaseReference employeeRef= database.getReference("Employee");
-        // getRecommenedEmployees();
-        //  recommendationAdapter= new EmployerRecommendationAdapter(EmployerRecommendationActivity.this,recommendedEmployees);
-        //  recyclerView.setAdapter(recommendationAdapter);
+        recyclerView.setLayoutManager(new WrapLinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
     }
+
+
 
     private ArrayList<Employee> collectEmployees(Map<String, Object> data) {
         ArrayList<Employee> allEmployees = new ArrayList<>();
@@ -70,6 +55,12 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
             Map employeeMap = (Map) map.getValue();
             Employee employee = new Employee((String) employeeMap.get("id"), ((String) employeeMap.get("name")));
             employee.addSkills((ArrayList<String>) employeeMap.get("skills"));
+            Long longAge = (Long) employeeMap.get("age");
+            employee.setAge(longAge.intValue());
+            if (( employeeMap.get("Ratings")) != null){
+                employee.rating=  Float.parseFloat(employeeMap.get("Ratings").toString());
+            }
+
             allEmployees.add(employee);
 
         }
@@ -90,13 +81,21 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
                         Map<String, Object> jobsMap = ((Map<String, Object>) snapshot.getValue());
                         for (Map.Entry<String, Object> map : jobsMap.entrySet()) {
                             Map job = (Map) map.getValue();
+                                if (job.get("id").equals(MainActivity.employeeKey)){
+                                    String skills = (String) job.get("skills");
+                                    ArrayList <Employee> tempEmployees =RecommendationService.employerRecommendation(skills,employees);
+                                    for (int i=0; i<tempEmployees.size();i++){
+                                        if (!recommendedEmployees.contains(tempEmployees.get(i))){
+                                            recommendedEmployees.add(tempEmployees.get(i));
+                                        }
+                                    }
 
-                            if (((String) map.getKey()).equals("-Mvj4JmACXsCddWw91gJ")) {
-                                String skills = (String) job.get("skills");
-                                //   recommendedEmployees= RecommendationService.employerRecommendation(skills,employees);
-                                break;
-                            }
+
+                                }
+
                         }
+                        employeeAdapter= new EmployeeAdapter(EmployerRecommendationActivity.this,recommendedEmployees);
+                        recyclerView.setAdapter(employeeAdapter);
                     }
 
                     @Override
@@ -115,49 +114,6 @@ public class EmployerRecommendationActivity extends AppCompatActivity implements
 
     }
 
-    @Override
-    public void onClick(View view) {
-
-       /*
-        EditText name1,  name2;
-        EditText skills1,skill2 ;
-        EditText email1,email2 ;
-        name1= findViewById(R.id.employeeName);
-        name2= findViewById(R.id.employeeName1);
-        skills1= findViewById(R.id.employeeSkills);
-        skill2 = findViewById(R.id.employeeSkills1);
-        email1= findViewById(R.id.employeeEmail);
-        email2= findViewById(R.id.employeeEmail1);
-        //connectToFirebaseDB();
-        getRecommendEmployees();
-        name1.setText("Name: "+ recommendedEmployees.get(0).getName());
-        name2.setText(recommendedEmployees.get(1).getName());
-        String skillse1="";
-        for (int i=0; i<recommendedEmployees.get(0).getSkills().size();i++){
-            skillse1+=recommendedEmployees.get(0).getSkills().get(i);
-        }
-        skillse1="";
-        for (int i=0; i<recommendedEmployees.get(1).getSkills().size();i++){
-            skillse1+=recommendedEmployees.get(1).getSkills().get(i);
-        }
-        skills1.setText(skillse1);
-        email1.setText(recommendedEmployees.get(0).getEmail());
-        email2.setText(recommendedEmployees.get(1).getEmail());
-        LinearLayout linear1= findViewById(R.id.linearLayout1);
-        LinearLayout linear2= findViewById(R.id.linearLayout2);
-        linear1.setVisibility(View.VISIBLE);
-        linear2.setVisibility(View.VISIBLE);
-         recommendationAdapter.startListening();
->>>>>>> main
-
-        LinearLayout linear1= findViewById(R.id.linearLayout1);
-        LinearLayout linear2= findViewById(R.id.linearLayout2);
-        linear1.setVisibility(View.VISIBLE);
-        linear2.setVisibility(View.VISIBLE);
-        Button button= findViewById(R.id.RecommendButton1);
-        button.setVisibility(View.GONE);
-*/
-    }
 
 
 }
