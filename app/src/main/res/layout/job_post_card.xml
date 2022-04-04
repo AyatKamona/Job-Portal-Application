@@ -80,6 +80,34 @@
             tools:ignore="HardcodedText,TextContrastCheck" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Employer Rating:"
+            android:textColor="@color/black"
+            android:layout_marginBottom="5dp"
+            android:textStyle="bold" />
+
+        <!--
+            * How to implement a rating bar
+            * URL: https://www.youtube.com/watch?v=GQsibTm-aw4&ab_channel=Stevdza-San
+             * Author: Stevdza-San
+            * Accessed: 31/03/2022
+        -->
+
+        <RatingBar
+            android:id="@+id/JobPostCardRBtn"
+            style="@android:style/Widget.Material.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:clickable="false"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:progressTint="#FFC107"
+            android:rating="4"
+            android:stepSize="0.5" />
+
+        <TextView
             android:id="@+id/lng"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

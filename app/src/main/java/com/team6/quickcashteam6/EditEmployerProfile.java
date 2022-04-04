@@ -37,7 +37,8 @@ public class EditEmployerProfile extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.updateprofile);
         Intent intent = getIntent();
-        employerKey= intent.getStringExtra("ID");
+      //  employerKey= intent.getStringExtra("ID");
+        employerKey= MainActivity.employeeKey;
         name= findViewById(R.id.insert_name);
         age=findViewById(R.id.insert_Age);
         phone= findViewById(R.id.insert_Phone);
@@ -93,7 +94,7 @@ public class EditEmployerProfile extends AppCompatActivity  {
                        jobsToShow.add(job);
                    }
                }
-                jobAdapter= new JobAdapter(EditEmployerProfile.this,jobsToShow);
+                jobAdapter= new JobAdapter(EditEmployerProfile.this,jobsToShow,"edit");
                 recyclerView.setAdapter(jobAdapter);
 
 
@@ -107,10 +108,6 @@ public class EditEmployerProfile extends AppCompatActivity  {
 
 
 
-      //  jobs.add(new JobData("Plumbing","$20","7pm","Hard Labour","I need someone to fix my bathroom"));
-      //  jobs.add(new JobData("Moving","$30","3pm","Hard Labour, lifting","I need someone to help me with moving my furniture"));
-     //   jobs.add(new JobData("Pet Sitting","$50","1pm","Gentle, Respectful","Need someone to look after my dog while im gone"));
-
     }
     public ArrayList<JobData> collectJobs (Map<String,Object> data){
         ArrayList<JobData> jobs= new ArrayList<>();
@@ -119,8 +116,7 @@ public class EditEmployerProfile extends AppCompatActivity  {
             String longLng= jobMap.get("lng").toString();
             String longLat= jobMap.get("lat").toString();
             JobData job = new JobData((String) jobMap.get("id"), (String) jobMap.get("jobID"),(String) jobMap.get("jobTitle"), (String) jobMap.get("payment"), (String) jobMap.get("startTime"),
-
-                    (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), Double.parseDouble(longLng), Double.parseDouble(longLat), (String) jobMap.get("status"));
+                    (String) jobMap.get("skills"), (String) jobMap.get("jobDescription"), Double.parseDouble(longLng), Double.parseDouble(longLat),(String) jobMap.get("status"));
             jobs.add(job);
         }
         return jobs;

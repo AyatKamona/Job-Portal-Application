@@ -2,7 +2,6 @@ package com.team6.quickcashteam6;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.type.LatLng;
 
 public class MainActivity extends AppCompatActivity {
 
