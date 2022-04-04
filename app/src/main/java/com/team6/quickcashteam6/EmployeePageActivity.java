@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class EmployeePageActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
 
     ArrayList<IDPairs> allIDs;
     String keyToSend;
@@ -58,6 +59,20 @@ public class EmployeePageActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent allJobsPage = new Intent(EmployeePageActivity.this, AllJobsActivity.class);
                 startActivity(allJobsPage);
+            }
+        });
+
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        Button logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mAuth.signOut();
+                Intent reLogin = new Intent(EmployeePageActivity.this, MainActivity.class);
+                startActivity(reLogin);
             }
         });
     }

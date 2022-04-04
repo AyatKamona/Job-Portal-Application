@@ -8,6 +8,8 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class EmployerPageActivity extends AppCompatActivity implements View.OnClickListener {
+    private FirebaseAuth mAuth;
     String employerID;
     public static String employerKey;
     private static final String Fb_URL = "https://quickcash-team6-default-rtdb.firebaseio.com/";
@@ -73,12 +76,17 @@ public class EmployerPageActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-        Button viewMyJobs= findViewById(R.id.viewPostedJobsButton);
-        viewMyJobs.setOnClickListener(new View.OnClickListener() {
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        Button logout = findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EmployerPageActivity.this,ViewMyJobs.class);
-                startActivity(intent);
+                mAuth.signOut();
+                Intent reLogin = new Intent(EmployerPageActivity.this, MainActivity.class);
+                startActivity(reLogin);
             }
         });
 
